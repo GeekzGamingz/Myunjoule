@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://source/Actors/Player/Player.gd" type="Script" id=1]
+[ext_resource path="res://source/Actors/Player/PlayerFSM.gd" type="Script" id=2]
+
+[sub_resource type="CircleShape2D" id=1]
+
+[sub_resource type="AnimationNodeStateMachine" id=2]
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=3]
+
+[node name="Player" type="KinematicBody2D"]
+script = ExtResource( 1 )
+
+[node name="PlayerFSM" type="Node2D" parent="."]
+script = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="StateOutput" type="Label" parent="."]
+margin_right = 40.0
+margin_bottom = 14.0
+
+[node name="AnimationPlayers" type="Node2D" parent="."]
+
+[node name="SpritePlayer" type="AnimationPlayer" parent="AnimationPlayers"]
+root_node = NodePath("../..")
+
+[node name="EffectsPlayer" type="AnimationPlayer" parent="AnimationPlayers"]
+
+[node name="AnimationTree" type="AnimationTree" parent="AnimationPlayers"]
+tree_root = SubResource( 2 )
+anim_player = NodePath("../SpritePlayer")
+parameters/playback = SubResource( 3 )
