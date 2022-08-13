@@ -10,7 +10,7 @@ onready var textTween = $TextureRect/MarginContainer/TextTween
 #-------------------------------------------------------------------------------------------------#
 #Dialog
 var dialog = [
-	'[color=black]This is a test of the BB Code format.\nI can fit a total of 4 lines of dialog and have it all look nice and neat and centered and such.\nPretty nifty... Don\'t you think?',
+	'[color=black]This is a test of the BB Code format.\nI can fit a total of 6 lines of dialog and have it all\nlook nice and neat and centered and such.\nPretty nifty...\nDon\'t you think?\nWell, I do.',
 	'[color=black]I am attempting to code my own dialog box so that I don\'t need to unravel other programmers\' codes and implement my own system!!',
 	'[color=black]There are several advantages to BB Code such as animated text like...',
 	'[color=black]A [wave]wave[/wave] effect!,\nI can also change the [wave amp=100]amplitude[/wave] or the [wave freq=10]frequency[/wave].',
