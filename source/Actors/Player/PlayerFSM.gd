@@ -5,6 +5,10 @@ extends StateMachine
 #OnReady Variables
 onready var stateLabel: Label = parent.get_node("StateOutput")
 
+var animations = {
+	MOVE_LEFT  = "rowbit_move_left",
+	MOVE_RIGHT = "rowbit_move_right"
+}
 
 #-------------------------------------------------------------------------------------------------#
 #Ready
@@ -64,6 +68,10 @@ func transitions(delta):
 func stateEnter(newState, oldState):
 	match(newState):
 		states.idle: pass
+		states.move_left:
+			parent.spritePlayer.play(animations.MOVE_LEFT)
+		states.move_right:
+			parent.spritePlayer.play(animations.MOVE_RIGHT)
 
 
 #Exit State
