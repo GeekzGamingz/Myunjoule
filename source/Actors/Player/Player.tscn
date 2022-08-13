@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://source/Actors/Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://source/Actors/Player/PlayerFSM.gd" type="Script" id=2]
 [ext_resource path="res://assets/Player/rowbit-move.png" type="Texture" id=3]
 [ext_resource path="res://assets/Player/Animations/rowbit_move_right.tres" type="Animation" id=4]
 [ext_resource path="res://assets/Player/Animations/rowbit_move_left.tres" type="Animation" id=5]
+[ext_resource path="res://assets/Player/Animations/rowbit_idle.tres" type="Animation" id=6]
 
 [sub_resource type="CircleShape2D" id=1]
 
@@ -96,6 +97,7 @@ valign = 1
 [node name="SpritePlayer" type="AnimationPlayer" parent="AnimationPlayers"]
 root_node = NodePath("../..")
 anims/RESET = SubResource( 4 )
+anims/rowbit_idle = ExtResource( 6 )
 anims/rowbit_move_left = ExtResource( 5 )
 anims/rowbit_move_right = ExtResource( 4 )
 

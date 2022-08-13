@@ -6,6 +6,7 @@ extends StateMachine
 onready var stateLabel: Label = parent.get_node("StateOutput")
 
 var animations = {
+	IDLE = "rowbit_idle",
 	MOVE_LEFT  = "rowbit_move_left",
 	MOVE_RIGHT = "rowbit_move_right"
 }
@@ -16,6 +17,7 @@ func _ready() -> void:
 	stateAdd("idle")
 	stateAdd("move_left")
 	stateAdd("move_right")
+	# Set the starting state
 	call_deferred("stateSet",states.idle)
 
 
@@ -67,7 +69,8 @@ func transitions(delta):
 # warning-ignore:unused_argument
 func stateEnter(newState, oldState):
 	match(newState):
-		states.idle: pass
+		states.idle:
+			parent.spritePlayer.play(animations.IDLE)
 		states.move_left:
 			parent.spritePlayer.play(animations.MOVE_LEFT)
 		states.move_right:
