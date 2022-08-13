@@ -83,6 +83,7 @@ shape = SubResource( 3 )
 [node name="AnimationPlayers" type="Node2D" parent="."]
 
 [node name="SpritePlayer" type="AnimationPlayer" parent="AnimationPlayers"]
+autoplay = "idle"
 anims/RESET = SubResource( 1 )
 anims/idle = SubResource( 2 )
 
