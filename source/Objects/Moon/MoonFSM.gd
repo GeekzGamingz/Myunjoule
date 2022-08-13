@@ -20,6 +20,7 @@ func _ready() -> void:
 #State Label
 func _process(_delta: float) -> void:
 	stateLabel.text = str(states.keys()[state])
+	parent.moonPhase()
 #-------------------------------------------------------------------------------------------------#
 #Input Handler
 func _input(event: InputEvent) -> void:
