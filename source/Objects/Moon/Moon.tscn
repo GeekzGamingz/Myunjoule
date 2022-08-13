@@ -1,0 +1,103 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://assets/Objects/Moon/mewn-Sheet.png" type="Texture" id=1]
+[ext_resource path="res://source/Objects/Moon/Moon.gd" type="Script" id=2]
+[ext_resource path="res://source/Objects/Moon/MoonFSM.gd" type="Script" id=3]
+
+[sub_resource type="CircleShape2D" id=3]
+radius = 20.025
+
+[sub_resource type="Animation" id=1]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("../MoonSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "idle"
+length = 1.6
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("../MoonSprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("../MoonSprite:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 16 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("../MoonSprite:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 ]
+}
+
+[sub_resource type="AnimationNodeStateMachine" id=4]
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=5]
+
+[node name="Moon" type="KinematicBody2D"]
+script = ExtResource( 2 )
+
+[node name="MoonFSM" type="Node2D" parent="."]
+script = ExtResource( 3 )
+
+[node name="MoonSprite" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+hframes = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 3 )
+
+[node name="AnimationPlayers" type="Node2D" parent="."]
+
+[node name="SpritePlayer" type="AnimationPlayer" parent="AnimationPlayers"]
+anims/RESET = SubResource( 1 )
+anims/idle = SubResource( 2 )
+
+[node name="EffectsPlayer" type="AnimationPlayer" parent="AnimationPlayers"]
+
+[node name="AnimationTree" type="AnimationTree" parent="AnimationPlayers"]
+tree_root = SubResource( 4 )
+anim_player = NodePath("../SpritePlayer")
+parameters/playback = SubResource( 5 )
+
+[node name="StateOutput" type="Label" parent="."]
+margin_left = -20.0
+margin_top = -35.0
+margin_right = 20.0
+margin_bottom = -21.0
+text = "State"
+align = 1
+valign = 1
