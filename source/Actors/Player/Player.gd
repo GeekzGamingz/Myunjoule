@@ -12,7 +12,7 @@ onready var currentState = playBack.get_current_node()
 
 var move_dir: int = 0
 var old_move_dir: int = 0
-var snap: Vector2 = Vector2(0, 5000)
+var snap: Vector2 = Vector2.DOWN
 #-------------------------------------------------------------------------------------------------#
 #Ready Method
 func _ready() -> void:
@@ -33,4 +33,4 @@ func handle_move_input() -> void:
 		motion.x = lerp(motion.x, 0, lerp(0.0, friction, friction_step))
 
 func apply_movement() -> void:
-	motion = move_and_slide_with_snap(motion, snap, Vector2.ZERO, true, 4, deg2rad(45), false)
+	motion = move_and_slide_with_snap(motion, snap, Vector2.UP, true, 4, deg2rad(45), false)
