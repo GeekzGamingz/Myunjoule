@@ -15,6 +15,7 @@ var animations = {
 #Ready
 func _ready() -> void:
 	stateAdd("idle")
+	stateAdd("fall")
 	stateAdd("move_left")
 	stateAdd("move_right")
 	# Set the starting state
@@ -52,6 +53,11 @@ func transitions(delta):
 				return states.move_left
 			if parent.move_dir > 0:
 				return states.move_right
+			if not parent.is_on_floor():
+				return states.fall
+		states.fall:
+			if parent.is_on_floor():
+				return states.idle
 		states.move_left:
 			if parent.move_dir == 0:
 				return states.idle

@@ -107,3 +107,5 @@ anims/rowbit_move_right = ExtResource( 4 )
 tree_root = SubResource( 2 )
 anim_player = NodePath("../SpritePlayer")
 parameters/playback = SubResource( 3 )
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
