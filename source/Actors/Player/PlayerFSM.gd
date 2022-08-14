@@ -40,7 +40,8 @@ func _input(event: InputEvent) -> void:
 #State Machine
 #State Logistics
 func stateLogic(delta):
-	# parent.apply_gravity(delta)
+	if parent.is_falling:
+		parent.apply_gravity(delta)
 	parent.handle_move_input()
 	parent.apply_movement()
 
