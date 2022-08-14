@@ -19,7 +19,7 @@ var is_falling = false
 #-------------------------------------------------------------------------------------------------#
 #Ready Method
 func _ready() -> void:
-	pass
+	$LandingDetector.connect("area_entered", self, "enable_collision")
 #-------------------------------------------------------------------------------------------------#
 #Applies Gravity
 func apply_gravity(delta):
@@ -46,7 +46,13 @@ func handle_move_input() -> void:
 			motion.y = lerp(motion.y, 0, lerp(0.0, friction, friction_step))
 
 func apply_movement() -> void:
-	motion = move_and_slide_with_snap(motion, snap, Vector2.UP, true, 4, deg2rad(45), false)
+	motion = move_and_slide(motion, Vector2.UP)
 
-func toggle_is_falling() -> void:
-	is_falling = not is_falling
+func set_is_falling(falling: bool) -> void:
+	is_falling = falling
+	if (falling):
+		$CollisionShape2D.set_deferred("disabled", true)
+
+func enable_collision(area: Area2D) -> void:
+	if area.is_in_group("fall_end"):
+		$CollisionShape2D.set_deferred("disabled", false)
