@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://assets/NPCs/Yorker/Yorker-sweeping-Sheet.png" type="Texture" id=2]
 
 [sub_resource type="CapsuleShape2D" id=6]
-height = 28.0
+radius = 12.0
+height = 10.0
 
 [sub_resource type="Animation" id=7]
 length = 0.001
@@ -66,6 +67,9 @@ tracks/2/keys = {
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=5]
 
+[sub_resource type="CircleShape2D" id=8]
+radius = 43.1856
+
 [node name="Yorker" type="KinematicBody2D"]
 
 [node name="YorkerFSM" type="Node2D" parent="."]
@@ -75,6 +79,8 @@ texture = ExtResource( 2 )
 hframes = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 7, 12 )
+rotation = 1.5708
 shape = SubResource( 6 )
 
 [node name="AnimationPlayers" type="Node2D" parent="."]
@@ -99,3 +105,10 @@ margin_bottom = -22.0
 text = "State"
 align = 1
 valign = 1
+
+[node name="DialogArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DialogArea"]
+visible = false
+modulate = Color( 0.196078, 1, 0, 1 )
+shape = SubResource( 8 )
