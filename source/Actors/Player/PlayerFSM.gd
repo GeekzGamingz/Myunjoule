@@ -15,9 +15,11 @@ var animations = {
 #Ready
 func _ready() -> void:
 	stateAdd("idle")
-	stateAdd("fall")
+	# stateAdd("fall")
 	stateAdd("move_left")
 	stateAdd("move_right")
+	stateAdd("move_forward")
+	stateAdd("move_backward")
 	# Set the starting state
 	call_deferred("stateSet",states.idle)
 
@@ -38,7 +40,7 @@ func _input(event: InputEvent) -> void:
 #State Machine
 #State Logistics
 func stateLogic(delta):
-	parent.apply_gravity(delta)
+	# parent.apply_gravity(delta)
 	parent.handle_move_input()
 	parent.apply_movement()
 
@@ -53,11 +55,11 @@ func transitions(delta):
 				return states.move_left
 			if parent.move_dir > 0:
 				return states.move_right
-			if not parent.is_on_floor():
-				return states.fall
-		states.fall:
-			if parent.is_on_floor():
-				return states.idle
+#			if not parent.is_on_floor():
+#				return states.fall
+#		states.fall:
+#			if parent.is_on_floor():
+#				return states.idle
 		states.move_left:
 			if parent.move_dir == 0:
 				return states.idle
