@@ -1,10 +1,64 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://source/Actors/Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://source/Actors/Player/PlayerFSM.gd" type="Script" id=2]
-[ext_resource path="res://assets/Player/dronesprite.png" type="Texture" id=3]
+[ext_resource path="res://assets/Player/rowbit-move.png" type="Texture" id=3]
+[ext_resource path="res://assets/Player/Animations/rowbit_move_right.tres" type="Animation" id=4]
+[ext_resource path="res://assets/Player/Animations/rowbit_move_left.tres" type="Animation" id=5]
+[ext_resource path="res://assets/Player/Animations/rowbit_idle.tres" type="Animation" id=6]
 
 [sub_resource type="CircleShape2D" id=1]
+
+[sub_resource type="Animation" id=4]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("PlayerSprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ ExtResource( 3 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("PlayerSprite:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 4 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("PlayerSprite:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("PlayerSprite:flip_h")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
 
 [sub_resource type="AnimationNodeStateMachine" id=2]
 
@@ -12,12 +66,15 @@
 
 [node name="Player" type="KinematicBody2D"]
 script = ExtResource( 1 )
+gravity = 250.0
 
 [node name="PlayerFSM" type="Node2D" parent="."]
 script = ExtResource( 2 )
 
 [node name="PlayerSprite" type="Sprite" parent="."]
 texture = ExtResource( 3 )
+flip_h = true
+hframes = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
@@ -39,6 +96,10 @@ valign = 1
 
 [node name="SpritePlayer" type="AnimationPlayer" parent="AnimationPlayers"]
 root_node = NodePath("../..")
+anims/RESET = SubResource( 4 )
+anims/rowbit_idle = ExtResource( 6 )
+anims/rowbit_move_left = ExtResource( 5 )
+anims/rowbit_move_right = ExtResource( 4 )
 
 [node name="EffectsPlayer" type="AnimationPlayer" parent="AnimationPlayers"]
 
@@ -46,3 +107,5 @@ root_node = NodePath("../..")
 tree_root = SubResource( 2 )
 anim_player = NodePath("../SpritePlayer")
 parameters/playback = SubResource( 3 )
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
