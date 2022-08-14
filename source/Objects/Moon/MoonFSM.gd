@@ -35,8 +35,14 @@ func stateLogic(delta):
 func transitions(delta):
 	match(state):
 		#Idle
-		states.phaseNew:
-			pass
+		states.phaseNew: return setPhase()
+		states.phaseWaxCrescent: return setPhase()
+		states.phaseFirQuarter: return setPhase()
+		states.phaseWaxGibbous: return setPhase()
+		states.phaseFull: return setPhase()
+		states.phaseWanGibbous: return setPhase()
+		states.phaseLasQuarter: return setPhase()
+		states.phaseWanCrescent: return setPhase()
 	return null
 #Enter State
 # warning-ignore:unused_argument
@@ -52,3 +58,18 @@ func stateExit(oldState, newState):
 #Assign Animations
 func assign_animation():
 	parent.animTree["parameters/conditions/Idle"] = states.phaseNew
+#-------------------------------------------------------------------------------------------------#
+#Assign Animations
+func setPhase():
+	print(parent.phaseDict)
+	print(parent.phaseDict["flagNew"])
+	if parent.phaseDict["flagNew"] == true:
+		return states.phaseNew
+		print("Yup.")
+	if parent.phaseDict == {"flagWaxCrescent":true}: return states.phaseWaxCrescent
+	if parent.phaseDict == {"flagFirQuarter":true}: return states.phaseFirQuarter
+	if parent.phaseDict == {"flagWaxGibbous":true}: return states.phaseWaxGibbous
+	if parent.phaseDict == {"flagFull":true}: return states.phaseFull
+	if parent.phaseDict == {"flagWanGibbous":true}: return states.phaseWanGibbous
+	if parent.phaseDict == {"flagLasQuarter":true}: return states.phaseLasQuarter
+	if parent.phaseDict == {"flagWanCrescent":true}: return states.phaseWanCrescent

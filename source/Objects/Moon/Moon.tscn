@@ -95,10 +95,10 @@ anim_player = NodePath("../SpritePlayer")
 parameters/playback = SubResource( 5 )
 
 [node name="StateOutput" type="Label" parent="."]
-margin_left = -20.0
-margin_top = -35.0
-margin_right = 20.0
-margin_bottom = -21.0
+margin_left = -58.0
+margin_top = -36.0
+margin_right = 58.0
+margin_bottom = -22.0
 text = "State"
 align = 1
 valign = 1
