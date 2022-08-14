@@ -1,6 +1,8 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
+[ext_resource path="res://source/Actors/Yorker/YorkerFSM.gd" type="Script" id=1]
 [ext_resource path="res://assets/NPCs/Yorker/Yorker-sweeping-Sheet.png" type="Texture" id=2]
+[ext_resource path="res://source/Actors/Yorker/Yorker.gd" type="Script" id=3]
 
 [sub_resource type="CapsuleShape2D" id=6]
 radius = 12.0
@@ -71,8 +73,10 @@ tracks/2/keys = {
 radius = 43.1856
 
 [node name="Yorker" type="KinematicBody2D"]
+script = ExtResource( 3 )
 
 [node name="YorkerFSM" type="Node2D" parent="."]
+script = ExtResource( 1 )
 
 [node name="YorkerSprite" type="Sprite" parent="."]
 texture = ExtResource( 2 )
@@ -109,6 +113,7 @@ valign = 1
 [node name="DialogArea" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DialogArea"]
-visible = false
 modulate = Color( 0.196078, 1, 0, 1 )
 shape = SubResource( 8 )
+
+[connection signal="body_entered" from="DialogArea" to="." method="_on_DialogArea_body_entered"]
