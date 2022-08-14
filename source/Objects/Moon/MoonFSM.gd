@@ -61,15 +61,11 @@ func assign_animation():
 #-------------------------------------------------------------------------------------------------#
 #Assign Animations
 func setPhase():
-	print(parent.phaseDict)
-	print(parent.phaseDict["flagNew"])
-	if parent.phaseDict["flagNew"] == true:
-		return states.phaseNew
-		print("Yup.")
-	if parent.phaseDict == {"flagWaxCrescent":true}: return states.phaseWaxCrescent
-	if parent.phaseDict == {"flagFirQuarter":true}: return states.phaseFirQuarter
-	if parent.phaseDict == {"flagWaxGibbous":true}: return states.phaseWaxGibbous
-	if parent.phaseDict == {"flagFull":true}: return states.phaseFull
-	if parent.phaseDict == {"flagWanGibbous":true}: return states.phaseWanGibbous
-	if parent.phaseDict == {"flagLasQuarter":true}: return states.phaseLasQuarter
-	if parent.phaseDict == {"flagWanCrescent":true}: return states.phaseWanCrescent
+	if parent.phaseDict["flagNew"] == true: return states.phaseNew
+	if parent.phaseDict["flagWaxCrescent"] == true: return states.phaseWaxCrescent
+	if parent.phaseDict["flagFirQuarter"] == true: return states.phaseFirQuarter
+	if parent.phaseDict["flagWaxGibbous"] == true: return states.phaseWaxGibbous
+	if parent.phaseDict["flagFull"] == true: return states.phaseFull
+	if parent.phaseDict["flagWanGibbous"] == true: return states.phaseWanGibbous
+	if parent.phaseDict["flagLasQuarter"] == true: return states.phaseLasQuarter
+	if parent.phaseDict["flagWanCrescent"] == true: return states.phaseWanCrescent
