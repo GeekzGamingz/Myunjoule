@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://assets/Actors/Critter/critter-Sheet.png" type="Texture" id=1]
+[ext_resource path="res://assets/NPCs/Critter/critter-Sheet.png" type="Texture" id=1]
 
 [sub_resource type="CircleShape2D" id=6]
 
