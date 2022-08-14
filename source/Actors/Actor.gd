@@ -15,3 +15,8 @@ export(float, 0, 1, 0.01)  var max_acceleration   := 0.5
 export(float, 0, 1, 0.01)  var acceleration_step  := 0.15
 export(float, 0, 1, 0.01)  var friction           := 0.6
 export(float, 0, 1, 0.005) var friction_step      := 0.235
+
+var z_speed = 1
+var z_layers = 10
+
+var scalar = 0.01
