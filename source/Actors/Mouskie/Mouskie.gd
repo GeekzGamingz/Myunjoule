@@ -4,6 +4,8 @@ extends Actor
 #Variables
 var player = null
 var rng = RandomNumberGenerator.new()
+var Direction = "Left"
+var oldDirection
 #Bool Variables
 var player_inSight = false
 var player_inThreat = false
@@ -12,7 +14,6 @@ onready var spritePlayer = $AnimationPlayers/SpritePlayer
 onready var fxPlayer = $AnimationPlayers/EffectsPlayer
 onready var idleTimer: Timer = $Timers/idleTimer
 onready var attackTimer: Timer = $Timers/attackTimer
-
 #-------------------------------------------------------------------------------------------------#
 #Ready
 func _ready() -> void:
@@ -29,11 +30,24 @@ func apply_movementChase():
 func apply_movementWalk():
 	rng.randomize()
 	var rngDistance1 = rng.randf_range(-50, 50)
-	rng.randomize()
 	var rngDistance2 = rng.randf_range(-50, 50)
-	var distance = Vector2(rngDistance1, rngDistance2)
+	var distance = Vector2(rngDistance1, rngDistance1)
 	motion = lerp(motion, distance.normalized() * 100, 0.3)
 	motion = move_and_slide(motion, Vector2.UP)
+#-------------------------------------------------------------------------------------------------#
+#Flip Sprite & Collision
+func flipMouskie():
+	if oldDirection != Direction:
+		if motion.x < 0:
+			get_node("MouskieSprite").set_flip_h(true)
+			$LCollision.set_deferred("disabled", false)
+			$RCollision.set_deferred("disabled", true)
+			Direction = "Left"
+		else:
+			get_node("MouskieSprite").set_flip_h(false)
+			$LCollision.set_deferred("disabled", true)
+			$RCollision.set_deferred("disabled", false)
+			Direction = "Right"
 #-------------------------------------------------------------------------------------------------#
 #Sight
 #In Sight

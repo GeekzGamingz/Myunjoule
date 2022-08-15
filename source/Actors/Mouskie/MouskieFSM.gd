@@ -23,12 +23,14 @@ func _process(_delta: float) -> void:
 	if parent.player != null:
 		player_xDistance = (parent.player.position.x - parent.position.x)
 		player_yDistance = (parent.player.position.y - parent.position.y)
-		print("X :", player_xDistance, "Y: ", player_yDistance)
+		if parent.player_inSight:
+			print("X :", player_xDistance, "Y: ", player_yDistance)
 #-------------------------------------------------------------------------------------------------#
 #State Logistics
 func stateLogic(delta):
 	if [states.chase].has(state): parent.apply_movementChase()
 	if [states.walk].has(state): parent.apply_movementWalk()
+	parent.flipMouskie()
 #	parent.apply_gravity(delta)
 #State Transitions
 # warning-ignore:unused_argument
