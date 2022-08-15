@@ -37,6 +37,9 @@ position = Vector2( 94, 52 )
 [node name="GrapplingPoint" parent="." instance=ExtResource( 6 )]
 position = Vector2( -154, -79 )
 
+[node name="GrapplingPoint2" parent="." instance=ExtResource( 6 )]
+position = Vector2( -220, -80 )
+
 [node name="Expo" parent="." instance=ExtResource( 7 )]
 
 [editable path="Player"]

@@ -1,30 +1,3 @@
-#extends Actor
-#
-#export(float, 0, 1, 0.01) var anchor_follow_weight = 0.25
-#
-#var anchored: bool = true
-#var points_of_interest = []
-#var selected_poi = Node2D
-#
-#var num_of_ticks: int = 0
-#var float_range: float = 0.5
-#var float_offset: int = 0
-#var float_speed: float = 0.03
-#
-#onready var rowbit = get_parent()
-#
-#func _ready() -> void:
-#	pass
-#
-#func handle_bobble_movement() -> void:
-#	num_of_ticks += 1
-#	self.position.y = lerp(self.position.y, self.position.y + float_range * sin((num_of_ticks * float_speed) * PI) + float_offset, 0.25)
-#
-#func apply_movement() -> void:
-#	motion = move_and_slide(motion, Vector2.UP)
-
-
-
 extends Actor
 
 export(float, 0, 1, 0.01) var anchor_follow_weight = 0.25
