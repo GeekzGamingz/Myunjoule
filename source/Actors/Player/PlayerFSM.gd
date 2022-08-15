@@ -18,6 +18,9 @@ func _ready() -> void:
 	stateAdd("fall")
 	stateAdd("move_left")
 	stateAdd("move_right")
+	stateAdd("move_up")
+	stateAdd("move_down")
+	stateAdd("grappling")
 	# Set the starting state
 	call_deferred("stateSet",states.idle)
 
@@ -31,6 +34,10 @@ func _process(_delta: float) -> void:
 #-------------------------------------------------------------------------------------------------#
 #Input Handler
 func _input(event: InputEvent) -> void:
+	# Would want some tie in here to the drone selection system
+	if event.is_action_pressed("activate") and $"../GrapplingHook".can_grapple:
+		call_deferred("stateSet", states.grappling)
+		parent.grappling.is_grappling = true
 	pass
 
 
@@ -38,8 +45,9 @@ func _input(event: InputEvent) -> void:
 #State Machine
 #State Logistics
 func stateLogic(delta):
-	parent.apply_gravity(delta)
-	parent.handle_move_input()
+	if parent.is_falling:
+		parent.apply_gravity(delta)
+	parent.handle_movement()
 	parent.apply_movement()
 
 
@@ -47,27 +55,45 @@ func stateLogic(delta):
 # warning-ignore:unused_argument
 func transitions(delta):
 	match(state):
-		#Idle
 		states.idle:
 			if parent.move_dir < 0:
 				return states.move_left
 			if parent.move_dir > 0:
 				return states.move_right
-			if not parent.is_on_floor():
+			if parent.z_move_dir < 0:
+				return states.move_up
+			if parent.z_move_dir > 0:
+				return states.move_down
+			if parent.is_falling:
 				return states.fall
+		
 		states.fall:
-			if parent.is_on_floor():
+			if not parent.is_falling:
 				return states.idle
+		
 		states.move_left:
 			if parent.move_dir == 0:
 				return states.idle
 			if parent.move_dir > 0:
 				return states.move_right
+		
 		states.move_right:
 			if parent.move_dir == 0:
 				return states.idle
 			if parent.move_dir < 0:
 				return states.move_left
+		
+		states.move_up:
+			if parent.z_move_dir == 0:
+				return states.idle
+		
+		states.move_down:
+			if parent.z_move_dir == 0:
+				return states.idle
+		
+		states.grappling:
+			if not parent.grappling.is_grappling:
+				return states.idle
 	return null
 
 
@@ -77,8 +103,10 @@ func stateEnter(newState, oldState):
 	match(newState):
 		states.idle:
 			parent.spritePlayer.play(animations.IDLE)
+		
 		states.move_left:
 			parent.spritePlayer.play(animations.MOVE_LEFT)
+		
 		states.move_right:
 			parent.spritePlayer.play(animations.MOVE_RIGHT)
 

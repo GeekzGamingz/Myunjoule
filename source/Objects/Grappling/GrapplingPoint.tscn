@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://source/Objects/Grappling/GrapplingPoint.gd" type="Script" id=1]
+
+[sub_resource type="CircleShape2D" id=1]
+
+[node name="GrapplingPoint" type="Area2D" groups=["grappling_point"]]
+script = ExtResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="Label" type="Label" parent="."]
+visible = false
+margin_left = -3.0
+margin_top = -15.0
+margin_right = 4.0
+margin_bottom = -1.0
+text = "E"
