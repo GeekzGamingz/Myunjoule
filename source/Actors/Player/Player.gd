@@ -51,7 +51,7 @@ func handle_move_input() -> void:
 		motion.x = lerp(motion.x, move_dir * max_speed, lerp(0.0, max_acceleration, acceleration_step))
 	else:
 		motion.x = lerp(motion.x, 0, lerp(0.0, friction, friction_step))
-	
+	#var temp = get_node("ExpoAnchor")
 	if not is_falling:
 		if z_move_dir != 0:
 			motion.y = lerp(motion.y, z_move_dir * max_speed, lerp(0.0, max_acceleration, acceleration_step))
