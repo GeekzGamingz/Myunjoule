@@ -186,7 +186,7 @@ radius = 105.005
 [sub_resource type="CircleShape2D" id=11]
 radius = 5.38516
 
-[node name="Critter" type="KinematicBody2D"]
+[node name="Critter" type="KinematicBody2D" groups=["POI"]]
 script = ExtResource( 3 )
 
 [node name="CritterFSM" type="Node2D" parent="."]
@@ -239,6 +239,10 @@ modulate = Color( 1, 0, 0, 1 )
 position = Vector2( 10, 0 )
 shape = SubResource( 11 )
 disabled = true
+
+[node name="idleTimer" type="Timer" parent="."]
+wait_time = 3.2
+one_shot = true
 
 [connection signal="area_entered" from="Sight" to="." method="_on_Sight_area_entered"]
 [connection signal="area_exited" from="Sight" to="." method="_on_Sight_area_exited"]

@@ -2,12 +2,13 @@
 extends Actor
 #-------------------------------------------------------------------------------------------------#
 #Variables
-var player
+var player = null
 #Bool Variables
 var player_inSight = false
 #OnReady Variables
 onready var spritePlayer = $AnimationPlayers/SpritePlayer
 onready var fxPlayer = $AnimationPlayers/EffectsPlayer
+onready var idleTimer: Timer = $idleTimer
 #-------------------------------------------------------------------------------------------------#
 #Ready
 func _ready() -> void:
@@ -18,6 +19,8 @@ func apply_gravity(delta):
 	motion.y += gravity * delta
 #Applies Movement
 func apply_movement():
+	var distance = Vector2(get_child(0).player_xDistance, get_child(0).player_yDistance)
+	motion = lerp(motion, distance.normalized() * 50, 0.3)
 	motion = move_and_slide(motion, Vector2.UP)
 #-------------------------------------------------------------------------------------------------#
 #Sight
