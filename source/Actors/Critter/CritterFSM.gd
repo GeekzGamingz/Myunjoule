@@ -23,11 +23,12 @@ func _process(_delta: float) -> void:
 	if parent.player != null:
 		player_xDistance = (parent.player.position.x - parent.position.x)
 		player_yDistance = (parent.player.position.y - parent.position.y)
+		print("X :", player_xDistance, "Y: ", player_yDistance)
 #-------------------------------------------------------------------------------------------------#
 #State Logistics
 func stateLogic(delta):
-	if [states.chase].has(state):
-		parent.apply_movement()
+	if [states.chase].has(state): parent.apply_movementChase()
+	if [states.walk].has(state): parent.apply_movementWalk()
 #	parent.apply_gravity(delta)
 #State Transitions
 # warning-ignore:unused_argument
@@ -37,11 +38,11 @@ func transitions(delta):
 			states.idle: 
 				if parent.player_inSight: return states.chase
 				if parent.idleTimer.is_stopped(): return states.walk
-			states.walk:
-				if parent.idleTimer.is_stopped(): return states.idle
-			states.chase: 
+			states.walk: if parent.idleTimer.is_stopped(): return states.idle
+			states.chase:
 				if !parent.player_inSight: return states.idle
-			states.attack: pass
+				if parent.player_inThreat: return states.attack
+			states.attack: if parent.attackTimer.is_stopped(): return states.idle
 #Enter State
 # warning-ignore:unused_argument
 func stateEnter(newState, oldState):
@@ -55,6 +56,7 @@ func stateEnter(newState, oldState):
 		states.chase:
 			parent.spritePlayer.play("chase")
 		states.attack:
+			parent.attackTimer.start()
 			parent.spritePlayer.play("attack")
 			attacking = true
 			yield(parent.spritePlayer, "animation_finished")
@@ -65,5 +67,4 @@ func stateEnter(newState, oldState):
 func stateExit(oldState, newState):
 	match(oldState):
 		states.walk, states.chase:
-			print("Exiting.")
 			parent.motion = Vector2.ZERO

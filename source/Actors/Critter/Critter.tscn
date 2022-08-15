@@ -184,7 +184,6 @@ tracks/2/keys = {
 radius = 105.005
 
 [sub_resource type="CircleShape2D" id=11]
-radius = 5.38516
 
 [node name="Critter" type="KinematicBody2D" groups=["POI"]]
 script = ExtResource( 3 )
@@ -236,13 +235,20 @@ shape = SubResource( 10 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Threat"]
 modulate = Color( 1, 0, 0, 1 )
-position = Vector2( 10, 0 )
 shape = SubResource( 11 )
 disabled = true
 
-[node name="idleTimer" type="Timer" parent="."]
+[node name="Timers" type="Node2D" parent="."]
+
+[node name="idleTimer" type="Timer" parent="Timers"]
 wait_time = 3.2
+one_shot = true
+
+[node name="attackTimer" type="Timer" parent="Timers"]
+wait_time = 1.6
 one_shot = true
 
 [connection signal="area_entered" from="Sight" to="." method="_on_Sight_area_entered"]
 [connection signal="area_exited" from="Sight" to="." method="_on_Sight_area_exited"]
+[connection signal="area_entered" from="Threat" to="." method="_on_Threat_area_entered"]
+[connection signal="area_exited" from="Threat" to="." method="_on_Threat_area_exited"]
