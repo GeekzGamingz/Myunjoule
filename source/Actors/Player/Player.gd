@@ -26,6 +26,7 @@ var items = {
 #Ready Method
 func _ready() -> void:
 	$PlayerArea.connect("area_entered", self, "enable_collision")
+	$PlayerArea.connect("area_entered", self, "disengage_grappling_hook")
 #-------------------------------------------------------------------------------------------------#
 #Applies Gravity
 func apply_gravity(delta):
@@ -63,6 +64,10 @@ func handle_grapple_movement() -> void:
 
 func apply_movement() -> void:
 	motion = move_and_slide(motion, Vector2.UP)
+
+func disengage_grappling_hook(area: Area2D):
+	grappling.is_grappling = false
+	$GrapplingHook.can_grapple = false
 
 func set_is_falling(falling: bool) -> void:
 	is_falling = falling
