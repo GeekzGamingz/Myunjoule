@@ -23,12 +23,10 @@ func _process(_delta: float) -> void:
 	if parent.player != null:
 		player_xDistance = (parent.player.position.x - parent.position.x)
 		player_yDistance = (parent.player.position.y - parent.position.y)
-		if parent.player_inSight:
-			print("X: ", player_xDistance, "Y: ", player_yDistance)
 #-------------------------------------------------------------------------------------------------#
 #State Logistics
 func stateLogic(delta):
-	if parent.player != null:
+	if [states.chase].has(state):
 		parent.apply_movement()
 #	parent.apply_gravity(delta)
 #State Transitions
@@ -54,7 +52,6 @@ func stateEnter(newState, oldState):
 		states.walk:
 			parent.idleTimer.start()
 			parent.spritePlayer.play("walk")
-			parent.motion.x += 50
 		states.chase:
 			parent.spritePlayer.play("chase")
 		states.attack:
@@ -67,5 +64,6 @@ func stateEnter(newState, oldState):
 # warning-ignore:unused_argument
 func stateExit(oldState, newState):
 	match(oldState):
-		states.walk:
-			parent.motion.x = 0.0
+		states.walk, states.chase:
+			print("Exiting.")
+			parent.motion = Vector2.ZERO
