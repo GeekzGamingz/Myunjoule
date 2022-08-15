@@ -4,8 +4,9 @@ extends Actor
 #Variables
 var player = null
 var rng = RandomNumberGenerator.new()
-var Direction = "Left"
-var oldDirection
+var Facing = "Left"
+var oldFacing
+var direction = Vector2.ZERO
 #Bool Variables
 var player_inSight = false
 var player_inThreat = false
@@ -25,29 +26,33 @@ func apply_gravity(delta):
 #Applies Movement
 func apply_movementChase():
 	var distance = Vector2(get_child(0).player_xDistance, get_child(0).player_yDistance)
-	motion = lerp(motion, distance.normalized() * 50, 0.3)
-	motion = move_and_slide(motion, Vector2.UP)
-func apply_movementWalk():
-	rng.randomize()
-	var rngDistance1 = rng.randf_range(-50, 50)
-	var rngDistance2 = rng.randf_range(-50, 50)
-	var distance = Vector2(rngDistance1, rngDistance1)
 	motion = lerp(motion, distance.normalized() * 100, 0.3)
+	motion = move_and_slide(motion, Vector2.UP)
+func get_direction():
+	rng.randomize()
+	var rngDistance1 = rng.randf_range(-20, 20)
+	var rngDistance2 = rng.randf_range(-20, 20)
+	var distance = Vector2(rngDistance1, rngDistance1)
+	direction = distance
+func apply_movementWalk(direction:Vector2):
+	motion = lerp(motion, direction.normalized() * 100, 0.3)
 	motion = move_and_slide(motion, Vector2.UP)
 #-------------------------------------------------------------------------------------------------#
 #Flip Sprite & Collision
 func flipMouskie():
-	if oldDirection != Direction:
+	if oldFacing != Facing:
 		if motion.x < 0:
 			get_node("MouskieSprite").set_flip_h(true)
+			get_node("EffectsSprite").set_flip_h(true)
 			$LCollision.set_deferred("disabled", false)
 			$RCollision.set_deferred("disabled", true)
-			Direction = "Left"
-		else:
+			Facing = "Left"
+		elif motion.x > 0:
 			get_node("MouskieSprite").set_flip_h(false)
+			get_node("EffectsSprite").set_flip_h(false)
 			$LCollision.set_deferred("disabled", true)
 			$RCollision.set_deferred("disabled", false)
-			Direction = "Right"
+			Facing = "Right"
 #-------------------------------------------------------------------------------------------------#
 #Sight
 #In Sight

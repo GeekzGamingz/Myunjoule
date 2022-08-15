@@ -29,7 +29,7 @@ func _process(_delta: float) -> void:
 #State Logistics
 func stateLogic(delta):
 	if [states.chase].has(state): parent.apply_movementChase()
-	if [states.walk].has(state): parent.apply_movementWalk()
+	if [states.walk].has(state): parent.apply_movementWalk(parent.direction)
 	parent.flipMouskie()
 #	parent.apply_gravity(delta)
 #State Transitions
@@ -40,7 +40,9 @@ func transitions(delta):
 			states.idle: 
 				if parent.player_inSight: return states.chase
 				if parent.idleTimer.is_stopped(): return states.walk
-			states.walk: if parent.idleTimer.is_stopped(): return states.idle
+			states.walk:
+				if parent.player_inSight: return states.chase
+				if parent.idleTimer.is_stopped(): return states.idle
 			states.chase:
 				if !parent.player_inSight: return states.idle
 				if parent.player_inThreat: return states.attack
@@ -53,6 +55,7 @@ func stateEnter(newState, oldState):
 			parent.idleTimer.start()
 			parent.spritePlayer.play("idle")
 		states.walk:
+			parent.get_direction()
 			parent.idleTimer.start()
 			parent.spritePlayer.play("walk")
 		states.chase:
