@@ -16,6 +16,9 @@ var z_move_dir: int = 0
 var old_z_move_dir: int = 0
 var snap: Vector2 = Vector2.DOWN
 var is_falling = false
+var grappling = {
+	"is_grappling": false,
+}
 var items = {
 	"grappling_hook": true,
 }
@@ -27,6 +30,12 @@ func _ready() -> void:
 #Applies Gravity
 func apply_gravity(delta):
 	motion.y += gravity * delta
+
+func handle_movement() -> void:
+	if grappling.is_grappling:
+		handle_grapple_movement()
+	else:
+		handle_move_input()
 
 func handle_move_input() -> void:
 	old_move_dir = move_dir
@@ -47,6 +56,10 @@ func handle_move_input() -> void:
 			motion.y = lerp(motion.y, z_move_dir * max_speed, lerp(0.0, max_acceleration, acceleration_step))
 		else:
 			motion.y = lerp(motion.y, 0, lerp(0.0, friction, friction_step))
+
+func handle_grapple_movement() -> void:
+	motion = lerp(motion, position.direction_to($GrapplingHook.grappling_point.position) * 100, lerp(0.0, 1.0, 0.15))
+	pass
 
 func apply_movement() -> void:
 	motion = move_and_slide(motion, Vector2.UP)

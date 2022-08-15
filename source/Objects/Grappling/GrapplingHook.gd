@@ -1,16 +1,20 @@
 extends Area2D
 
-
-# Declare member variables here. Examples:
-# var a: int = 2
-# var b: String = "text"
-
+var can_grapple := false
+var grappling_point = null
+# Maybe some tie in to the drone and POI system?
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass
+	connect("area_entered", self, "prime_hook")
+	connect("area_exited", self, "disengage_hook")
 
+func prime_hook(area: Area2D):
+	if area.is_in_group("grappling_point"):
+		grappling_point = area
+		can_grapple = true
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta: float) -> void:
-#	pass
+func disengage_hook(area: Area2D):
+	if area.is_in_group("grappling_point"):
+		grappling_point = null
+		can_grapple = false
