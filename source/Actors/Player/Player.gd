@@ -16,10 +16,13 @@ var z_move_dir: int = 0
 var old_z_move_dir: int = 0
 var snap: Vector2 = Vector2.DOWN
 var is_falling = false
+var items = {
+	"grappling_hook": true,
+}
 #-------------------------------------------------------------------------------------------------#
 #Ready Method
 func _ready() -> void:
-	$LandingDetector.connect("area_entered", self, "enable_collision")
+	$PlayerArea.connect("area_entered", self, "enable_collision")
 #-------------------------------------------------------------------------------------------------#
 #Applies Gravity
 func apply_gravity(delta):

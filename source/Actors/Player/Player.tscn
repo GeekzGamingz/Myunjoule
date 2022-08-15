@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://source/Actors/Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://source/Actors/Player/PlayerFSM.gd" type="Script" id=2]
@@ -6,13 +6,14 @@
 [ext_resource path="res://assets/Player/Animations/rowbit_move_right.tres" type="Animation" id=4]
 [ext_resource path="res://assets/Player/Animations/rowbit_move_left.tres" type="Animation" id=5]
 [ext_resource path="res://assets/Player/Animations/rowbit_idle.tres" type="Animation" id=6]
+[ext_resource path="res://source/Objects/Grappling/GrapplingHook.tscn" type="PackedScene" id=7]
+
+[sub_resource type="CircleShape2D" id=6]
+radius = 12.0416
 
 [sub_resource type="CapsuleShape2D" id=5]
 radius = 2.99999
 height = 11.0
-
-[sub_resource type="RectangleShape2D" id=6]
-extents = Vector2( 8.54706, 0.75 )
 
 [sub_resource type="Animation" id=4]
 length = 0.001
@@ -81,16 +82,15 @@ texture = ExtResource( 3 )
 flip_h = true
 hframes = 4
 
+[node name="PlayerArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerArea"]
+shape = SubResource( 6 )
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0.5, 9 )
 rotation = -1.57079
 shape = SubResource( 5 )
-
-[node name="LandingDetector" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="LandingDetector"]
-position = Vector2( 0.524515, 11.2716 )
-shape = SubResource( 6 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
@@ -122,3 +122,5 @@ anims/rowbit_move_right = ExtResource( 4 )
 tree_root = SubResource( 2 )
 anim_player = NodePath("../SpritePlayer")
 parameters/playback = SubResource( 3 )
+
+[node name="GrapplingHook" parent="." instance=ExtResource( 7 )]
