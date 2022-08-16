@@ -10,6 +10,7 @@ var snap: Vector2 = Vector2.DOWN
 var is_falling = false
 var grappling = {
 	"is_grappling": false,
+	"can_grapple": false,
 }
 var items = {
 	"grappling_hook": true,
@@ -80,7 +81,7 @@ func apply_movement() -> void:
 #Disengage
 func disengage_grappling_hook(area: Area2D):
 	grappling.is_grappling = false
-	$GrapplingHook.can_grapple = false
+	grappling.can_grapple = false
 #Falling
 #Set Flag
 func set_is_falling(falling: bool) -> void:
