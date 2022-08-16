@@ -35,11 +35,14 @@ position = Vector2( 94, -61 )
 position = Vector2( 94, 52 )
 
 [node name="GrapplingPoint" parent="." instance=ExtResource( 6 )]
-position = Vector2( -154, -79 )
+position = Vector2( 212, -74 )
 
 [node name="GrapplingPoint2" parent="." instance=ExtResource( 6 )]
-position = Vector2( -220, -80 )
+position = Vector2( -152, -79 )
 
 [node name="Expo" parent="." instance=ExtResource( 7 )]
+
+[connection signal="energyUpdate_charge" from="Player" to="Player/ProgressBars" method="energyUpdate_charge"]
+[connection signal="energyUpdate_drain" from="Player" to="Player/ProgressBars" method="energyUpdate_drain"]
 
 [editable path="Player"]

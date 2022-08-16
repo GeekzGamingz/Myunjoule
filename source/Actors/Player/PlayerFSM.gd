@@ -35,7 +35,7 @@ func _process(_delta: float) -> void:
 #Input Handler
 func _input(event: InputEvent) -> void:
 	# Would want some tie in here to the drone selection system
-	if event.is_action_pressed("activate") and parent.get_node("GrapplingHook").can_grapple:
+	if event.is_action_pressed("activate") and parent.grappling.can_grapple:
 		call_deferred("stateSet", states.grappling)
 		parent.grappling.is_grappling = true
 

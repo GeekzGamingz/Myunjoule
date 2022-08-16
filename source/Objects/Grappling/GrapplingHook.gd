@@ -1,6 +1,5 @@
 extends Area2D
 
-var can_grapple := false
 var grappling_point = null
 # Maybe some tie in to the drone and POI system?
 
@@ -12,9 +11,9 @@ func _ready() -> void:
 func prime_hook(area: Area2D):
 	if area.is_in_group("grappling_point"):
 		grappling_point = area
-		can_grapple = true
+		get_parent().grappling.can_grapple = true
 
 func disengage_hook(area: Area2D):
 	if area.is_in_group("grappling_point"):
 		grappling_point = null
-		can_grapple = false
+		get_parent().grappling.can_grapple = false
