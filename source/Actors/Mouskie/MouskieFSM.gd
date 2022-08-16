@@ -24,12 +24,13 @@ func _process(_delta: float) -> void:
 		player_xDistance = (parent.player.position.x - parent.position.x)
 		player_yDistance = (parent.player.position.y - parent.position.y)
 		if parent.player_inSight:
-			print("X: ", player_xDistance, "Y: ", player_yDistance)
+			print("X :", player_xDistance, "Y: ", player_yDistance)
 #-------------------------------------------------------------------------------------------------#
 #State Logistics
 func stateLogic(delta):
-	if parent.player != null:
-		parent.apply_movement()
+	if [states.chase].has(state): parent.apply_movementChase()
+	if [states.walk].has(state): parent.apply_movementWalk(parent.direction)
+	parent.flipMouskie()
 #	parent.apply_gravity(delta)
 #State Transitions
 # warning-ignore:unused_argument
@@ -40,10 +41,12 @@ func transitions(delta):
 				if parent.player_inSight: return states.chase
 				if parent.idleTimer.is_stopped(): return states.walk
 			states.walk:
+				if parent.player_inSight: return states.chase
 				if parent.idleTimer.is_stopped(): return states.idle
-			states.chase: 
+			states.chase:
 				if !parent.player_inSight: return states.idle
-			states.attack: pass
+				if parent.player_inThreat: return states.attack
+			states.attack: if parent.attackTimer.is_stopped(): return states.idle
 #Enter State
 # warning-ignore:unused_argument
 func stateEnter(newState, oldState):
@@ -52,12 +55,13 @@ func stateEnter(newState, oldState):
 			parent.idleTimer.start()
 			parent.spritePlayer.play("idle")
 		states.walk:
+			parent.get_direction()
 			parent.idleTimer.start()
 			parent.spritePlayer.play("walk")
-			parent.motion.x += 50
 		states.chase:
 			parent.spritePlayer.play("chase")
 		states.attack:
+			parent.attackTimer.start()
 			parent.spritePlayer.play("attack")
 			attacking = true
 			yield(parent.spritePlayer, "animation_finished")
@@ -67,5 +71,5 @@ func stateEnter(newState, oldState):
 # warning-ignore:unused_argument
 func stateExit(oldState, newState):
 	match(oldState):
-		states.walk:
-			parent.motion.x = 0.0
+		states.walk, states.chase:
+			parent.motion = Vector2.ZERO

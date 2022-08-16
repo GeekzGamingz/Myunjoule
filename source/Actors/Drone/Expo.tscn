@@ -1,0 +1,61 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://assets/Objects/Gadgets/alertdrone-Sheet.png" type="Texture" id=1]
+[ext_resource path="res://source/Actors/Drone/Expo.gd" type="Script" id=2]
+[ext_resource path="res://source/Actors/Drone/ExpoFSM.gd" type="Script" id=3]
+[ext_resource path="res://assets/Objects/Gadgets/expo_bobble.tres" type="Animation" id=4]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 3.0
+
+[sub_resource type="Animation" id=4]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ ExtResource( 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0 ]
+}
+
+[node name="Expo" type="KinematicBody2D"]
+script = ExtResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+hframes = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="ExpoFSM" type="Node2D" parent="."]
+script = ExtResource( 3 )
+
+[node name="StateOutput" type="Label" parent="."]
+margin_left = -19.0
+margin_top = -19.0
+margin_right = 21.0
+margin_bottom = -5.0
+text = "State"
+align = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 4 )
+anims/expo_bobble = ExtResource( 4 )
