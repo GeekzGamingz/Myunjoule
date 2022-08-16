@@ -1,7 +1,5 @@
 extends Actor
 
-export(float, 0, 1, 0.01) var anchor_follow_weight = 0.25
-
 var anchored: bool = true
 var points_of_interest = []
 var selected_poi = null
@@ -14,9 +12,8 @@ var float_speed: float = 0.03
 onready var rowbit = get_parent().get_node("Player")
 
 func _ready() -> void:
-	$PoiDetection.connect("area_entered", self, "detected_poi")
-	$PoiDetection.connect("area_exited", self, "poi_left_range")
-	$PlayerDetection.connect("body_exited", self, "player_left_range")
+	rowbit.connect("detected_poi", self, "detected_poi")
+	rowbit.connect("poi_lost", self, "poi_lost")
 	$AnimationPlayer.play("expo_bobble")
 
 func apply_bobble_movement() -> void:
@@ -25,9 +22,9 @@ func apply_bobble_movement() -> void:
 
 func apply_idle_movement() -> void:
 	if self.position.distance_to(rowbit.get_node("ExpoAnchor").global_position) < 40:
-		self.position = lerp(self.position, rowbit.get_node("ExpoAnchor").global_position, anchor_follow_weight)
+		self.position = lerp(self.position, rowbit.get_node("ExpoAnchor").global_position, lerp(0, 0.1, 0.6))
 	else:
-		self.position = lerp(self.position, rowbit.get_node("ExpoAnchor").global_position, lerp(0, 0.075, 1.0))
+		self.position = lerp(self.position, rowbit.get_node("ExpoAnchor").global_position, lerp(0, 0.075, 0.5))
 
 func apply_hover_movement() -> void:
 	self.position = lerp(self.position, selected_poi.global_position, lerp(0, 0.075, 1.0))
@@ -42,13 +39,13 @@ func handle_facing() -> void:
 		$Sprite.flip_h = false
 
 func detected_poi(area: Area2D) -> void:
-	if area.name == "GrapplingPoint":
+	if area.is_in_group("POI"):
 		anchored = false
 		# Setting the selected POI here just for now
 		selected_poi = area
 		points_of_interest.append(area)
 
-func poi_left_range(area: Area2D) -> void:
+func poi_lost(area: Area2D) -> void:
 	if area.is_in_group("POI"):
 		points_of_interest.erase(area)
 		if points_of_interest.size() != 0:
@@ -56,7 +53,3 @@ func poi_left_range(area: Area2D) -> void:
 		else:
 			anchored = true
 			set_deferred("selected_poi", null)
-
-func player_left_range(body: Node):
-	if body.name == "Player":
-		anchored = true

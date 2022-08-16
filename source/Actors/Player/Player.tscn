@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://source/Actors/Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://source/Actors/Player/PlayerFSM.gd" type="Script" id=2]
@@ -72,6 +72,9 @@ tracks/3/keys = {
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=3]
 
+[sub_resource type="CircleShape2D" id=7]
+radius = 106.042
+
 [node name="Player" type="KinematicBody2D"]
 script = ExtResource( 1 )
 gravity = 250.0
@@ -135,3 +138,8 @@ script = ExtResource( 8 )
 visible = false
 scale = Vector2( 0.1, 0.1 )
 texture = ExtResource( 9 )
+
+[node name="PoiDetection" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PoiDetection"]
+shape = SubResource( 7 )

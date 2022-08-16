@@ -22,11 +22,16 @@ var grappling = {
 var items = {
 	"grappling_hook": true,
 }
+
+signal detected_poi
+signal poi_lost
 #-------------------------------------------------------------------------------------------------#
 #Ready Method
 func _ready() -> void:
 	$PlayerArea.connect("area_entered", self, "enable_collision")
 	$PlayerArea.connect("area_entered", self, "disengage_grappling_hook")
+	$PoiDetection.connect("area_entered", self, "detected_poi")
+	$PoiDetection.connect("area_exited", self, "poi_lost")
 #-------------------------------------------------------------------------------------------------#
 #Applies Gravity
 func apply_gravity(delta):
@@ -68,6 +73,12 @@ func apply_movement() -> void:
 func disengage_grappling_hook(area: Area2D):
 	grappling.is_grappling = false
 	$GrapplingHook.can_grapple = false
+
+func detected_poi(area: Area2D) -> void:
+	emit_signal("detected_poi", area)
+
+func poi_lost(area: Area2D) -> void:
+	emit_signal("poi_lost", area)
 
 func set_is_falling(falling: bool) -> void:
 	is_falling = falling
