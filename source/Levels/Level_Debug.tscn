@@ -50,6 +50,3 @@ position = Vector2( 221, 251 )
 
 [node name="Bottle_Buried" parent="YSort" instance=ExtResource( 7 )]
 position = Vector2( -300, 210 )
-
-[connection signal="energyUpdate_charge" from="YSort/Player" to="YSort/Player/ProgressBars" method="energyUpdate_charge"]
-[connection signal="energyUpdate_drain" from="YSort/Player" to="YSort/Player/ProgressBars" method="energyUpdate_drain"]
