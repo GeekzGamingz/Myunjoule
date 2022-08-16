@@ -1,27 +1,27 @@
 extends Control
 #OnReady Variables
-onready var healthUnder = $Health/HealthUnder
-onready var healthOver = $Health/HealthOver
-onready var healthTween = $Health/HealthTween
+onready var energyUnder = $Energy/EnergyUnder
+onready var energyOver = $Energy/EnergyOver
+onready var energyTween = $Energy/EnergyTween
 #-------------------------------------------------------------------------------------------------#
-#Health Updater
+#energy Updater
 #Heal
-func healthUpdate_heal(health) -> void:
-	healthUnder.value = health
-	healthTween.interpolate_property(healthOver, "value", healthOver.value, health,
+func energyUpdate_charge(energy) -> void:
+	energyUnder.value = energy
+	energyTween.interpolate_property(energyOver, "value", energyOver.value, energy,
 								   0.4, Tween.TRANS_SINE, Tween.EASE_IN_OUT, 0.4)
-	healthTween.start()
+	energyTween.start()
 	$AnimationPlayer.play("regen")
 #Damage
-func healthUpdate_damage(health) -> void:
-	healthOver.value = health
-	healthTween.interpolate_property(healthUnder, "value", healthUnder.value, health,
+func energyUpdate_drain(energy) -> void:
+	energyOver.value = energy
+	energyTween.interpolate_property(energyUnder, "value", energyUnder.value, energy,
 								   0.4, Tween.TRANS_SINE, Tween.EASE_IN_OUT, 0.4)
-	healthTween.start()
-#Max Health Updater
-func max_healthUpdate(max_health):
-	healthOver.max_value = max_health
-	healthUnder.max_value = max_health
+	energyTween.start()
+#Max Energy Updater
+func max_energyUpdate(max_energy):
+	energyOver.max_value = max_energy
+	energyUnder.max_value = max_energy
 #-------------------------------------------------------------------------------------------------#
 #Animation Player
 func _on_AnimationPlayer_animation_finished(anim_name: String) -> void:
