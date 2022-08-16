@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://assets/Objects/Moon/mewn-Sheet.png" type="Texture" id=1]
 [ext_resource path="res://source/Objects/Moon/Moon.gd" type="Script" id=2]
@@ -7,11 +7,26 @@
 [sub_resource type="CircleShape2D" id=3]
 radius = 20.025
 
+[sub_resource type="Animation" id=6]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("../MoonSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 10 ]
+}
+
 [sub_resource type="Animation" id=2]
 resource_name = "idle"
-length = 15.0
+length = 1200.0
 loop = true
-step = 1.0
+step = 75.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("../MoonSprite:texture")
 tracks/0/interp = 1
@@ -43,10 +58,10 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 75, 150, 225, 300, 375, 450, 525, 600, 675, 750, 825, 900, 975, 1050, 1125 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 12, 13, 14, 15 ]
+"values": [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 ]
 }
 
 [sub_resource type="AnimationNodeStateMachine" id=4]
@@ -54,6 +69,9 @@ tracks/2/keys = {
 [sub_resource type="AnimationNodeStateMachinePlayback" id=5]
 
 [node name="Moon" type="KinematicBody2D"]
+z_index = -75
+collision_layer = 0
+collision_mask = 0
 script = ExtResource( 2 )
 
 [node name="MoonFSM" type="Node2D" parent="."]
@@ -62,7 +80,7 @@ script = ExtResource( 3 )
 [node name="MoonSprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )
 hframes = 16
-frame = 2
+frame = 10
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
@@ -72,6 +90,7 @@ shape = SubResource( 3 )
 
 [node name="SpritePlayer" type="AnimationPlayer" parent="AnimationPlayers"]
 autoplay = "idle"
+anims/RESET = SubResource( 6 )
 anims/idle = SubResource( 2 )
 
 [node name="EffectsPlayer" type="AnimationPlayer" parent="AnimationPlayers"]
