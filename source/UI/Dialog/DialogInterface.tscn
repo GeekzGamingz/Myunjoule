@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://assets/UI/Dialog/TalkyBox.png" type="Texture" id=1]
 [ext_resource path="res://source/UI/Dialog/DialogInterface.gd" type="Script" id=3]
@@ -7,11 +7,18 @@
 font_path = "res://assets/UI/Fonts/AndroidNation.ttf"
 
 [sub_resource type="DynamicFont" id=1]
-size = 24
+size = 20
 outline_color = Color( 0, 0, 0, 1 )
 extra_spacing_top = 2
 extra_spacing_bottom = 2
 font_data = SubResource( 2 )
+
+[sub_resource type="DynamicFontData" id=3]
+font_path = "res://assets/UI/Fonts/AndroidNation.ttf"
+
+[sub_resource type="DynamicFont" id=4]
+size = 35
+font_data = SubResource( 3 )
 
 [node name="DialogInterface" type="Control"]
 margin_top = 50.0
@@ -48,4 +55,68 @@ tab_size = 0
 
 [node name="TextTween" type="Tween" parent="TextureRect/MarginContainer"]
 
+[node name="Choice1" type="TextureRect" parent="."]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -465.0
+margin_top = -84.0
+margin_right = 465.0
+margin_bottom = 84.0
+rect_scale = Vector2( 0.45, 0.45 )
+texture = ExtResource( 1 )
+
+[node name="MarginContainer" type="MarginContainer" parent="Choice1"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 24.0
+margin_top = 24.0
+margin_right = -24.0
+margin_bottom = -24.0
+
+[node name="DialogText" type="RichTextLabel" parent="Choice1/MarginContainer"]
+margin_right = 882.0
+margin_bottom = 120.0
+rect_clip_content = false
+custom_fonts/normal_font = SubResource( 4 )
+bbcode_enabled = true
+tab_size = 0
+
+[node name="TextTween" type="Tween" parent="Choice1/MarginContainer"]
+
+[node name="Choice2" type="TextureRect" parent="."]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 45.0
+margin_top = -84.0
+margin_right = 975.0
+margin_bottom = 84.0
+rect_scale = Vector2( 0.45, 0.45 )
+texture = ExtResource( 1 )
+
+[node name="MarginContainer" type="MarginContainer" parent="Choice2"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 24.0
+margin_top = 24.0
+margin_right = -24.0
+margin_bottom = -24.0
+
+[node name="DialogText" type="RichTextLabel" parent="Choice2/MarginContainer"]
+margin_right = 882.0
+margin_bottom = 120.0
+rect_clip_content = false
+custom_fonts/normal_font = SubResource( 4 )
+bbcode_enabled = true
+tab_size = 0
+
+[node name="TextTween" type="Tween" parent="Choice2/MarginContainer"]
+
 [connection signal="tween_completed" from="TextureRect/MarginContainer/TextTween" to="." method="_on_TextTween_tween_completed"]
+[connection signal="tween_completed" from="Choice1/MarginContainer/TextTween" to="." method="_on_TextTween_tween_completed"]
+[connection signal="tween_completed" from="Choice2/MarginContainer/TextTween" to="." method="_on_TextTween_tween_completed"]

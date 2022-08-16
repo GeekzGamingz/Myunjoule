@@ -17,7 +17,7 @@ _global_script_classes=[ {
 "base": "Node",
 "class": "StateMachine",
 "language": "GDScript",
-"path": "res://StateMachine.gd"
+"path": "res://source/StateMachine.gd"
 } ]
 _global_script_class_icons={
 "Actor": "",
@@ -33,6 +33,7 @@ config/icon="res://icon.png"
 [autoload]
 
 Globals="*res://source/Globals.gd"
+Dialogue="*res://source/Dialogue.gd"
 
 [gui]
 

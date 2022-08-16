@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/beach-Midtide-Foreground.png-ae04d1ca3cf879fae32fb87f68b268e1.stex"
+path="res://.import/beach-skyless-Sheet.png-d65376d388fb337c8a2f8222c102a9f3.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Forgrounds/beach-Midtide-Foreground.png"
-dest_files=[ "res://.import/beach-Midtide-Foreground.png-ae04d1ca3cf879fae32fb87f68b268e1.stex" ]
+source_file="res://assets/Foregrounds/beach-skyless-Sheet.png"
+dest_files=[ "res://.import/beach-skyless-Sheet.png-d65376d388fb337c8a2f8222c102a9f3.stex" ]
 
 [params]
 

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/beach-Lowtide-Sheet.png-2e6e2478a169e75f9dca574d73a074ea.stex"
+path="res://.import/beach-Lowtide-Foreground.png-9c87d05f490fb83149dc3dfc3cc64cae.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Forgrounds/beach-Lowtide-Sheet.png"
-dest_files=[ "res://.import/beach-Lowtide-Sheet.png-2e6e2478a169e75f9dca574d73a074ea.stex" ]
+source_file="res://assets/Foregrounds/beach-Lowtide-Foreground.png"
+dest_files=[ "res://.import/beach-Lowtide-Foreground.png-9c87d05f490fb83149dc3dfc3cc64cae.stex" ]
 
 [params]
 
