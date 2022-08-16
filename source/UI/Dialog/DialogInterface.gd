@@ -2,10 +2,13 @@ extends Control
 #-------------------------------------------------------------------------------------------------#
 #Variables
 var dialogIndex = 0
+signal diaDone
 #Bool Variables
 var finished = false
 #OnReady Variables
 onready var dialogText = $TextureRect/MarginContainer/DialogText
+onready var choice1 = $Choice1/MarginContainer/DialogText
+onready var choice2 = $Choice2/MarginContainer/DialogText
 onready var textTween = $TextureRect/MarginContainer/TextTween
 #-------------------------------------------------------------------------------------------------#
 #Dialog
@@ -19,16 +22,24 @@ var dialog = [
 	'[color=black]Moving on, we have [fade start=0 length=4]fade[/fade].\nYou can [fade start=0 length=5]start[/fade] with one word or use an entire phrase.\n\"[shake level=10]Mr. Stark[/shake]... [wave][fade start=0 length=20]I don\'t feel so good[/fade][/wave]\".',
 	'[color=black]And the last effect is the [color=white][rainbow]rainbow[/rainbow][color=black].\nThis is great for showing people how [color=white][rainbow]GAAAAAAY[/rainbow][color=black] you are!\nYou can change the [color=white][rainbow sat=0.5]saturation[/rainbow][color=black] and [color=white][rainbow freq=5]frequency[/rainbow][color=black].'
 ]
+var diaChoice1 = ['']
+var diaChoice2 = ['']
 #-------------------------------------------------------------------------------------------------#
 #Ready
 func _ready() -> void:
 	load_dialog()
+	load_choice1()
+	load_choice2()
+#	$Choice1.visible = false
+#	$Choice2.visible = false
 #-------------------------------------------------------------------------------------------------#
 #Process
 func _process(delta: float) -> void:
 	#DialogNextIndicator.visible = finished
 	if Input.is_action_just_pressed("activate"):
 		load_dialog()
+		load_choice1()
+		load_choice2()
 #-------------------------------------------------------------------------------------------------#
 #Load Dialog
 func load_dialog():
@@ -40,8 +51,31 @@ func load_dialog():
 			0, 1, 1.5, Tween.TRANS_LINEAR,Tween. EASE_IN_OUT)
 		textTween.start()
 	else:
+		emit_signal("diaDone")
 		queue_free()
 	dialogIndex += 1
+func load_choice1():
+	if diaChoice1 != ['']:
+		$Choice1.visible = true
+		finished = false
+		choice1.bbcode_text = diaChoice1[0]
+		choice1.percent_visible = 0
+		textTween.interpolate_property(choice1, "percent_visible",
+			0, 1, 1.5, Tween.TRANS_LINEAR,Tween. EASE_IN_OUT)
+		textTween.start()
+	else:
+		$Choice1.visible = false
+func load_choice2():
+	if diaChoice1 != ['']:
+		$Choice2.visible = true
+		finished = false
+		choice2.bbcode_text = diaChoice2[0]
+		choice2.percent_visible = 0
+		textTween.interpolate_property(choice2, "percent_visible",
+			0, 1, 1.5, Tween.TRANS_LINEAR,Tween. EASE_IN_OUT)
+		textTween.start()
+	else:
+		$Choice2.visible = false
 #Next/Finish Dialog
 func _on_TextTween_tween_completed(object: Object, key: NodePath) -> void:
 	finished = true
