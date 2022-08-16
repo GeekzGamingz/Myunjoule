@@ -11,6 +11,7 @@ onready var stateLabel: Label = parent.get_node("StateOutput")
 func _ready() -> void:
 	stateAdd("idle")
 	stateAdd("hover")
+	stateAdd("alert")
 	call_deferred("stateSet", states.idle)
 
 #-------------------------------------------------------------------------------------------------#
@@ -38,13 +39,20 @@ func transitions(delta):
 		states.hover:
 			if parent.anchored:
 				return states.idle
+			if parent.alert:
+				return states.alert
+		states.alert:
+			if not parent.alert:
+				return states.hover
 
 #Enter State
 # warning-ignore:unused_argument
 func stateEnter(newState, oldState):
 	match(newState):
-		states.idle:
-			pass
+		states.idle, states.hover:
+			parent.get_node("AnimationPlayer").play("expo_bobble")
+		states.alert:
+			parent.get_node("AnimationPlayer").play("expo_alert")
 
 #Exit State
 # warning-ignore:unused_argument

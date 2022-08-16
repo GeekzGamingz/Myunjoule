@@ -27,7 +27,6 @@ onready var currentState = playBack.get_current_node()
 #Exported Variables
 export(float) var max_energy = 100
 export var rotation_speed = PI
-#Bool Variables
 #Signals
 signal detected_poi
 signal poi_lost
@@ -74,7 +73,6 @@ func handle_move_input() -> void:
 #Handle Grappling Movement
 func handle_grapple_movement() -> void:
 	motion = lerp(motion, position.direction_to($GrapplingHook.grappling_point.position) * 100, lerp(0.0, 1.0, 0.15))
-	pass
 #Apply Movement
 func apply_movement() -> void:
 	motion = move_and_slide(motion, Vector2.UP)

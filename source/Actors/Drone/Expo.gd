@@ -9,12 +9,20 @@ var float_range: float = 1
 var float_offset: int = 0
 var float_speed: float = 0.03
 
+var alert = false
+
 onready var rowbit = get_parent().get_node("Player")
 
 func _ready() -> void:
 	rowbit.connect("detected_poi", self, "detected_poi")
 	rowbit.connect("poi_lost", self, "poi_lost")
 	$AnimationPlayer.play("expo_bobble")
+
+func _process(_delta: float) -> void:
+	if rowbit.grappling.can_grapple:
+		alert = true
+	if not rowbit.grappling.can_grapple:
+		alert = false
 
 func _input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("expo_tab") and points_of_interest.size() > 0:
@@ -24,6 +32,8 @@ func apply_bobble_movement() -> void:
 	num_of_ticks += 1
 	self.position.y = lerp(self.position.y, self.position.y + float_range * sin((num_of_ticks * float_speed) * PI) + float_offset, 0.25)
 
+# Right now this is working by setting the global position... that's fine for now
+# but would be better if we utilized a motion vector at some point
 func apply_idle_movement() -> void:
 	if self.position.distance_to(rowbit.get_node("ExpoAnchor").global_position) < 40:
 		self.position = lerp(self.position, rowbit.get_node("ExpoAnchor").global_position, lerp(0, 0.1, 0.6))
@@ -45,7 +55,6 @@ func handle_facing() -> void:
 func detected_poi(area: Area2D) -> void:
 	if area.is_in_group("POI"):
 		anchored = false
-		# Setting the selected POI here just for now
 		selected_poi = area
 		points_of_interest.append(area)
 
