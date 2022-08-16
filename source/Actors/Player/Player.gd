@@ -25,6 +25,7 @@ onready var playBack = animTree.get("parameters/playback")
 onready var currentState = playBack.get_current_node()
 #Exported Variables
 export(float) var max_energy = 100
+export var rotation_speed = PI
 #Bool Variables
 #Signals
 signal detected_poi
@@ -129,3 +130,7 @@ func _on_PlayerArea_area_entered(area: Area2D) -> void:
 		"MediumAttack": drainEnergy(10)
 		"HeavyAttack": drainEnergy(15)
 		"InstaKill": drainEnergy(100)
+#-------------------------------------------------------------------------------------------------#
+#Moon Orbit
+func moonOrbit(delta):
+	$PlayerSprite/MoonAnchor.rotation += rotation_speed * delta

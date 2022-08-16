@@ -48,6 +48,7 @@ func stateLogic(delta):
 		parent.apply_gravity(delta)
 	parent.handle_movement()
 	parent.apply_movement()
+	parent.moonOrbit(delta)
 
 
 #State Transitions
