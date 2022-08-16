@@ -21,8 +21,6 @@ size = 35
 font_data = SubResource( 3 )
 
 [node name="DialogInterface" type="Control"]
-margin_top = 50.0
-margin_bottom = 50.0
 rect_scale = Vector2( 0.5, 0.5 )
 script = ExtResource( 3 )
 __meta__ = {
