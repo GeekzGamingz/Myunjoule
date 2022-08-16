@@ -1,9 +1,9 @@
 [gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://assets/Forgrounds/beach-Lowtide-Sheet.png" type="Texture" id=1]
-[ext_resource path="res://assets/Forgrounds/beach-Midtide-Foreground.png" type="Texture" id=2]
-[ext_resource path="res://assets/Forgrounds/beach-Lowtide-Foreground.png" type="Texture" id=3]
-[ext_resource path="res://assets/Forgrounds/beach-Hightide-Foreground.png" type="Texture" id=4]
+[ext_resource path="res://assets/Foregrounds/beach-Lowtide-Sheet.png" type="Texture" id=1]
+[ext_resource path="res://assets/Foregrounds/beach-Midtide-Foreground.png" type="Texture" id=2]
+[ext_resource path="res://assets/Foregrounds/beach-Lowtide-Foreground.png" type="Texture" id=3]
+[ext_resource path="res://assets/Foregrounds/beach-Hightide-Foreground.png" type="Texture" id=4]
 
 [sub_resource type="Animation" id=2]
 length = 0.001
