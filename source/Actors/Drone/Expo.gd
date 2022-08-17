@@ -19,9 +19,9 @@ func _ready() -> void:
 	$AnimationPlayer.play("expo_bobble")
 
 func _process(_delta: float) -> void:
-	if rowbit.grappling.can_grapple and has_arrived():
+	if (rowbit.grappling.can_grapple and has_arrived()) or rowbit.talking.can_talk:
 		alert = true
-	if not rowbit.grappling.can_grapple:
+	if not rowbit.grappling.can_grapple or not rowbit.talking.can_talk:
 		alert = false
 
 func _input(event: InputEvent) -> void:
