@@ -55,14 +55,8 @@ func moonPhase():
 func moonOrbit(delta):
 	get_parent().rotation += rotation_speed * delta
 func timedLow():
-	get_tree().root.get_node("Debug_Zeuk/Beach/AnimationPlayers/AnimationPlayer").play("idle_low")
-	get_tree().root.get_node("Debug_Zeuk/Beach/ParallaxBackground/ParallaxLayer2/LowTide").visible = true
-	get_tree().root.get_node("Debug_Zeuk/Beach/ParallaxBackground/ParallaxLayer3/MidTide").visible = true
+	get_tree().root.get_node("Level_Beach/Beach/AnimationPlayers/WavePlayer").play("idle_low")
 func timedMid():
-	get_tree().root.get_node("Debug_Zeuk/Beach/AnimationPlayers/AnimationPlayer").play("idle_mid")
-	get_tree().root.get_node("Debug_Zeuk/Beach/ParallaxBackground/ParallaxLayer2/LowTide").visible = false
-	get_tree().root.get_node("Debug_Zeuk/Beach/ParallaxBackground/ParallaxLayer3/MidTide").visible = true
+	get_tree().root.get_node("Level_Beach/Beach/AnimationPlayers/WavePlayer").play("idle_mid")
 func timedHigh():
-	get_tree().root.get_node("Debug_Zeuk/Beach/AnimationPlayers/AnimationPlayer").play("idle_high")
-	get_tree().root.get_node("Debug_Zeuk/Beach/ParallaxBackground/ParallaxLayer2/LowTide").visible = false
-	get_tree().root.get_node("Debug_Zeuk/Beach/ParallaxBackground/ParallaxLayer3/MidTide").visible = false
+	get_tree().root.get_node("Level_Beach/Beach/AnimationPlayers/WavePlayer").play("idle_high")
