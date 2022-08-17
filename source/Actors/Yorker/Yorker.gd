@@ -46,4 +46,4 @@ func handleDiaDone():
 	inRange = true
 	phaseDia += 1
 func addDia():
-	get_parent().get_node("Player/Camera2D").call_deferred("add_child", dialog)
+	get_parent().get_node("UI").call_deferred("add_child", dialog)
