@@ -19,7 +19,7 @@ func _ready() -> void:
 	$AnimationPlayer.play("expo_bobble")
 
 func _process(_delta: float) -> void:
-	if rowbit.grappling.can_grapple:
+	if rowbit.grappling.can_grapple and has_arrived():
 		alert = true
 	if not rowbit.grappling.can_grapple:
 		alert = false
@@ -42,6 +42,12 @@ func apply_idle_movement() -> void:
 
 func apply_hover_movement() -> void:
 	self.position = lerp(self.position, selected_poi.global_position, lerp(0, 0.075, 1.0))
+
+func has_arrived() -> bool:
+	if self.position.distance_to(selected_poi.global_position) < 1:
+		return true
+	else:
+		return false
 
 func apply_movement() -> void:
 	motion = move_and_slide(motion, Vector2.UP)
