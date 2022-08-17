@@ -6,11 +6,14 @@ var inDialogue = false
 var inRange = false
 var phaseDia = 0
 var dialog_scene = preload("res://source/UI/Dialog/DialogInterface.tscn")
+
+# warning-ignore:unused_signal
 signal next_dialog
+
 #OnReady Variables
 #-------------------------------------------------------------------------------------------------#
 #Let the dialog know to show the next dialog, closes when done
-func _input(event: InputEvent) -> void:
+func _input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("activate") and inDialogue:
 		call_deferred("emit_signal", "next_dialog")
 #-------------------------------------------------------------------------------------------------#
@@ -26,7 +29,7 @@ func diaCheck():
 	set_deferred("inDialogue", "true")
 	dialog = dialog_scene.instance()
 	dialog.connect("diaDone", self, "handleDiaDone")
-	connect("next_dialog", dialog, "load_dialog")
+	var _load_dialog = connect("next_dialog", dialog, "load_dialog")
 func handleDiaDone():
 	inDialogue = false
 	inRange = true
