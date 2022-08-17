@@ -6,9 +6,9 @@
 [ext_resource path="res://source/Actors/Drone/ExpoPOI.tscn" type="PackedScene" id=4]
 [ext_resource path="res://source/Actors/Drone/ExpoPOI_Yorker.gd" type="Script" id=5]
 
-[sub_resource type="CapsuleShape2D" id=6]
-radius = 12.0
-height = 10.0
+[sub_resource type="CapsuleShape2D" id=9]
+radius = 4.0
+height = 16.0
 
 [sub_resource type="Animation" id=7]
 length = 0.001
@@ -85,9 +85,8 @@ texture = ExtResource( 2 )
 hframes = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 7, 12 )
-rotation = 1.5708
-shape = SubResource( 6 )
+position = Vector2( 4, 12 )
+shape = SubResource( 9 )
 
 [node name="AnimationPlayers" type="Node2D" parent="."]
 
