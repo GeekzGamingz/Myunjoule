@@ -25,8 +25,10 @@ func _process(_delta: float) -> void:
 		alert = false
 
 func _input(event: InputEvent) -> void:
-	if Input.is_action_just_pressed("expo_tab") and points_of_interest.size() > 0:
+	if Input.is_action_just_pressed("expo_tab") and points_of_interest.size() > 0 and not alert:
 		selected_poi = points_of_interest[(points_of_interest.find(selected_poi) + 1) % points_of_interest.size()]
+	if Input.is_action_just_pressed("activate") and alert:
+		selected_poi.activate()
 
 func apply_bobble_movement() -> void:
 	num_of_ticks += 1
