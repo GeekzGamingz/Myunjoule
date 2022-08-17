@@ -38,14 +38,6 @@ func _ready() -> void:
 #	$Choice1.visible = false
 #	$Choice2.visible = false
 #-------------------------------------------------------------------------------------------------#
-#Process
-func _process(delta: float) -> void:
-	#DialogNextIndicator.visible = finished
-	if Input.is_action_just_pressed("activate"):
-		load_dialog()
-		load_choice1()
-		load_choice2()
-#-------------------------------------------------------------------------------------------------#
 #Load Dialog
 func load_dialog():
 	if dialogIndex < dialog.size():
