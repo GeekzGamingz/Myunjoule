@@ -30,12 +30,11 @@ func apply_movementChase():
 	motion = move_and_slide(motion, Vector2.UP)
 func get_direction():
 	rng.randomize()
-	var rngDistance1 = rng.randf_range(-20, 20)
-	var rngDistance2 = rng.randf_range(-20, 20)
-	var distance = Vector2(rngDistance1, rngDistance1)
+	var rngDistance = rng.randf_range(-20, 20)
+	var distance = Vector2(rngDistance, rngDistance)
 	direction = distance
-func apply_movementWalk(direction:Vector2):
-	motion = lerp(motion, direction.normalized() * 100, 0.3)
+func apply_movementWalk(dir: Vector2):
+	motion = lerp(motion, dir.normalized() * 100, 0.3)
 	motion = move_and_slide(motion, Vector2.UP)
 #-------------------------------------------------------------------------------------------------#
 #Flip Sprite & Collision

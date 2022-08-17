@@ -16,12 +16,12 @@ func _process(_delta: float) -> void:
 	stateLabel.text = str(states.keys()[state])
 #-------------------------------------------------------------------------------------------------#
 #Input Handler
-func _input(event: InputEvent) -> void:
+func _input(_event: InputEvent) -> void:
 	pass
 #-------------------------------------------------------------------------------------------------#
 #State Machine
 #State Logistics
-func stateLogic(delta):
+func stateLogic(_delta):
 	pass
 #State Transitions
 # warning-ignore:unused_argument

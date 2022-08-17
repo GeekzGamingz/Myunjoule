@@ -28,7 +28,7 @@ func _process(_delta: float) -> void:
 #			print("X :", player_xDistance, "Y: ", player_yDistance)
 #-------------------------------------------------------------------------------------------------#
 #State Logistics
-func stateLogic(delta):
+func stateLogic(_delta):
 	if [states.chase].has(state): parent.apply_movementChase()
 	if [states.walk].has(state): parent.apply_movementWalk(parent.direction)
 	parent.flipMouskie()

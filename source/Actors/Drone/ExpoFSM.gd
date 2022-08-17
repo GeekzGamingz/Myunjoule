@@ -21,7 +21,7 @@ func _process(_delta: float) -> void:
 
 #-------------------------------------------------------------------------------------------------#
 #State Logistics
-func stateLogic(delta):
+func stateLogic(_delta):
 	# parent.apply_bobble_movement()
 	if state == states.idle:
 		parent.handle_facing()
