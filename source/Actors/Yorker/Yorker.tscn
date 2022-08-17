@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://source/Actors/Yorker/YorkerFSM.gd" type="Script" id=1]
 [ext_resource path="res://assets/NPCs/Yorker/Yorker-sweeping-Sheet.png" type="Texture" id=2]
 [ext_resource path="res://source/Actors/Yorker/Yorker.gd" type="Script" id=3]
+[ext_resource path="res://source/Actors/Drone/ExpoPOI.tscn" type="PackedScene" id=4]
 
 [sub_resource type="CapsuleShape2D" id=6]
 radius = 12.0
@@ -115,5 +116,8 @@ valign = 1
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DialogArea"]
 modulate = Color( 0.196078, 1, 0, 1 )
 shape = SubResource( 8 )
+
+[node name="ExpoPOI" parent="." instance=ExtResource( 4 )]
+position = Vector2( 0, -29 )
 
 [connection signal="body_entered" from="DialogArea" to="." method="_on_DialogArea_body_entered"]

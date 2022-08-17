@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://source/Actors/Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://source/Levels/Beach/Beach.tscn" type="PackedScene" id=2]
@@ -8,11 +8,18 @@
 [ext_resource path="res://assets/Tilesets/Ghost.tres" type="TileSet" id=6]
 [ext_resource path="res://source/Objects/Bottle/Bottle_Buried.tscn" type="PackedScene" id=7]
 [ext_resource path="res://source/Objects/Moon/Moon.tscn" type="PackedScene" id=8]
+[ext_resource path="res://assets/Backgrounds/beach-Stars-Sheet.png" type="Texture" id=9]
 
 [node name="Debug_Zeuk" type="Node2D"]
 __meta__ = {
 "_edit_horizontal_guides_": [ 289.0 ]
 }
+
+[node name="Background" type="Sprite" parent="."]
+position = Vector2( 0, 88 )
+scale = Vector2( 1.64792, 1.64792 )
+z_index = -100
+texture = ExtResource( 9 )
 
 [node name="B1" parent="." instance=ExtResource( 2 )]
 position = Vector2( 120, 169 )
