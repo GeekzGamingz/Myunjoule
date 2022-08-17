@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://assets/Objects/Moon/mewn-Sheet.png" type="Texture" id=1]
 [ext_resource path="res://source/Objects/Moon/Moon.gd" type="Script" id=2]
@@ -7,11 +7,26 @@
 [sub_resource type="CircleShape2D" id=3]
 radius = 20.025
 
+[sub_resource type="Animation" id=6]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("../MoonSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 10 ]
+}
+
 [sub_resource type="Animation" id=2]
 resource_name = "idle"
-length = 15.0
+length = 1200.0
 loop = true
-step = 1.0
+step = 6.25
 tracks/0/type = "value"
 tracks/0/path = NodePath("../MoonSprite:texture")
 tracks/0/interp = 1
@@ -43,45 +58,354 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 75, 150, 225, 300, 375, 450, 525, 600, 675, 750, 825, 900, 975, 1050, 1125 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 12, 13, 14, 15 ]
+"values": [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath("..")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 6.25, 18.75, 31.25, 43.75, 56.25, 68.75, 81.25, 93.75, 106.25, 118.75, 131.25, 143.75, 156.25, 168.75, 181.25, 193.75, 206.25, 218.75, 231.25, 243.75, 256.25, 268.75, 281.25, 293.75, 306.25, 318.75, 331.25, 343.75, 356.25, 368.75, 381.25, 393.75, 406.25, 418.75, 431.25, 443.75, 456.25, 468.75, 481.25, 493.75, 506.25, 518.75, 531.25, 543.75, 556.25, 568.75, 581.25, 593.75, 606.25, 618.75, 631.25, 643.75, 656.25, 668.75, 681.25, 693.75, 706.25, 718.75, 731.25, 743.75, 756.25, 768.75, 781.25, 793.75, 806.25, 818.75, 831.25, 843.75, 856.25, 868.75, 881.25, 893.75, 906.25, 918.75, 931.25, 943.75, 956.25, 968.75, 981.25, 993.75, 1006.25, 1018.75, 1031.25, 1043.75, 1056.25, 1068.75, 1081.25, 1093.75, 1106.25, 1118.75, 1131.25, 1143.75, 1156.25, 1168.75, 1181.25, 1193.75 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "timedHigh"
+}, {
+"args": [  ],
+"method": "timedLow"
+}, {
+"args": [  ],
+"method": "timedHigh"
+}, {
+"args": [  ],
+"method": "timedLow"
+}, {
+"args": [  ],
+"method": "timedHigh"
+}, {
+"args": [  ],
+"method": "timedLow"
+}, {
+"args": [  ],
+"method": "timedHigh"
+}, {
+"args": [  ],
+"method": "timedLow"
+}, {
+"args": [  ],
+"method": "timedHigh"
+}, {
+"args": [  ],
+"method": "timedLow"
+}, {
+"args": [  ],
+"method": "timedHigh"
+}, {
+"args": [  ],
+"method": "timedLow"
+}, {
+"args": [  ],
+"method": "timedHigh"
+}, {
+"args": [  ],
+"method": "timedLow"
+}, {
+"args": [  ],
+"method": "timedHigh"
+}, {
+"args": [  ],
+"method": "timedLow"
+}, {
+"args": [  ],
+"method": "timedHigh"
+}, {
+"args": [  ],
+"method": "timedLow"
+}, {
+"args": [  ],
+"method": "timedHigh"
+}, {
+"args": [  ],
+"method": "timedLow"
+}, {
+"args": [  ],
+"method": "timedHigh"
+}, {
+"args": [  ],
+"method": "timedLow"
+}, {
+"args": [  ],
+"method": "timedHigh"
+}, {
+"args": [  ],
+"method": "timedLow"
+}, {
+"args": [  ],
+"method": "timedHigh"
+}, {
+"args": [  ],
+"method": "timedLow"
+}, {
+"args": [  ],
+"method": "timedHigh"
+}, {
+"args": [  ],
+"method": "timedLow"
+}, {
+"args": [  ],
+"method": "timedHigh"
+}, {
+"args": [  ],
+"method": "timedLow"
+}, {
+"args": [  ],
+"method": "timedHigh"
+}, {
+"args": [  ],
+"method": "timedLow"
+}, {
+"args": [  ],
+"method": "timedHigh"
+}, {
+"args": [  ],
+"method": "timedLow"
+}, {
+"args": [  ],
+"method": "timedHigh"
+}, {
+"args": [  ],
+"method": "timedLow"
+}, {
+"args": [  ],
+"method": "timedHigh"
+}, {
+"args": [  ],
+"method": "timedLow"
+}, {
+"args": [  ],
+"method": "timedHigh"
+}, {
+"args": [  ],
+"method": "timedLow"
+}, {
+"args": [  ],
+"method": "timedHigh"
+}, {
+"args": [  ],
+"method": "timedLow"
+}, {
+"args": [  ],
+"method": "timedHigh"
+}, {
+"args": [  ],
+"method": "timedLow"
+}, {
+"args": [  ],
+"method": "timedHigh"
+}, {
+"args": [  ],
+"method": "timedLow"
+}, {
+"args": [  ],
+"method": "timedHigh"
+}, {
+"args": [  ],
+"method": "timedLow"
+}, {
+"args": [  ],
+"method": "timedHigh"
+}, {
+"args": [  ],
+"method": "timedLow"
+}, {
+"args": [  ],
+"method": "timedHigh"
+}, {
+"args": [  ],
+"method": "timedLow"
+}, {
+"args": [  ],
+"method": "timedHigh"
+}, {
+"args": [  ],
+"method": "timedLow"
+}, {
+"args": [  ],
+"method": "timedHigh"
+}, {
+"args": [  ],
+"method": "timedLow"
+}, {
+"args": [  ],
+"method": "timedHigh"
+}, {
+"args": [  ],
+"method": "timedLow"
+}, {
+"args": [  ],
+"method": "timedHigh"
+}, {
+"args": [  ],
+"method": "timedLow"
+}, {
+"args": [  ],
+"method": "timedHigh"
+}, {
+"args": [  ],
+"method": "timedLow"
+}, {
+"args": [  ],
+"method": "timedHigh"
+}, {
+"args": [  ],
+"method": "timedLow"
+}, {
+"args": [  ],
+"method": "timedHigh"
+}, {
+"args": [  ],
+"method": "timedLow"
+}, {
+"args": [  ],
+"method": "timedHigh"
+}, {
+"args": [  ],
+"method": "timedLow"
+}, {
+"args": [  ],
+"method": "timedHigh"
+}, {
+"args": [  ],
+"method": "timedLow"
+}, {
+"args": [  ],
+"method": "timedHigh"
+}, {
+"args": [  ],
+"method": "timedLow"
+}, {
+"args": [  ],
+"method": "timedHigh"
+}, {
+"args": [  ],
+"method": "timedLow"
+}, {
+"args": [  ],
+"method": "timedHigh"
+}, {
+"args": [  ],
+"method": "timedLow"
+}, {
+"args": [  ],
+"method": "timedHigh"
+}, {
+"args": [  ],
+"method": "timedLow"
+}, {
+"args": [  ],
+"method": "timedHigh"
+}, {
+"args": [  ],
+"method": "timedLow"
+}, {
+"args": [  ],
+"method": "timedHigh"
+}, {
+"args": [  ],
+"method": "timedLow"
+}, {
+"args": [  ],
+"method": "timedHigh"
+}, {
+"args": [  ],
+"method": "timedLow"
+}, {
+"args": [  ],
+"method": "timedHigh"
+}, {
+"args": [  ],
+"method": "timedLow"
+}, {
+"args": [  ],
+"method": "timedHigh"
+}, {
+"args": [  ],
+"method": "timedLow"
+}, {
+"args": [  ],
+"method": "timedHigh"
+}, {
+"args": [  ],
+"method": "timedLow"
+}, {
+"args": [  ],
+"method": "timedHigh"
+}, {
+"args": [  ],
+"method": "timedLow"
+}, {
+"args": [  ],
+"method": "timedHigh"
+}, {
+"args": [  ],
+"method": "timedLow"
+}, {
+"args": [  ],
+"method": "timedHigh"
+}, {
+"args": [  ],
+"method": "timedLow"
+} ]
 }
 
 [sub_resource type="AnimationNodeStateMachine" id=4]
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=5]
 
-[node name="Moon" type="KinematicBody2D"]
-script = ExtResource( 2 )
+[sub_resource type="CircleShape2D" id=7]
 
-[node name="MoonFSM" type="Node2D" parent="."]
+[node name="MoonAnchor" type="KinematicBody2D"]
+
+[node name="Moon" type="KinematicBody2D" parent="."]
+position = Vector2( 0, 700 )
+z_index = -75
+collision_layer = 0
+collision_mask = 0
+script = ExtResource( 2 )
+rotation_speed = 0.024
+
+[node name="MoonFSM" type="Node2D" parent="Moon"]
 script = ExtResource( 3 )
 
-[node name="MoonSprite" type="Sprite" parent="."]
+[node name="MoonSprite" type="Sprite" parent="Moon"]
 texture = ExtResource( 1 )
 hframes = 16
-frame = 2
+frame = 10
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Moon"]
 visible = false
 shape = SubResource( 3 )
 
-[node name="AnimationPlayers" type="Node2D" parent="."]
+[node name="AnimationPlayers" type="Node2D" parent="Moon"]
 
-[node name="SpritePlayer" type="AnimationPlayer" parent="AnimationPlayers"]
+[node name="SpritePlayer" type="AnimationPlayer" parent="Moon/AnimationPlayers"]
 autoplay = "idle"
+anims/RESET = SubResource( 6 )
 anims/idle = SubResource( 2 )
 
-[node name="EffectsPlayer" type="AnimationPlayer" parent="AnimationPlayers"]
+[node name="EffectsPlayer" type="AnimationPlayer" parent="Moon/AnimationPlayers"]
 
-[node name="AnimationTree" type="AnimationTree" parent="AnimationPlayers"]
+[node name="AnimationTree" type="AnimationTree" parent="Moon/AnimationPlayers"]
 tree_root = SubResource( 4 )
 anim_player = NodePath("../SpritePlayer")
 parameters/playback = SubResource( 5 )
 
-[node name="StateOutput" type="Label" parent="."]
+[node name="StateOutput" type="Label" parent="Moon"]
 margin_left = -58.0
 margin_top = -36.0
 margin_right = 58.0
@@ -89,3 +413,7 @@ margin_bottom = -22.0
 text = "State"
 align = 1
 valign = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 7 )
+disabled = true

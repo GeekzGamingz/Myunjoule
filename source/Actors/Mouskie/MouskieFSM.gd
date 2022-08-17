@@ -24,7 +24,8 @@ func _process(_delta: float) -> void:
 		player_xDistance = (parent.player.position.x - parent.position.x)
 		player_yDistance = (parent.player.position.y - parent.position.y)
 		if parent.player_inSight:
-			print("X :", player_xDistance, "Y: ", player_yDistance)
+			pass
+#			print("X :", player_xDistance, "Y: ", player_yDistance)
 #-------------------------------------------------------------------------------------------------#
 #State Logistics
 func stateLogic(delta):

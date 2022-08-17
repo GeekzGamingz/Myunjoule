@@ -10,13 +10,13 @@ var YorkerChoiceDia1 = [
 	'[color=black]Yorker\n[color=red]“...Woah, why\'re you lookin\' at me like that? You short circuiting, or somethin\'?”'
 ]
 var YorkerChoice1 = [
-	'[color=blue]“Sorry, I must have been daydreaming.”'
+	'[color=blue][center]“Sorry, I must have been daydreaming.”'
 ]
 var YorkerResponse1 = [
 	'[color=black]Yorker\n[color=red]“What the heck? \'Daydreaming?\' Pal, you must be broken somewhere. Machines don\'t dream.”'
 ]
 var YorkerChoice2 = [
-	'[color=blue]“what do you want?”'
+	'[color=blue][center]“What do you want?”'
 ]
 var YorkerResponse2 = [
 	'[color=black]Yorker\n[color=red]“Oh, I guess I don\'t exactly belong right here, either, huh.”'

@@ -1,13 +1,13 @@
 extends KinematicBody2D
 #-------------------------------------------------------------------------------------------------#
+#Variables
 var dialog
 var startDialogue = false
 var inDialogue = false
 var inRange = false
 var phaseDia = 0
-#-------------------------------------------------------------------------------------------------#
-#Variables
 var dialog_scene = preload("res://source/UI/Dialog/DialogInterface.tscn")
+#OnReady Variables
 #-------------------------------------------------------------------------------------------------#
 func _process(delta: float) -> void:
 	if startDialogue && !inDialogue:
@@ -15,13 +15,13 @@ func _process(delta: float) -> void:
 			0:
 				diaCheck()
 				dialog.dialog = Dialogue.YorkerIntro
-				get_parent().get_node("Player").call_deferred("add_child", dialog)
+				addDia()
 			1:
 				diaCheck()
 				dialog.dialog = Dialogue.YorkerChoiceDia1
 				dialog.diaChoice1 = Dialogue.YorkerChoice1
 				dialog.diaChoice2 = Dialogue.YorkerChoice2
-				get_parent().get_node("Player").call_deferred("add_child", dialog)
+				addDia()
 #Toggle startDialogue
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("activate") && inRange:
@@ -45,3 +45,5 @@ func handleDiaDone():
 	inDialogue = false
 	inRange = true
 	phaseDia += 1
+func addDia():
+	get_parent().get_node("UI").call_deferred("add_child", dialog)

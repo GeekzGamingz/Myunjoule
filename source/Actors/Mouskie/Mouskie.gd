@@ -18,7 +18,7 @@ onready var attackTimer: Timer = $Timers/attackTimer
 #-------------------------------------------------------------------------------------------------#
 #Ready
 func _ready() -> void:
-	$Threat/CollisionShape2D.set_deferred("disabled", false)
+	$LightAttack/CollisionShape2D.set_deferred("disabled", true)
 #-------------------------------------------------------------------------------------------------#
 #Applies Gravity
 func apply_gravity(delta):
@@ -44,12 +44,14 @@ func flipMouskie():
 		if motion.x < 0:
 			get_node("MouskieSprite").set_flip_h(true)
 			get_node("EffectsSprite").set_flip_h(true)
+			get_node("LightAttack/CollisionShape2D").position = Vector2(-24, 3)
 			$LCollision.set_deferred("disabled", false)
 			$RCollision.set_deferred("disabled", true)
 			Facing = "Left"
 		elif motion.x > 0:
 			get_node("MouskieSprite").set_flip_h(false)
 			get_node("EffectsSprite").set_flip_h(false)
+			get_node("LightAttack/CollisionShape2D").position = Vector2(24, 3)
 			$LCollision.set_deferred("disabled", true)
 			$RCollision.set_deferred("disabled", false)
 			Facing = "Right"
@@ -75,6 +77,6 @@ func _on_Threat_area_exited(area: Area2D) -> void:
 #-------------------------------------------------------------------------------------------------#
 #Attack
 func attackEnable():
-	$Facing/LightAttack/CollisionShape2D.set_deferred("disabled", false)
+	$LightAttack/CollisionShape2D.set_deferred("disabled", false)
 func attackDisable():
-	$Facing/LightAttack/CollisionShape2D.set_deferred("disabled", true)
+	$LightAttack/CollisionShape2D.set_deferred("disabled", true)

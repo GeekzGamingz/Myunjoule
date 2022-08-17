@@ -15,6 +15,8 @@ var phaseDict = {
 	}
 #OnReady Variables
 onready var moonSprite: Sprite = $MoonSprite
+#Exported Variables
+export var rotation_speed = PI
 #Animation Nodes
 onready var spritePlayer = $AnimationPlayers/SpritePlayer
 onready var fxPlayer = $AnimationPlayers/EffectsPlayer
@@ -23,8 +25,8 @@ onready var playBack = animTree.get("parameters/playback")
 onready var currentState = playBack.get_current_node()
 #-------------------------------------------------------------------------------------------------#
 #Ready Method
-func _ready() -> void:
-	pass
+func _process(delta: float) -> void:
+	moonOrbit(delta)
 #-------------------------------------------------------------------------------------------------#
 #Moon Phases
 func moonPhase():
@@ -48,3 +50,21 @@ func moonPhase():
 		13: phaseDict["flagWaxGibbous"] = true
 		14: phaseDict["flagWaxGibbous"] = true
 		15: phaseDict["flagFull"] = true
+#-------------------------------------------------------------------------------------------------#
+#Moon Orbit
+func moonOrbit(delta):
+	get_parent().rotation += rotation_speed * delta
+func timedLow():
+	get_tree().root.get_node("Debug_Zeuk/B1/AnimationPlayers/AnimationPlayer").play("idle_low")
+	get_tree().root.get_node("Debug_Zeuk/B2/AnimationPlayers/AnimationPlayer").play("idle_low")
+	get_tree().root.get_node("Debug_Zeuk/B3/AnimationPlayers/AnimationPlayer").play("idle_low")
+	get_tree().root.get_node("Debug_Zeuk/-B1/AnimationPlayers/AnimationPlayer").play("idle_low")
+	get_tree().root.get_node("Debug_Zeuk/-B2/AnimationPlayers/AnimationPlayer").play("idle_low")
+	get_tree().root.get_node("Debug_Zeuk/-B3/AnimationPlayers/AnimationPlayer").play("idle_low")
+func timedHigh():
+	get_tree().root.get_node("Debug_Zeuk/B1/AnimationPlayers/AnimationPlayer").play("idle_high")
+	get_tree().root.get_node("Debug_Zeuk/B2/AnimationPlayers/AnimationPlayer").play("idle_high")
+	get_tree().root.get_node("Debug_Zeuk/B3/AnimationPlayers/AnimationPlayer").play("idle_high")
+	get_tree().root.get_node("Debug_Zeuk/-B1/AnimationPlayers/AnimationPlayer").play("idle_high")
+	get_tree().root.get_node("Debug_Zeuk/-B2/AnimationPlayers/AnimationPlayer").play("idle_high")
+	get_tree().root.get_node("Debug_Zeuk/-B3/AnimationPlayers/AnimationPlayer").play("idle_high")

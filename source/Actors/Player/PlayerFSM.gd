@@ -21,6 +21,7 @@ func _ready() -> void:
 	stateAdd("move_up")
 	stateAdd("move_down")
 	stateAdd("grappling")
+	stateAdd("dialog")
 	# Set the starting state
 	call_deferred("stateSet",states.idle)
 
@@ -35,7 +36,7 @@ func _process(_delta: float) -> void:
 #Input Handler
 func _input(event: InputEvent) -> void:
 	# Would want some tie in here to the drone selection system
-	if event.is_action_pressed("activate") and parent.get_node("GrapplingHook").can_grapple:
+	if event.is_action_pressed("activate") and parent.grappling.can_grapple:
 		call_deferred("stateSet", states.grappling)
 		parent.grappling.is_grappling = true
 
@@ -44,9 +45,8 @@ func _input(event: InputEvent) -> void:
 #State Machine
 #State Logistics
 func stateLogic(delta):
-	if parent.is_falling:
-		parent.apply_gravity(delta)
-	parent.handle_movement()
+	if parent.is_falling: parent.apply_gravity(delta)
+	if ![states.dialog].has(state): parent.handle_movement()
 	parent.apply_movement()
 
 
@@ -93,6 +93,9 @@ func transitions(delta):
 		states.grappling:
 			if not parent.grappling.is_grappling:
 				return states.idle
+		
+		states.dialog:
+			pass
 	return null
 
 
@@ -114,7 +117,9 @@ func stateEnter(newState, oldState):
 # warning-ignore:unused_argument
 # warning-ignore:unused_argument
 func stateExit(oldState, newState):
-	pass
+	match(oldState):
+		states.dialog:
+			pass
 
 
 #-------------------------------------------------------------------------------------------------#
