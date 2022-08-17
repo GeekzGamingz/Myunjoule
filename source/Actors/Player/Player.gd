@@ -44,6 +44,8 @@ func _ready() -> void:
 	$PlayerArea.connect("area_exited", self, "set_can_talk", [false])
 	$PoiDetection.connect("area_entered", self, "detected_poi")
 	$PoiDetection.connect("area_exited", self, "poi_lost")
+	connect("energyUpdate_charge", get_parent().get_node("UI/UserInterface/ProgressBars"), "energyUpdate_charge", [energy])
+	connect("energyUpdate_drain", get_parent().get_node("UI/UserInterface/ProgressBars"), "energyUpdate_drain", [energy])
 #-------------------------------------------------------------------------------------------------#
 #Applies Gravity
 func apply_gravity(delta):
