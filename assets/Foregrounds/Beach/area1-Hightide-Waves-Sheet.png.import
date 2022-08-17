@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/foregroundshadows.png-c8a8b888b2cab0e19af259c8dc68d647.stex"
+path="res://.import/area1-Hightide-Waves-Sheet.png-d7af9c6d6a569d4b831d1790c30e4814.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Foregrounds/Beach/foregroundshadows.png"
-dest_files=[ "res://.import/foregroundshadows.png-c8a8b888b2cab0e19af259c8dc68d647.stex" ]
+source_file="res://assets/Foregrounds/Beach/area1-Hightide-Waves-Sheet.png"
+dest_files=[ "res://.import/area1-Hightide-Waves-Sheet.png-d7af9c6d6a569d4b831d1790c30e4814.stex" ]
 
 [params]
 

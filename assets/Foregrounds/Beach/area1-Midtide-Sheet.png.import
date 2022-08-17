@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/beach-Midtide-Sheet.png-c1a30dc406a419bd71772616c8012828.stex"
+path="res://.import/area1-Midtide-Sheet.png-a524c7cf2ded506d2999c670ea518770.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Foregrounds/Beach/beach-Midtide-Sheet.png"
-dest_files=[ "res://.import/beach-Midtide-Sheet.png-c1a30dc406a419bd71772616c8012828.stex" ]
+source_file="res://assets/Foregrounds/Beach/area1-Midtide-Sheet.png"
+dest_files=[ "res://.import/area1-Midtide-Sheet.png-a524c7cf2ded506d2999c670ea518770.stex" ]
 
 [params]
 
