@@ -42,7 +42,4 @@ position = Vector2( -152, -79 )
 
 [node name="Expo" parent="." instance=ExtResource( 7 )]
 
-[connection signal="energyUpdate_charge" from="Player" to="Player/ProgressBars" method="energyUpdate_charge"]
-[connection signal="energyUpdate_drain" from="Player" to="Player/ProgressBars" method="energyUpdate_drain"]
-
 [editable path="Player"]
