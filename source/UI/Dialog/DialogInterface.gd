@@ -32,6 +32,7 @@ var diaChoice2 = ['']
 #-------------------------------------------------------------------------------------------------#
 #Ready
 func _ready() -> void:
+	print("Running ready")
 	load_dialog()
 	load_choice1()
 	load_choice2()
@@ -42,6 +43,7 @@ func _ready() -> void:
 func load_dialog():
 	if dialogIndex < dialog.size():
 		finished = false
+		print("Loading dialog text")
 		dialogText.bbcode_text = dialog[dialogIndex]
 		dialogText.percent_visible = 0
 		textTween.interpolate_property(dialogText, "percent_visible",
@@ -49,6 +51,7 @@ func load_dialog():
 		textTween.start()
 	else:
 		emit_signal("diaDone")
+		print("Queue freeing...")
 		queue_free()
 	dialogIndex += 1
 func load_choice1():
