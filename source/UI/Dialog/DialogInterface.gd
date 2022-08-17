@@ -2,14 +2,19 @@ extends Control
 #-------------------------------------------------------------------------------------------------#
 #Variables
 var dialogIndex = 0
-signal diaDone
 #Bool Variables
 var finished = false
 #OnReady Variables
 onready var dialogText = $TextureRect/MarginContainer/DialogText
-onready var choice1 = $Choice1/MarginContainer/DialogText
-onready var choice2 = $Choice2/MarginContainer/DialogText
 onready var textTween = $TextureRect/MarginContainer/TextTween
+onready var choice1: RichTextLabel = $Choice1/MarginContainer/DialogText
+onready var choice2: RichTextLabel = $Choice2/MarginContainer/DialogText
+onready var choice1Label: RichTextLabel = $Choice1/MarginContainer2/DialogText2
+onready var choice2Label: RichTextLabel = $Choice2/MarginContainer2/DialogText2
+onready var choice1Label_rect = choice1Label.get_rect()
+onready var choice2Label_rect = choice2Label.get_rect()
+#Signals
+signal diaDone
 #-------------------------------------------------------------------------------------------------#
 #Dialog
 var dialog = [
@@ -79,3 +84,4 @@ func load_choice2():
 #Next/Finish Dialog
 func _on_TextTween_tween_completed(object: Object, key: NodePath) -> void:
 	finished = true
+#-------------------------------------------------------------------------------------------------#

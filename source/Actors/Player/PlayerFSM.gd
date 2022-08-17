@@ -21,6 +21,7 @@ func _ready() -> void:
 	stateAdd("move_up")
 	stateAdd("move_down")
 	stateAdd("grappling")
+	stateAdd("dialog")
 	# Set the starting state
 	call_deferred("stateSet",states.idle)
 
@@ -44,11 +45,9 @@ func _input(event: InputEvent) -> void:
 #State Machine
 #State Logistics
 func stateLogic(delta):
-	if parent.is_falling:
-		parent.apply_gravity(delta)
-	parent.handle_movement()
+	if parent.is_falling: parent.apply_gravity(delta)
+	if ![states.dialog].has(state): parent.handle_movement()
 	parent.apply_movement()
-	parent.moonOrbit(delta)
 
 
 #State Transitions
@@ -94,6 +93,9 @@ func transitions(delta):
 		states.grappling:
 			if not parent.grappling.is_grappling:
 				return states.idle
+		
+		states.dialog:
+			pass
 	return null
 
 
@@ -115,7 +117,9 @@ func stateEnter(newState, oldState):
 # warning-ignore:unused_argument
 # warning-ignore:unused_argument
 func stateExit(oldState, newState):
-	pass
+	match(oldState):
+		states.dialog:
+			pass
 
 
 #-------------------------------------------------------------------------------------------------#

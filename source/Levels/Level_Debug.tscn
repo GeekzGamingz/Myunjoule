@@ -1,11 +1,13 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://source/Actors/Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://source/Levels/Beach/Beach.tscn" type="PackedScene" id=2]
+[ext_resource path="res://source/Actors/Drone/Expo.tscn" type="PackedScene" id=3]
 [ext_resource path="res://source/Actors/Yorker/Yorker.tscn" type="PackedScene" id=4]
 [ext_resource path="res://source/Actors/Mouskie/Mouskie.tscn" type="PackedScene" id=5]
 [ext_resource path="res://assets/Tilesets/Ghost.tres" type="TileSet" id=6]
 [ext_resource path="res://source/Objects/Bottle/Bottle_Buried.tscn" type="PackedScene" id=7]
+[ext_resource path="res://source/Objects/Moon/Moon.tscn" type="PackedScene" id=8]
 
 [node name="Debug_Zeuk" type="Node2D"]
 __meta__ = {
@@ -48,5 +50,13 @@ position = Vector2( -129, 187 )
 [node name="Mouskie" parent="YSort" instance=ExtResource( 5 )]
 position = Vector2( 221, 251 )
 
+[node name="Expo" parent="YSort" instance=ExtResource( 3 )]
+
 [node name="Bottle_Buried" parent="YSort" instance=ExtResource( 7 )]
 position = Vector2( -300, 210 )
+
+[node name="MoonAnchor" parent="YSort" instance=ExtResource( 8 )]
+position = Vector2( 0, 500 )
+
+[connection signal="energyUpdate_charge" from="YSort/Player" to="YSort/Player/ProgressBars" method="energyUpdate_charge"]
+[connection signal="energyUpdate_drain" from="YSort/Player" to="YSort/Player/ProgressBars" method="energyUpdate_drain"]
