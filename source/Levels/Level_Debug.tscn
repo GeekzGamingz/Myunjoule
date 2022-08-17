@@ -25,6 +25,8 @@ tile_data = PoolIntArray( 524258, 0, 0, 524259, 0, 0, 524260, 0, 0, 524261, 0, 0
 
 [node name="YSort" type="YSort" parent="."]
 
+[node name="UI" type="CanvasLayer" parent="YSort"]
+
 [node name="Player" parent="YSort" instance=ExtResource( 1 )]
 position = Vector2( 0, 202 )
 

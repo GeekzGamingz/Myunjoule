@@ -8,6 +8,10 @@ var z_move_dir: int = 0
 var old_z_move_dir: int = 0
 var snap: Vector2 = Vector2.DOWN
 var is_falling = false
+var talking = {
+	"is_talking": false,
+	"can_talk": false,
+}
 var grappling = {
 	"is_grappling": false,
 	"can_grapple": false,
@@ -36,6 +40,8 @@ signal energyUpdate_charge(energy)
 func _ready() -> void:
 	$PlayerArea.connect("area_entered", self, "enable_collision")
 	$PlayerArea.connect("area_entered", self, "disengage_grappling_hook")
+	$PlayerArea.connect("area_entered", self, "set_can_talk", [true])
+	$PlayerArea.connect("area_exited", self, "set_can_talk", [false])
 	$PoiDetection.connect("area_entered", self, "detected_poi")
 	$PoiDetection.connect("area_exited", self, "poi_lost")
 #-------------------------------------------------------------------------------------------------#
@@ -129,3 +135,6 @@ func _on_PlayerArea_area_entered(area: Area2D) -> void:
 		"HeavyAttack": drainEnergy(15)
 		"InstaKill": drainEnergy(100)
 
+func set_can_talk(area: Area2D, canTalk: bool) -> void:
+	if area.name == "DialogArea":
+		talking.can_talk = canTalk
