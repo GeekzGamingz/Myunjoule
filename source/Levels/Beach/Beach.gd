@@ -1,4 +1,5 @@
 extends Node2D
+
 #-------------------------------------------------------------------------------------------------#
 func lowTide():
 	$AnimationPlayers/AnimationPlayer.play("idle_low")
