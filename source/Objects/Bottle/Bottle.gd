@@ -5,20 +5,12 @@ var inRange = false
 #-------------------------------------------------------------------------------------------------#
 #Variables
 var dialog_scene = preload("res://source/UI/Dialog/DialogInterface.tscn")
+signal next_dialog
 #-------------------------------------------------------------------------------------------------#
-func _process(delta: float) -> void:
-	if startDialogue && !inDialogue:
-		inDialogue = true
-		startDialogue = false
-		var dialog = dialog_scene.instance()
-		dialog.connect("diaDone", self, "handleDiaDone")
-		dialog.dialog = ['[color=black]“It\'s a secret to everyone...”']
-		get_parent().get_node("Player").call_deferred("add_child", dialog)
-#Toggle startDialogue
+#Let the dialog know to show the next dialog, closes when done
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("activate") && inRange:
-		inRange = false
-		startDialogue = true
+	if Input.is_action_just_pressed("activate") and inDialogue:
+		emit_signal("next_dialog")
 #-------------------------------------------------------------------------------------------------#
 #Dialogue Entered
 func _on_DialogArea_body_entered(body: Node) -> void:
@@ -31,3 +23,12 @@ func _on_DialogArea_body_exited(body: Node) -> void:
 func handleDiaDone():
 	inDialogue = false
 	inRange = true
+func start_dialog() -> void:
+	print(inDialogue)
+	if !inDialogue:
+		inDialogue = true
+		var dialog = dialog_scene.instance()
+		dialog.connect("diaDone", self, "handleDiaDone")
+		connect("next_dialog", dialog, "load_dialog")
+		dialog.dialog = ['[color=black]“It\'s a secret to everyone...”']
+		get_parent().get_node("UI").call_deferred("add_child", dialog)
