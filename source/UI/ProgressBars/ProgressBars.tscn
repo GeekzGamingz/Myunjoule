@@ -49,43 +49,51 @@ tracks/2/keys = {
 }
 
 [node name="ProgressBars" type="Control"]
-margin_right = 40.0
-margin_bottom = 40.0
 script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
 
 [node name="Energy" type="Control" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = 18.0
-margin_bottom = 18.0
 rect_rotation = 270.0
+__meta__ = {
+"_edit_use_anchors_": true
+}
 
 [node name="EnergyUnder" type="TextureProgress" parent="Energy"]
-margin_right = 6.0
-margin_bottom = 17.0
+anchor_right = 1.0
+anchor_bottom = 1.0
 value = 100.0
 texture_under = ExtResource( 1 )
 texture_over = ExtResource( 3 )
 texture_progress = ExtResource( 5 )
 tint_over = Color( 0, 0.976471, 1, 1 )
 tint_progress = Color( 1, 1, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
 
 [node name="EnergyOver" type="TextureProgress" parent="Energy"]
-margin_right = 6.0
-margin_bottom = 17.0
+anchor_right = 1.0
+anchor_bottom = 1.0
 value = 100.0
 texture_progress = ExtResource( 5 )
 tint_progress = Color( 0.101961, 1, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
 
 [node name="EnergyTween" type="Tween" parent="Energy"]
 
 [node name="Regen" type="Sprite" parent="."]
 visible = false
-position = Vector2( -14, -15 )
+position = Vector2( 3, -17 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 2 )
 hframes = 10
-frame = 9
+frame = 7
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/regen = SubResource( 1 )
