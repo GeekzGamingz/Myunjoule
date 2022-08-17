@@ -54,3 +54,17 @@ func moonPhase():
 #Moon Orbit
 func moonOrbit(delta):
 	get_parent().rotation += rotation_speed * delta
+func timedLow():
+	get_tree().root.get_node("Debug_Zeuk/B1/AnimationPlayers/AnimationPlayer").play("idle_low")
+	get_tree().root.get_node("Debug_Zeuk/B2/AnimationPlayers/AnimationPlayer").play("idle_low")
+	get_tree().root.get_node("Debug_Zeuk/B3/AnimationPlayers/AnimationPlayer").play("idle_low")
+	get_tree().root.get_node("Debug_Zeuk/-B1/AnimationPlayers/AnimationPlayer").play("idle_low")
+	get_tree().root.get_node("Debug_Zeuk/-B2/AnimationPlayers/AnimationPlayer").play("idle_low")
+	get_tree().root.get_node("Debug_Zeuk/-B3/AnimationPlayers/AnimationPlayer").play("idle_low")
+func timedHigh():
+	get_tree().root.get_node("Debug_Zeuk/B1/AnimationPlayers/AnimationPlayer").play("idle_high")
+	get_tree().root.get_node("Debug_Zeuk/B2/AnimationPlayers/AnimationPlayer").play("idle_high")
+	get_tree().root.get_node("Debug_Zeuk/B3/AnimationPlayers/AnimationPlayer").play("idle_high")
+	get_tree().root.get_node("Debug_Zeuk/-B1/AnimationPlayers/AnimationPlayer").play("idle_high")
+	get_tree().root.get_node("Debug_Zeuk/-B2/AnimationPlayers/AnimationPlayer").play("idle_high")
+	get_tree().root.get_node("Debug_Zeuk/-B3/AnimationPlayers/AnimationPlayer").play("idle_high")
