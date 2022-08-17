@@ -24,7 +24,6 @@ func handleDiaDone():
 	inDialogue = false
 	inRange = true
 func start_dialog() -> void:
-	print(inDialogue)
 	if !inDialogue:
 		inDialogue = true
 		var dialog = dialog_scene.instance()
