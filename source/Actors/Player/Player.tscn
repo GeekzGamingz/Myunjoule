@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://source/Actors/Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://source/Actors/Player/PlayerFSM.gd" type="Script" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://source/Objects/Grappling/GrapplingHook.tscn" type="PackedScene" id=7]
 [ext_resource path="res://source/Actors/Player/ExpoAnchor.gd" type="Script" id=8]
 [ext_resource path="res://icon.png" type="Texture" id=9]
+[ext_resource path="res://source/UI/GridSnapper/GridSnapper.tscn" type="PackedScene" id=10]
 
 [sub_resource type="CircleShape2D" id=6]
 radius = 12.0416
@@ -105,13 +106,7 @@ position = Vector2( 0.5, 9 )
 rotation = -1.57079
 shape = SubResource( 5 )
 
-[node name="Camera2D" type="Camera2D" parent="."]
-current = true
-zoom = Vector2( 0.4, 0.4 )
-limit_left = -720
-limit_top = -120
-limit_right = 720
-limit_bottom = 120
+[node name="GridSnapper" parent="." instance=ExtResource( 10 )]
 
 [node name="StateOutput" type="Label" parent="."]
 margin_left = -20.0
