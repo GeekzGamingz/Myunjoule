@@ -65,3 +65,4 @@ func start_dialog() -> void:
 				diaCheck()
 				dialog.dialog = Dialogue.YorkerCleans
 				addDia()
+				player.chargeEnergy(100)
