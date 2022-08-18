@@ -336,13 +336,6 @@ z_index = -100
 texture = ExtResource( 8 )
 hframes = 6
 
-[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
-
-[node name="Shadow" type="Sprite" parent="ParallaxBackground/ParallaxLayer2"]
-z_index = 50
-z_as_relative = false
-texture = ExtResource( 2 )
-
 [node name="MoonAnchor" parent="ParallaxBackground" instance=ExtResource( 10 )]
 position = Vector2( 0, 605 )
 
@@ -361,6 +354,16 @@ texture = ExtResource( 4 )
 [node name="Waves" type="Sprite" parent="ParallaxBackground"]
 texture = ExtResource( 9 )
 hframes = 6
+
+[node name="ParallaxForeground" type="ParallaxBackground" parent="."]
+layer = 50
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxForeground"]
+motion_scale = Vector2( 2, 2 )
+motion_mirroring = Vector2( 1440, 0 )
+
+[node name="Shadow" type="Sprite" parent="ParallaxForeground/ParallaxLayer"]
+texture = ExtResource( 2 )
 
 [node name="KinematicTide" parent="." instance=ExtResource( 11 )]
 position = Vector2( -264, 4.87585 )
