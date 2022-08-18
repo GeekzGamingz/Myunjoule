@@ -37,13 +37,12 @@ position = Vector2( -560, 87 )
 position = Vector2( -257, 55 )
 
 [node name="Expo" parent="YSort" instance=ExtResource( 1 )]
-visible = false
-
-[node name="Bottle_Buried" parent="YSort" instance=ExtResource( 5 )]
-position = Vector2( 159, 68 )
 
 [node name="Mouskie" parent="YSort" instance=ExtResource( 7 )]
 position = Vector2( 666, 78 )
 
 [node name="DropPod" parent="YSort" instance=ExtResource( 9 )]
 position = Vector2( -622, 79 )
+
+[node name="Bottle_Buried" parent="YSort" instance=ExtResource( 5 )]
+position = Vector2( 159, 68 )

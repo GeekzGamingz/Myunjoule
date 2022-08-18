@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://source/Actors/Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://source/Actors/Player/PlayerFSM.gd" type="Script" id=2]
@@ -68,12 +68,15 @@ tracks/3/keys = {
 "values": [ true ]
 }
 
+[sub_resource type="Animation" id=8]
+resource_name = "hurt"
+
 [sub_resource type="AnimationNodeStateMachine" id=2]
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=3]
 
 [sub_resource type="CircleShape2D" id=7]
-radius = 106.042
+radius = 118.004
 
 [node name="Player" type="KinematicBody2D"]
 collision_layer = 2
@@ -97,6 +100,7 @@ collision_mask = 29
 shape = SubResource( 6 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2( 0.5, 9 )
 rotation = -1.57079
 shape = SubResource( 5 )
@@ -128,6 +132,7 @@ anims/rowbit_move_left = ExtResource( 5 )
 anims/rowbit_move_right = ExtResource( 4 )
 
 [node name="EffectsPlayer" type="AnimationPlayer" parent="AnimationPlayers"]
+anims/hurt = SubResource( 8 )
 
 [node name="AnimationTree" type="AnimationTree" parent="AnimationPlayers"]
 tree_root = SubResource( 2 )
@@ -153,5 +158,10 @@ shape = SubResource( 7 )
 [node name="Timers" type="Node2D" parent="."]
 
 [node name="iFrameTimer" type="Timer" parent="Timers"]
+one_shot = true
+
+[node name="HurtTimer" type="Timer" parent="Timers"]
+wait_time = 0.1
+one_shot = true
 
 [connection signal="area_entered" from="PlayerArea" to="." method="_on_PlayerArea_area_entered"]

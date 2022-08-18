@@ -11,6 +11,7 @@ var dialog_scene = preload("res://source/UI/Dialog/DialogInterface.tscn")
 signal next_dialog
 
 #OnReady Variables
+onready var player = get_parent().get_node("Player")
 #-------------------------------------------------------------------------------------------------#
 func _ready() -> void:
 	start_dialog()
@@ -29,12 +30,14 @@ func _on_DialogArea_body_exited(body: Node) -> void:
 		inRange = false
 func diaCheck():
 	set_deferred("inDialogue", "true")
+	player.talking.is_talking = true
 	dialog = dialog_scene.instance()
 	dialog.connect("diaDone", self, "handleDiaDone")
 	var _load_dialog = connect("next_dialog", dialog, "load_dialog")
 func handleDiaDone():
 	phaseDia += 1
 	inDialogue = false
+	player.talking.is_talking = false
 	inRange = true
 	match(phaseDia):
 		3:

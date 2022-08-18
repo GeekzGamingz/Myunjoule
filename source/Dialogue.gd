@@ -1,5 +1,20 @@
 extends Node
 #-------------------------------------------------------------------------------------------------#
+#Objects
+#Bottle
+var Bottle = {
+	dialogue = [
+		"[color=black]It's a secret to everyone..."
+	],
+	choice_index = -1
+}
+var BottleBattery = {
+	dialogue = [
+		"[color=black]What's this? There are spare [color=green][wave]batteries[/wave][color=black] in here!"
+	],
+	choice_index = -1
+}
+#-------------------------------------------------------------------------------------------------#
 #Yorker
 #var YorkerIntro = [
 #	'[color=black]Yorker\n[color=red]“...Hey! Are you even listenin\' to me?”',
@@ -52,3 +67,4 @@ var YorkerCleans = {
 	],
 	choice_index = -1
 }
+#-------------------------------------------------------------------------------------------------#
