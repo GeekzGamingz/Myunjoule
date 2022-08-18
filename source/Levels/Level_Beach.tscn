@@ -12,8 +12,8 @@
 
 [node name="Level_Beach" type="Node2D"]
 __meta__ = {
-"_edit_horizontal_guides_": [ 289.0, 120.0, -120.0 ],
-"_edit_vertical_guides_": [ -720.0, 192.0 ]
+"_edit_horizontal_guides_": [ 120.0, -120.0 ],
+"_edit_vertical_guides_": [ -720.0, 192.0, 720.0 ]
 }
 
 [node name="Beach" parent="." instance=ExtResource( 2 )]
@@ -27,6 +27,7 @@ tile_data = PoolIntArray( -65528, 0, 0, -65527, 0, 0, -65526, 0, 0, -65525, 0, 0
 [node name="YSort" type="YSort" parent="."]
 
 [node name="UI" type="CanvasLayer" parent="YSort"]
+layer = 100
 
 [node name="UserInterface" parent="YSort/UI" instance=ExtResource( 6 )]
 
