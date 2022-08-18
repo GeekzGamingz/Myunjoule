@@ -14,6 +14,12 @@ var BottleBattery = {
 	],
 	choice_index = -1
 }
+var BottleFlav = {
+	dialogue = [
+		"[color=black]A strange bottle buried in the sand..."
+	],
+	choice_index = -1
+}
 #-------------------------------------------------------------------------------------------------#
 #Yorker
 #var YorkerIntro = [

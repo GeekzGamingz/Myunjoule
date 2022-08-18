@@ -5,14 +5,15 @@ var dialogIndex = 0
 #Bool Variables
 var finished = false
 #OnReady Variables
-onready var dialogText = $TextureRect/MarginContainer/DialogText
-onready var textTween = $TextureRect/MarginContainer/TextTween
+onready var dialogText: RichTextLabel = $Dialogue/MarginContainer/DialogText
 onready var choice1: RichTextLabel = $Choice1/MarginContainer/DialogText
 onready var choice2: RichTextLabel = $Choice2/MarginContainer/DialogText
 onready var choice1Label: RichTextLabel = $Choice1/MarginContainer2/DialogText2
 onready var choice2Label: RichTextLabel = $Choice2/MarginContainer2/DialogText2
+onready var flavor: RichTextLabel = $Flavor/MarginContainer/DialogText
 onready var choice1Label_rect = choice1Label.get_rect()
 onready var choice2Label_rect = choice2Label.get_rect()
+onready var textTween = $Dialogue/MarginContainer/TextTween
 #Signals
 signal diaDone
 #-------------------------------------------------------------------------------------------------#
@@ -43,12 +44,18 @@ var diaChoice2 = {
 	choice_text = 'Choice #2',
 	response_text = 'Response to choice 2.',
 }
+var diaFlavor = {
+	choice_text = '[center][color=black]Flavor',
+	response_text = ''
+}
 #-------------------------------------------------------------------------------------------------#
 #Ready
 func _ready() -> void:
 	load_dialog()
+	load_flavor()
 	$Choice1.visible = false
 	$Choice2.visible = false
+#	$Flavor.visible = false
 func _input(_event: InputEvent) -> void:
 	if dialog.choice_index == dialogIndex - 1:
 		if Input.is_action_just_pressed("select_choice_1"):
@@ -80,13 +87,14 @@ func load_dialog(dialog_text: String = ''):
 		queue_free()
 	if dialog_text == '':
 		dialogIndex += 1
+#Choices
 func load_choice1():
 	$Choice1.visible = true
 	finished = false
 	choice1.bbcode_text = diaChoice1.choice_text
 	choice1.percent_visible = 0
 	textTween.interpolate_property(choice1, "percent_visible",
-		0, 1, 1.5, Tween.TRANS_LINEAR,Tween. EASE_IN_OUT)
+		0, 1, 1.5, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	textTween.start()
 func load_choice2():
 	$Choice2.visible = true
@@ -94,8 +102,19 @@ func load_choice2():
 	choice2.bbcode_text = diaChoice2.choice_text
 	choice2.percent_visible = 0
 	textTween.interpolate_property(choice2, "percent_visible",
-		0, 1, 1.5, Tween.TRANS_LINEAR,Tween. EASE_IN_OUT)
+		0, 1, 1.5, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	textTween.start()
+#Flavor
+func load_flavor():
+	$Flavor.visible = true
+	finished = false
+	flavor.bbcode_text = diaFlavor.choice_text
+	flavor.percent_visible = 0
+	textTween.interpolate_property(flavor, "percent_visible",
+		0, 1, 1.5, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+	textTween.start()
+#-------------------------------------------------------------------------------------------------#
+#Choice Picker
 func pick_choice(choice_number: int):
 	set_deferred("diaChoice1", blank_choice)
 	set_deferred("diaChoice2", blank_choice)
