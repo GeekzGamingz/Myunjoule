@@ -29,7 +29,7 @@ onready var animTree = $AnimationPlayers/AnimationTree
 onready var playBack = animTree.get("parameters/playback")
 onready var currentState = playBack.get_current_node()
 #Exported Variables
-export(float) var max_energy = 100
+export(float) var max_energy = 100.0
 #Signals
 signal detected_poi
 signal poi_lost
@@ -38,12 +38,14 @@ signal energyUpdate_charge(energy)
 #-------------------------------------------------------------------------------------------------#
 #Ready Method
 func _ready() -> void:
-	$PlayerArea.connect("area_entered", self, "enable_collision")
-	$PlayerArea.connect("area_entered", self, "disengage_grappling_hook")
-	$PlayerArea.connect("area_entered", self, "set_can_talk", [true])
-	$PlayerArea.connect("area_exited", self, "set_can_talk", [false])
-	$PoiDetection.connect("area_entered", self, "detected_poi")
-	$PoiDetection.connect("area_exited", self, "poi_lost")
+	var _enable_collision = $PlayerArea.connect("area_entered", self, "enable_collision")
+	var _disengage_grappling_hook = $PlayerArea.connect("area_entered", self, "disengage_grappling_hook")
+	var _set_can_talk_true = $PlayerArea.connect("area_entered", self, "set_can_talk", [true])
+	var _set_can_talk_false = $PlayerArea.connect("area_exited", self, "set_can_talk", [false])
+	var _detected_poi = $PoiDetection.connect("area_entered", self, "detected_poi")
+	var _poi_lost = $PoiDetection.connect("area_exited", self, "poi_lost")
+	var _energyUpdate_charge = connect("energyUpdate_charge", get_parent().get_node("UI/UserInterface/ProgressBars"), "energyUpdate_charge")
+	var _energyUpdate_drain = connect("energyUpdate_drain", get_parent().get_node("UI/UserInterface/ProgressBars"), "energyUpdate_drain")
 #-------------------------------------------------------------------------------------------------#
 #Applies Gravity
 func apply_gravity(delta):
@@ -82,7 +84,7 @@ func handle_grapple_movement() -> void:
 func apply_movement() -> void:
 	motion = move_and_slide(motion, Vector2.UP)
 #Disengage
-func disengage_grappling_hook(area: Area2D):
+func disengage_grappling_hook(_area: Area2D):
 	grappling.is_grappling = false
 	grappling.can_grapple = false
 #Falling

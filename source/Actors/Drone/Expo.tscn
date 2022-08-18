@@ -57,6 +57,7 @@ hframes = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
+disabled = true
 
 [node name="ExpoFSM" type="Node2D" parent="."]
 script = ExtResource( 3 )

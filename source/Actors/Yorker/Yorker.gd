@@ -2,15 +2,47 @@ extends KinematicBody2D
 #-------------------------------------------------------------------------------------------------#
 #Variables
 var dialog
-var startDialogue = false
 var inDialogue = false
 var inRange = false
 var phaseDia = 0
 var dialog_scene = preload("res://source/UI/Dialog/DialogInterface.tscn")
+
+# warning-ignore:unused_signal
+signal next_dialog
+
 #OnReady Variables
 #-------------------------------------------------------------------------------------------------#
-func _process(delta: float) -> void:
-	if startDialogue && !inDialogue:
+func _ready() -> void:
+	start_dialog()
+#Let the dialog know to show the next dialog, closes when done
+func _input(_event: InputEvent) -> void:
+	if Input.is_action_just_pressed("activate") and inDialogue:
+		call_deferred("emit_signal", "next_dialog")
+#-------------------------------------------------------------------------------------------------#
+#Dialogue Entered
+func _on_DialogArea_body_entered(body: Node) -> void:
+	if body.name == "Player":
+		inRange = true
+#Dialogue Exited
+func _on_DialogArea_body_exited(body: Node) -> void:
+	if body.name == "Player":
+		inRange = false
+func diaCheck():
+	set_deferred("inDialogue", "true")
+	dialog = dialog_scene.instance()
+	dialog.connect("diaDone", self, "handleDiaDone")
+	var _load_dialog = connect("next_dialog", dialog, "load_dialog")
+func handleDiaDone():
+	phaseDia += 1
+	inDialogue = false
+	inRange = true
+	match(phaseDia):
+		3:
+			print("Make yorker run to the drop pod")
+func addDia():
+	get_parent().get_node("UI").call_deferred("add_child", dialog)
+func start_dialog() -> void:
+	if !inDialogue:
 		match(phaseDia):
 			0:
 				diaCheck()
@@ -22,28 +54,11 @@ func _process(delta: float) -> void:
 				dialog.diaChoice1 = Dialogue.YorkerChoice1
 				dialog.diaChoice2 = Dialogue.YorkerChoice2
 				addDia()
-#Toggle startDialogue
-func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("activate") && inRange:
-		inRange = false
-		startDialogue = true
-#-------------------------------------------------------------------------------------------------#
-#Dialogue Entered
-func _on_DialogArea_body_entered(body: Node) -> void:
-	if body.name == "Player":
-		inRange = true
-#Dialogue Exited
-func _on_DialogArea_body_exited(body: Node) -> void:
-	if body.name == "Player":
-		inRange = false
-func diaCheck():
-	inDialogue = true
-	startDialogue = false
-	dialog = dialog_scene.instance()
-	dialog.connect("diaDone", self, "handleDiaDone")
-func handleDiaDone():
-	inDialogue = false
-	inRange = true
-	phaseDia += 1
-func addDia():
-	get_parent().get_node("UI").call_deferred("add_child", dialog)
+			2:
+				diaCheck()
+				dialog.dialog = Dialogue.YorkerFixedUp
+				addDia()
+			3:
+				diaCheck()
+				dialog.dialog = Dialogue.YorkerCleans
+				addDia()

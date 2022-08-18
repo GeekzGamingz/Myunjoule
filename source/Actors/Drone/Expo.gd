@@ -24,9 +24,11 @@ func _process(_delta: float) -> void:
 	if not rowbit.grappling.can_grapple and not rowbit.talking.can_talk:
 		alert = false
 
-func _input(event: InputEvent) -> void:
+func _input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("expo_tab") and points_of_interest.size() > 0:
 		selected_poi = points_of_interest[(points_of_interest.find(selected_poi) + 1) % points_of_interest.size()]
+	if Input.is_action_just_pressed("activate") and alert:
+		selected_poi.activate()
 
 func apply_bobble_movement() -> void:
 	num_of_ticks += 1
