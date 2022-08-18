@@ -7,8 +7,8 @@
 [ext_resource path="res://assets/Objects/DropPod/drop-pod_phase4.png" type="Texture" id=5]
 [ext_resource path="res://source/Actors/Drone/ExpoPOI.tscn" type="PackedScene" id=6]
 
-[sub_resource type="CircleShape2D" id=1]
-radius = 24.0
+[sub_resource type="CapsuleShape2D" id=8]
+height = 26.0
 
 [sub_resource type="Animation" id=2]
 length = 0.001
@@ -164,8 +164,9 @@ texture = ExtResource( 1 )
 hframes = 6
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( -4, 7 )
-shape = SubResource( 1 )
+position = Vector2( -4, 11 )
+rotation = 1.5708
+shape = SubResource( 8 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/RESET = SubResource( 2 )
