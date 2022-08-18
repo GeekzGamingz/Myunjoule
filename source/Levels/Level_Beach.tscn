@@ -45,5 +45,5 @@ position = Vector2( 159, 68 )
 [node name="Mouskie" parent="YSort" instance=ExtResource( 7 )]
 position = Vector2( 666, 78 )
 
-[node name="StaticBody2D" parent="." instance=ExtResource( 9 )]
-position = Vector2( -604, 75 )
+[node name="DropPod" parent="YSort" instance=ExtResource( 9 )]
+position = Vector2( -622, 79 )
