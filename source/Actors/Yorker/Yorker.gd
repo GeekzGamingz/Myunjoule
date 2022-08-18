@@ -12,6 +12,8 @@ signal next_dialog
 
 #OnReady Variables
 #-------------------------------------------------------------------------------------------------#
+func _ready() -> void:
+	start_dialog()
 #Let the dialog know to show the next dialog, closes when done
 func _input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("activate") and inDialogue:
@@ -31,9 +33,12 @@ func diaCheck():
 	dialog.connect("diaDone", self, "handleDiaDone")
 	var _load_dialog = connect("next_dialog", dialog, "load_dialog")
 func handleDiaDone():
+	phaseDia += 1
 	inDialogue = false
 	inRange = true
-	phaseDia += 1
+	match(phaseDia):
+		3:
+			print("Make yorker run to the drop pod")
 func addDia():
 	get_parent().get_node("UI").call_deferred("add_child", dialog)
 func start_dialog() -> void:
@@ -45,7 +50,15 @@ func start_dialog() -> void:
 				addDia()
 			1:
 				diaCheck()
-				dialog.dialog = Dialogue.YorkerChoiceDia1_
+				dialog.dialog = Dialogue.YorkerChoiceDia1
 				dialog.diaChoice1 = Dialogue.YorkerChoice1
 				dialog.diaChoice2 = Dialogue.YorkerChoice2
+				addDia()
+			2:
+				diaCheck()
+				dialog.dialog = Dialogue.YorkerFixedUp
+				addDia()
+			3:
+				diaCheck()
+				dialog.dialog = Dialogue.YorkerCleans
 				addDia()
