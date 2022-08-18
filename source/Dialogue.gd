@@ -10,6 +10,7 @@ var Bottle = {
 }
 var BottleBattery = {
 	dialogue = [
+		"[color=black]It's a secret to everyone...",
 		"[color=black]What's this? There are spare [color=green][wave]batteries[/wave][color=black] in here!"
 	],
 	choice_index = -1

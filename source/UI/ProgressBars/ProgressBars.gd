@@ -26,7 +26,3 @@ func max_energyUpdate(max_energy):
 	energyOver.max_value = max_energy
 	energyUnder.max_value = max_energy
 #-------------------------------------------------------------------------------------------------#
-#Animation Player
-func _on_AnimationPlayer_animation_finished(anim_name: String) -> void:
-	if anim_name == "regen":
-		$AnimationPlayer.play("rest")
