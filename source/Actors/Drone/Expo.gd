@@ -13,13 +13,17 @@ var alert = false
 
 onready var rowbit = get_parent().get_node("Player")
 
+var flavor
+var flavor_shown = false
+var dialog_scene = preload("res://source/UI/Dialog/DialogInterface.tscn")
+
 func _ready() -> void:
 	rowbit.connect("detected_poi", self, "detected_poi")
 	rowbit.connect("poi_lost", self, "poi_lost")
 	$AnimationPlayer.play("expo_bobble")
 
 func _process(_delta: float) -> void:
-	if (rowbit.grappling.can_grapple or rowbit.talking.can_talk) and has_arrived():
+	if (rowbit.grappling.can_grapple or (rowbit.talking.can_talk and not rowbit.talking.is_talking)) and has_arrived():
 		alert = true
 	if not rowbit.grappling.can_grapple and not rowbit.talking.can_talk:
 		alert = false
@@ -28,7 +32,18 @@ func _input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("expo_tab") and points_of_interest.size() > 0:
 		selected_poi = points_of_interest[(points_of_interest.find(selected_poi) + 1) % points_of_interest.size()]
 	if Input.is_action_just_pressed("activate") and alert:
+		alert = false
 		selected_poi.activate()
+		flavor.queue_free()
+		set_deferred("flavor_shown", false)
+
+func show_flavor_text() -> void:
+	if not flavor_shown:
+		flavor_shown = true
+		flavor = dialog_scene.instance()
+		flavor.rect_scale = Vector2(0.5, 0.5)
+		flavor.dialog = selected_poi.flavor
+		call_deferred("add_child", flavor)
 
 func apply_bobble_movement() -> void:
 	num_of_ticks += 1
