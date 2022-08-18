@@ -163,40 +163,6 @@ bbcode_enabled = true
 tab_size = 0
 text = "2"
 
-[node name="Flavor" type="NinePatchRect" parent="."]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -223.0
-margin_top = -183.0
-margin_right = 223.0
-margin_bottom = -135.0
-texture = ExtResource( 1 )
-patch_margin_left = 100
-patch_margin_top = 5
-patch_margin_right = 100
-patch_margin_bottom = 5
-
-[node name="MarginContainer" type="MarginContainer" parent="Flavor"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 10.0
-margin_top = 10.0
-margin_right = -10.0
-margin_bottom = -10.0
-
-[node name="DialogText" type="RichTextLabel" parent="Flavor/MarginContainer"]
-margin_right = 426.0
-margin_bottom = 28.0
-rect_clip_content = false
-custom_fonts/normal_font = SubResource( 1 )
-bbcode_enabled = true
-tab_size = 0
-
-[node name="TextTween" type="Tween" parent="Flavor/MarginContainer"]
-
 [connection signal="tween_completed" from="Dialogue/MarginContainer/TextTween" to="." method="_on_TextTween_tween_completed"]
 [connection signal="tween_completed" from="Choice1/MarginContainer/TextTween" to="." method="_on_TextTween_tween_completed"]
 [connection signal="tween_completed" from="Choice2/MarginContainer/TextTween" to="." method="_on_TextTween_tween_completed"]
-[connection signal="tween_completed" from="Flavor/MarginContainer/TextTween" to="." method="_on_TextTween_tween_completed"]

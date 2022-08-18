@@ -13,12 +13,6 @@ signal next_dialog
 #OnReady Variables
 onready var player = get_parent().get_node("Player")
 #-------------------------------------------------------------------------------------------------#
-#Process
-func _process(delta: float) -> void:
-	#Testing for functionality. Find better play to call function.
-	if inRange:
-		start_flavor()
-#-------------------------------------------------------------------------------------------------#
 #Ready
 func _ready() -> void:
 	pass
@@ -47,11 +41,6 @@ func diaCheck():
 	dialog = dialog_scene.instance()
 	dialog.connect("diaDone", self, "handleDiaDone")
 	var _load_dialog = connect("next_dialog", dialog, "load_dialog")
-#Checks for Flavor
-func flavCheck():
-	dialog = dialog_scene.instance()
-	dialog.connect("diaDone", self, "handleDiaDone")
-	var _load_dialog = connect("next_dialog", dialog, "load_dialog")
 #Finishes Dialogue
 func handleDiaDone():
 	phaseDia += 1
@@ -77,11 +66,3 @@ func start_dialog() -> void:
 				addDia()
 				player.chargeEnergy(100)
 #-------------------------------------------------------------------------------------------------#
-#Starts Flavor
-func start_flavor() -> void:
-	match(phaseDia):
-		0:
-			print("test")
-			flavCheck()
-			dialog.dialog = Dialogue.BottleFlav
-			addDia()
