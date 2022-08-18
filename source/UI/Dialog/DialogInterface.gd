@@ -47,13 +47,14 @@ var diaChoice2 = {
 #Ready
 func _ready() -> void:
 	load_dialog()
-	load_choice1()
-	load_choice2()
+	$Choice1.visible = false
+	$Choice2.visible = false
 func _input(_event: InputEvent) -> void:
-	if Input.is_action_just_pressed("select_choice_1"):
-		pick_choice(1)
-	if Input.is_action_just_pressed("select_choice_2"):
-		pick_choice(2)
+	if dialog.choice_index == dialogIndex - 1:
+		if Input.is_action_just_pressed("select_choice_1"):
+			pick_choice(1)
+		if Input.is_action_just_pressed("select_choice_2"):
+			pick_choice(2)
 #	if Input.is_action_just_pressed("activate"):
 #		load_dialog()
 #		load_choice1()
@@ -67,6 +68,9 @@ func load_dialog(dialog_text: String = ''):
 			dialogText.bbcode_text = dialog_text
 		else:
 			dialogText.bbcode_text = dialog.dialogue[dialogIndex]
+		if dialog.choice_index == dialogIndex:
+			load_choice1()
+			load_choice2()
 		dialogText.percent_visible = 0
 		textTween.interpolate_property(dialogText, "percent_visible",
 			0, 1, 1.5, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
@@ -77,27 +81,21 @@ func load_dialog(dialog_text: String = ''):
 	if dialog_text == '':
 		dialogIndex += 1
 func load_choice1():
-	if dialog.choice_index == dialogIndex:
-		$Choice1.visible = true
-		finished = false
-		choice1.bbcode_text = diaChoice1.choice_text
-		choice1.percent_visible = 0
-		textTween.interpolate_property(choice1, "percent_visible",
-			0, 1, 1.5, Tween.TRANS_LINEAR,Tween. EASE_IN_OUT)
-		textTween.start()
-	else:
-		$Choice1.visible = false
+	$Choice1.visible = true
+	finished = false
+	choice1.bbcode_text = diaChoice1.choice_text
+	choice1.percent_visible = 0
+	textTween.interpolate_property(choice1, "percent_visible",
+		0, 1, 1.5, Tween.TRANS_LINEAR,Tween. EASE_IN_OUT)
+	textTween.start()
 func load_choice2():
-	if dialog.choice_index == dialogIndex:
-		$Choice2.visible = true
-		finished = false
-		choice2.bbcode_text = diaChoice2.choice_text
-		choice2.percent_visible = 0
-		textTween.interpolate_property(choice2, "percent_visible",
-			0, 1, 1.5, Tween.TRANS_LINEAR,Tween. EASE_IN_OUT)
-		textTween.start()
-	else:
-		$Choice2.visible = false
+	$Choice2.visible = true
+	finished = false
+	choice2.bbcode_text = diaChoice2.choice_text
+	choice2.percent_visible = 0
+	textTween.interpolate_property(choice2, "percent_visible",
+		0, 1, 1.5, Tween.TRANS_LINEAR,Tween. EASE_IN_OUT)
+	textTween.start()
 func pick_choice(choice_number: int):
 	set_deferred("diaChoice1", blank_choice)
 	set_deferred("diaChoice2", blank_choice)

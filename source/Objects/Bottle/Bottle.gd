@@ -29,5 +29,8 @@ func start_dialog() -> void:
 		var dialog = dialog_scene.instance()
 		dialog.connect("diaDone", self, "handleDiaDone")
 		var _load_dialog = connect("next_dialog", dialog, "load_dialog")
-		dialog.dialog = ['[color=black]“It\'s a secret to everyone...”']
+		dialog.dialog = {
+			dialogue = ['[color=black]“It\'s a secret to everyone...”'],
+			choice_index = -1
+		}
 		get_parent().get_node("UI").call_deferred("add_child", dialog)
