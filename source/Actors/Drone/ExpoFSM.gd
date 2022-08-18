@@ -6,7 +6,7 @@ extends StateMachine
 #OnReady Variables
 onready var stateLabel: Label = parent.get_node("StateOutput")
 onready var thingyAnimator = get_tree().root.get_node(
-	"Level_Beach/YSort/UI/UserInterface/AnimationPlayers/StatusThingyPlayer")
+	"Moon/Level_Beach/YSort/UI/UserInterface/AnimationPlayers/StatusThingyPlayer")
 #-------------------------------------------------------------------------------------------------#
 #Ready
 func _ready() -> void:

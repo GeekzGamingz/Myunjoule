@@ -27,7 +27,7 @@ _global_script_class_icons={
 [application]
 
 config/name="GWJ48"
-run/main_scene="res://source/Levels/Level_Beach.tscn"
+run/main_scene="res://source/Levels/Moon.tscn"
 config/icon="res://icon.png"
 
 [autoload]
