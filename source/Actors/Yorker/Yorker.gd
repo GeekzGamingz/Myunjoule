@@ -45,7 +45,7 @@ func start_dialog() -> void:
 				addDia()
 			1:
 				diaCheck()
-				dialog.dialog = Dialogue.YorkerChoiceDia1
+				dialog.dialog = Dialogue.YorkerChoiceDia1_
 				dialog.diaChoice1 = Dialogue.YorkerChoice1
 				dialog.diaChoice2 = Dialogue.YorkerChoice2
 				addDia()
