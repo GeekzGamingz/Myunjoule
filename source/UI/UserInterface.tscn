@@ -1,8 +1,19 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://assets/UI/ProgressBars/StatusThingy-Sheet.png" type="Texture" id=1]
 [ext_resource path="res://assets/UI/ProgressBars/Status-Alert-Sheet.png" type="Texture" id=2]
 [ext_resource path="res://source/UI/ProgressBars/ProgressBars.tscn" type="PackedScene" id=3]
+[ext_resource path="res://assets/UI/ProgressBars/icon-lowtide.png" type="Texture" id=4]
+[ext_resource path="res://assets/UI/ProgressBars/icon-full.png" type="Texture" id=5]
+[ext_resource path="res://assets/UI/ProgressBars/icon-hightide.png" type="Texture" id=6]
+[ext_resource path="res://assets/UI/ProgressBars/icon-midtide.png" type="Texture" id=7]
+[ext_resource path="res://assets/UI/ProgressBars/icon-waxgib.png" type="Texture" id=8]
+[ext_resource path="res://assets/UI/ProgressBars/icon-firstq.png" type="Texture" id=9]
+[ext_resource path="res://assets/UI/ProgressBars/icon-thirdq.png" type="Texture" id=10]
+[ext_resource path="res://assets/UI/ProgressBars/icon-new.png" type="Texture" id=11]
+[ext_resource path="res://assets/UI/ProgressBars/icon-wancres.png" type="Texture" id=12]
+[ext_resource path="res://assets/UI/ProgressBars/icon-waxcres.png" type="Texture" id=13]
+[ext_resource path="res://assets/UI/ProgressBars/icon-wangib.png" type="Texture" id=14]
 
 [sub_resource type="Animation" id=1]
 length = 0.001
@@ -100,12 +111,452 @@ tracks/2/keys = {
 "values": [ 0, 1, 2, 3, 4, 5 ]
 }
 
+[sub_resource type="Animation" id=4]
+resource_name = "high"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("../TideStatus:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 6 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("../TideStatus:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 1 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("../TideStatus:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "low"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("../TideStatus:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 4 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("../TideStatus:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 1 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("../TideStatus:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "mid"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("../TideStatus:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 7 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("../TideStatus:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 1 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("../TideStatus:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "firQuar"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("../MoonPhase:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 9 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("../MoonPhase:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 1 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("../MoonPhase:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=8]
+resource_name = "full"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("../MoonPhase:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 5 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("../MoonPhase:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 1 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("../MoonPhase:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=9]
+resource_name = "lasQuar"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("../MoonPhase:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 10 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("../MoonPhase:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 1 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("../MoonPhase:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=10]
+resource_name = "new"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("../MoonPhase:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 11 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("../MoonPhase:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 1 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("../MoonPhase:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=11]
+resource_name = "wanCres"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("../MoonPhase:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 12 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("../MoonPhase:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 1 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("../MoonPhase:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=14]
+resource_name = "wanGibb"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("../MoonPhase:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 14 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("../MoonPhase:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 1 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("../MoonPhase:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=12]
+resource_name = "waxCres"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("../MoonPhase:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 13 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("../MoonPhase:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 1 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("../MoonPhase:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=13]
+resource_name = "waxGibb"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("../MoonPhase:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 8 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("../MoonPhase:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 1 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("../MoonPhase:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
 [node name="UserInterface" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 __meta__ = {
-"_edit_horizontal_guides_": [ 444.0, 488.0, 584.0, 584.0, 536.0 ],
-"_edit_vertical_guides_": [ 156.0, 8.0, 136.0, 136.0, 74.0 ]
+"_edit_horizontal_guides_": [ 444.0, 691.0, 691.0, 691.0, 677.0, 576.0, 524.0 ],
+"_edit_vertical_guides_": [ 103.0, 97.0, 44.0, 38.0 ]
 }
 
 [node name="StatusThingy" type="Sprite" parent="."]
@@ -113,6 +564,16 @@ position = Vector2( 78, 522 )
 scale = Vector2( 4, 4 )
 texture = ExtResource( 1 )
 hframes = 6
+
+[node name="TideStatus" type="Sprite" parent="."]
+position = Vector2( 29, 552 )
+scale = Vector2( 3.5, 3.5 )
+texture = ExtResource( 6 )
+
+[node name="MoonPhase" type="Sprite" parent="."]
+position = Vector2( 70, 508 )
+scale = Vector2( 3.5, 3.5 )
+texture = ExtResource( 5 )
 
 [node name="AnimationPlayers" type="Node2D" parent="."]
 
@@ -122,13 +583,29 @@ anims/RESET = SubResource( 1 )
 anims/alert = SubResource( 2 )
 anims/idle = SubResource( 3 )
 
+[node name="TideStatusPlayer" type="AnimationPlayer" parent="AnimationPlayers"]
+anims/high = SubResource( 4 )
+anims/low = SubResource( 5 )
+anims/mid = SubResource( 6 )
+
+[node name="MoonPhasePlayer" type="AnimationPlayer" parent="AnimationPlayers"]
+autoplay = "full"
+anims/firQuar = SubResource( 7 )
+anims/full = SubResource( 8 )
+anims/lasQuar = SubResource( 9 )
+anims/new = SubResource( 10 )
+anims/wanCres = SubResource( 11 )
+anims/wanGibb = SubResource( 14 )
+anims/waxCres = SubResource( 12 )
+anims/waxGibb = SubResource( 13 )
+
 [node name="ProgressBars" parent="." instance=ExtResource( 3 )]
-anchor_left = 0.0592277
-anchor_top = 0.958033
-anchor_right = 0.0592277
-anchor_bottom = 0.958033
-margin_left = -0.649119
-margin_top = 0.179962
-margin_right = -0.572261
-margin_bottom = 0.179962
-rect_scale = Vector2( 4, 4 )
+anchor_left = 0.10122
+anchor_top = 0.9647
+anchor_right = 0.10122
+anchor_bottom = 0.9647
+margin_left = -0.649117
+margin_top = 0.179871
+margin_right = -0.572258
+margin_bottom = 0.179871
+rect_scale = Vector2( 3.5, 3.5 )
