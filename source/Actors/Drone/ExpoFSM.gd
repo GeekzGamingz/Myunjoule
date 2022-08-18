@@ -5,7 +5,8 @@ extends StateMachine
 
 #OnReady Variables
 onready var stateLabel: Label = parent.get_node("StateOutput")
-
+onready var thingyAnimator = get_tree().root.get_node(
+	"Level_Beach/YSort/UI/UserInterface/AnimationPlayers/StatusThingyPlayer")
 #-------------------------------------------------------------------------------------------------#
 #Ready
 func _ready() -> void:
@@ -52,10 +53,13 @@ func stateEnter(newState, oldState):
 		states.idle, states.hover:
 			parent.get_node("AnimationPlayer").play("expo_bobble")
 		states.alert:
+			thingyAnimator.play("alert")
 			parent.get_node("AnimationPlayer").play("expo_alert")
 
 #Exit State
 # warning-ignore:unused_argument
 # warning-ignore:unused_argument
 func stateExit(oldState, newState):
-	pass
+	match(oldState):
+		states.alert:
+			thingyAnimator.play("idle")
