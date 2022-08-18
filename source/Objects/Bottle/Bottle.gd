@@ -58,10 +58,6 @@ func start_dialog() -> void:
 		match(phaseDia):
 			0:
 				diaCheck()
-				dialog.dialog = Dialogue.Bottle
-				addDia()
-			1:
-				diaCheck()
 				dialog.dialog = Dialogue.BottleBattery
 				addDia()
 				player.chargeEnergy(100)
