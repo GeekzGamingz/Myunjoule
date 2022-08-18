@@ -16,7 +16,7 @@ var phaseDict = {
 #OnReady Variables
 onready var moonSprite: Sprite = $MoonSprite
 onready var tideAnimator = get_tree().root.get_node(
-	"Level_Beach/YSort/UI/UserInterface/AnimationPlayers/TideStatusPlayer")
+	"Moon/Level_Beach/YSort/UI/UserInterface/AnimationPlayers/TideStatusPlayer")
 #Exported Variables
 export var rotation_speed = PI
 #Animation Nodes
@@ -58,10 +58,10 @@ func moonOrbit(delta):
 	get_parent().rotation += rotation_speed * delta
 func timedLow():
 	tideAnimator.play("low")
-	get_tree().root.get_node("Level_Beach/Beach/AnimationPlayers/WavePlayer").play("idle_low")
+	get_tree().root.get_node("Moon/Level_Beach/Beach/AnimationPlayers/WavePlayer").play("idle_low")
 func timedMid():
 	tideAnimator.play("mid")
-	get_tree().root.get_node("Level_Beach/Beach/AnimationPlayers/WavePlayer").play("idle_mid")
+	get_tree().root.get_node("Moon/Level_Beach/Beach/AnimationPlayers/WavePlayer").play("idle_mid")
 func timedHigh():
 	tideAnimator.play("high")
-	get_tree().root.get_node("Level_Beach/Beach/AnimationPlayers/WavePlayer").play("idle_high")
+	get_tree().root.get_node("Moon/Level_Beach/Beach/AnimationPlayers/WavePlayer").play("idle_high")
