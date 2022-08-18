@@ -4,6 +4,8 @@ extends StateMachine
 #Variables
 #OnReady Variables
 onready var stateLabel: Label = parent.get_node("StateOutput")
+onready var phaseAnimator = get_tree().root.get_node(
+	"Level_Beach/YSort/UI/UserInterface/AnimationPlayers/MoonPhasePlayer")
 #-------------------------------------------------------------------------------------------------#
 #Ready
 func _ready() -> void:
@@ -61,11 +63,27 @@ func assign_animation():
 #-------------------------------------------------------------------------------------------------#
 #Assign Animations
 func setPhase():
-	if parent.phaseDict["flagNew"] == true: return states.phaseNew
-	if parent.phaseDict["flagWaxCrescent"] == true: return states.phaseWaxCrescent
-	if parent.phaseDict["flagFirQuarter"] == true: return states.phaseFirQuarter
-	if parent.phaseDict["flagWaxGibbous"] == true: return states.phaseWaxGibbous
-	if parent.phaseDict["flagFull"] == true: return states.phaseFull
-	if parent.phaseDict["flagWanGibbous"] == true: return states.phaseWanGibbous
-	if parent.phaseDict["flagLasQuarter"] == true: return states.phaseLasQuarter
-	if parent.phaseDict["flagWanCrescent"] == true: return states.phaseWanCrescent
+	if parent.phaseDict["flagNew"] == true:
+		phaseAnimator.play("new")
+		return states.phaseNew
+	if parent.phaseDict["flagWaxCrescent"] == true:
+		phaseAnimator.play("waxCres")
+		return states.phaseWaxCrescent
+	if parent.phaseDict["flagFirQuarter"] == true:
+		phaseAnimator.play("firQuar")
+		return states.phaseFirQuarter
+	if parent.phaseDict["flagWaxGibbous"] == true:
+		phaseAnimator.play("waxGibb")
+		return states.phaseWaxGibbous
+	if parent.phaseDict["flagFull"] == true:
+		phaseAnimator.play("full")
+		return states.phaseFull
+	if parent.phaseDict["flagWanGibbous"] == true:
+		phaseAnimator.play("wanGibb")
+		return states.phaseWanGibbous
+	if parent.phaseDict["flagLasQuarter"] == true:
+		phaseAnimator.play("lasQuar")
+		return states.phaseLasQuarter
+	if parent.phaseDict["flagWanCrescent"] == true:
+		phaseAnimator.play("wanCres")
+		return states.phaseWanCrescent
