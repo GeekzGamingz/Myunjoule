@@ -80,7 +80,6 @@ rotation = 1.5708
 shape = SubResource( 12 )
 
 [node name="DialogArea" type="Area2D" parent="."]
-visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DialogArea"]
 modulate = Color( 0.196078, 1, 0, 1 )
