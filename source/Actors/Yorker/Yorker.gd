@@ -11,7 +11,8 @@ var dialog_scene = preload("res://source/UI/Dialog/DialogInterface.tscn")
 signal next_dialog
 
 #OnReady Variables
-onready var player = get_parent().get_node("Player")
+onready var player = get_tree().root.get_node("Moon/YSort/Player")
+onready var UI = get_tree().root.get_node("Moon/YSort/UI")
 #-------------------------------------------------------------------------------------------------#
 func _ready() -> void:
 	start_dialog()
@@ -35,7 +36,7 @@ func diaCheck():
 	dialog.connect("diaDone", self, "handleDiaDone")
 	var _load_dialog = connect("next_dialog", dialog, "load_dialog")
 func addDia():
-	get_parent().get_node("UI").call_deferred("add_child", dialog)
+	UI.call_deferred("add_child", dialog)
 func handleDiaDone():
 	phaseDia += 1
 	inDialogue = false

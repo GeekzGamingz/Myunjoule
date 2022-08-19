@@ -2,7 +2,7 @@ extends Node2D
 #-------------------------------------------------------------------------------------------------#
 #Variables
 #OnReady Variables
-onready var tideAnimator = get_tree().root.get_node("Moon/Level_Beach/YSort/UI/UserInterface/AnimationPlayers/TideStatusPlayer")
+onready var tideAnimator = get_tree().root.get_node("Moon/YSort/UI/UserInterface/AnimationPlayers/TideStatusPlayer")
 #-------------------------------------------------------------------------------------------------#
 #Ready
 func _ready() -> void:
