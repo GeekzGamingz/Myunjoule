@@ -58,7 +58,8 @@ func apply_idle_movement() -> void:
 		self.position = lerp(self.position, rowbit.get_node("ExpoAnchor").global_position, lerp(0, 0.075, 0.5))
 
 func apply_hover_movement() -> void:
-	self.position = lerp(self.position, selected_poi.global_position, lerp(0, 0.075, 1.0))
+	if selected_poi != null:
+		self.position = lerp(self.position, selected_poi.global_position, lerp(0, 0.075, 1.0))
 
 func has_arrived() -> bool:
 	if self.position.distance_to(selected_poi.global_position) < 1:
