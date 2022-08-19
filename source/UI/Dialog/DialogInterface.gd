@@ -57,10 +57,6 @@ func _input(_event: InputEvent) -> void:
 			pick_choice(1)
 		if Input.is_action_just_pressed("select_choice_2"):
 			pick_choice(2)
-#	if Input.is_action_just_pressed("activate"):
-#		load_dialog()
-#		load_choice1()
-#		load_choice2()
 #-------------------------------------------------------------------------------------------------#
 #Load Dialog
 func load_dialog(dialog_text: String = ''):
