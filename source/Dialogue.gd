@@ -77,17 +77,19 @@ var YorkerFreesExpo = {
 		'[color=black]Yorker\n[color=red]"Oh, you found the bottle. Hm? There’s something in there... some kinda bot. It’s got something etched into its plating... ‘EXPO’?"',
 		'[color=black]Yorker\n[color=red]"Woah, that’s odd. It’s suddenly glowing."',
 		'[color=black]YORKER fumbles a bit, but manages to uncork the bottle.',
-		'[color=black]Expo\n[color=pink]"bee-beep...beewoop?"',
+		'[color=black]Expo\n[color=#a64d79]"bee-beep...beewoop?"',
 		'[color=black]Yorker\n[color=red]"Would ya look at that? Now THAT’s a throwback if I’ve ever seen one."',
 		'[color=black]Yorker\n[color=red]"This is an old X-P0 model Alert Drone— and in great condition, to boot!"',
 		'[color=black]Yorker\n[color=red]"Used a long time ago to point out interesting things that the human eye might easily miss. ‘Course, there aren’t anymore humans around, so I’m not sure what use this little guy’s got anymore..."',
 		'[color=black]Yorker\n[color=red]"EXPO must be a nickname from whoever took care of it before, if my AI calculation is to be trusted at all."',
-		'[color=black]Expo\n[color=pink]"beep-beep! boweep!"',
+		'[color=black]Expo\n[color=#a64d79]"beep-beep! boweep!"',
 		'[color=black]Yorker\n[color=red]"Ha, seems it’s taken a liking to ya! If you venture out to [TOWN NAME], maybe the little guy can help ya get around."',
-		'[color=black]Expo\n[color=pink]"beewoop!"',
+		'[color=black]Expo\n[color=#a64d79]"beewoop!"',
 		'[color=black]Yorker\n[color=red]"Since EXPO seems to agree, why don’t you give ‘em a test run? Stand near anything interesting— like me, for example. I’m interestin’ enough, eh?"',
 		'[color=black]Yorker\n[color=red]"It should hover nearby and let ya know you can talk to me by using [ACTION]."',
-	]
+	],
+	choice_index = -1,
+	start_flag = ''
 }
 
 # Messing around with a new format to encapsulate all the information, but too many changes would
