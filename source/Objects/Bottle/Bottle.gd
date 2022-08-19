@@ -43,7 +43,10 @@ func diaCheck():
 	var _load_dialog = connect("next_dialog", dialog, "load_dialog")
 #Finishes Dialogue
 func handleDiaDone():
-	phaseDia += 1
+	if not Globals.flags.has_bottle:
+		Globals.flags.has_bottle = true
+		queue_free()
+#	phaseDia += 1
 	inDialogue = false
 	player.talking.is_talking = false
 	inRange = true
