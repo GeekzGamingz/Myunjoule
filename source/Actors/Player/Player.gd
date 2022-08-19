@@ -8,6 +8,7 @@ var z_move_dir: int = 0
 var old_z_move_dir: int = 0
 var snap: Vector2 = Vector2.DOWN
 var is_falling = false
+var inTransition = false
 var talking = {
 	"is_talking": true,
 	"can_talk": false,
