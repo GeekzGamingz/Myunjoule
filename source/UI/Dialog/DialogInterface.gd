@@ -30,6 +30,7 @@ var dialog = {
 		'[color=black]And the last effect is the [color=white][rainbow]rainbow[/rainbow][color=black].\nThis is great for showing people how [color=white][rainbow]GAAAAAAY[/rainbow][color=black] you are!\nYou can change the [color=white][rainbow sat=0.5]saturation[/rainbow][color=black] and [color=white][rainbow freq=5]frequency[/rainbow][color=black].'
 	],
 	choice_index = 4,
+	start_flag = '',
 }
 var blank_choice = {
 	choice_text = '',
@@ -73,6 +74,9 @@ func load_dialog(dialog_text: String = ''):
 			load_choice1()
 			load_choice2()
 		dialogText.percent_visible = 0
+		if dialog.start_flag != '' and Globals.flags[dialog.start_flag] == null:
+			print("Setting ", dialog.start_flag)
+			Globals.flags[dialog.start_flag] = false
 		textTween.interpolate_property(dialogText, "percent_visible",
 			0, 1, 1.5, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 		textTween.start()

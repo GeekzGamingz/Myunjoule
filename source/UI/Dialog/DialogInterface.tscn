@@ -4,18 +4,18 @@
 [ext_resource path="res://assets/UI/Dialog/talkychoice.png" type="Texture" id=2]
 [ext_resource path="res://source/UI/Dialog/DialogInterface.gd" type="Script" id=3]
 
-[sub_resource type="DynamicFontData" id=2]
-font_path = "res://assets/UI/Fonts/AndroidNation.ttf"
+[sub_resource type="DynamicFontData" id=7]
+font_path = "res://assets/UI/Fonts/Bitwise.ttf"
 
 [sub_resource type="DynamicFont" id=1]
-size = 10
+size = 12
 outline_size = 1
 extra_spacing_top = 2
 extra_spacing_bottom = 2
-font_data = SubResource( 2 )
+font_data = SubResource( 7 )
 
 [sub_resource type="DynamicFontData" id=5]
-font_path = "res://assets/UI/Fonts/AndroidNation.ttf"
+font_path = "res://assets/UI/Fonts/Bitwise.ttf"
 
 [sub_resource type="DynamicFont" id=6]
 size = 8
@@ -23,7 +23,7 @@ outline_size = 1
 font_data = SubResource( 5 )
 
 [sub_resource type="DynamicFontData" id=3]
-font_path = "res://assets/UI/Fonts/AndroidNation.ttf"
+font_path = "res://assets/UI/Fonts/Bitwise.ttf"
 
 [sub_resource type="DynamicFont" id=4]
 size = 19
