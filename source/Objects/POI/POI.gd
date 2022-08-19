@@ -5,7 +5,7 @@ var interested = true
 
 # Would love to just make this a single string...
 export var flavor = {
-	dialogue = ['Unknown[???]'],
+	dialogue = 'Generatic POI Text',
 	choice_index = -1,
 	start_flag = ''
 }
