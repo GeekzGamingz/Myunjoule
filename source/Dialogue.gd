@@ -18,34 +18,75 @@ var BottleBattery = {
 }
 #-------------------------------------------------------------------------------------------------#
 #Yorker
-var YorkerIntro = {
-	dialogue = [
-		'[color=black]Yorker\n[color=red]“...Hey! Are you even listenin\' to me?”',
-		'[color=black]Yorker\n[color=red]“Yeah, you! I\'m talking to you! Come over here, would ya?”',
-	],
-	choice_index = -1,
-	start_flag = '',
+var Yorker = {
+	0: {
+		required_flag = '',
+		start_flag = 'fixed_yorker',
+		dialogue = [
+			'[color=black]Yorker\n[color=red]“...Hey! Are you even listenin\' to me?”',
+			'[color=black]Yorker\n[color=red]“Yeah, you! I\'m talking to you! Come over here, would ya?”',
+		],
+		choices = {
+			0: {
+				choice_text = '',
+				response_text = '',
+			},
+			1: {
+				choice_text = '',
+				response_text = '',
+			},
+		},
+		choice_index = -1
+	},
+	1: {
+		required_flag = '',
+		start_flag = '',
+		dialogue = [
+			'[color=black]Yorker\n[color=red]“...Hey! Are you even listenin\' to me?”',
+			'[color=black]Yorker\n[color=red]“Yeah, you! I\'m talking to you! Come over here, would ya?”',
+		],
+		choices = {
+			0: {
+				choice_text = '[color=blue][center]“Sorry, I must have been daydreaming.”',
+				response_text = '[color=black]Yorker\n[color=red]“What the heck? \'Daydreaming?\' Pal, you must be broken somewhere. Machines don\'t dream.”',
+			},
+			1: {
+				choice_text = '[color=blue][center]“What do you want?”',
+				response_text = '[color=black]Yorker\n[color=red]“Oh, I guess I don\'t exactly belong right here, either, huh.”',
+			},
+		},
+		choice_index = 1
+	},
 }
 
-var YorkerChoiceDia1 = {
-	dialogue = [
-		'[color=black]Yorker\n[color=red]“Agh, this is why I hate sand! It gets everywhere, even in my joints! What a nuisance, eh?”',
-		'[color=black]Yorker\n[color=red]“...Woah, why\'re you lookin\' at me like that? You short circuiting, or somethin\'?”',
-		'[color=black]Yorker\n[color=red]"Ah, whatever."',
-		'[color=black]Yorker\n[color=red]“You\'re a repair drone, right? Look, can you fix me up? Been difficult to get around anywhere. Legs just aren\'t quite what they used to be, ya know?”',
-		'[color=black]Yorker\n[color=red]“Feels like everything\'s gettin\' so [shake level=2]rusty[/shake].”',
-	],
-	choice_index = 1,
-	start_flag = 'fixed_yorker'
-}
-var YorkerChoice1 = {
-	choice_text = '[color=blue][center]“Sorry, I must have been daydreaming.”',
-	response_text = '[color=black]Yorker\n[color=red]“What the heck? \'Daydreaming?\' Pal, you must be broken somewhere. Machines don\'t dream.”'
-}
-var YorkerChoice2 = {
-	choice_text = '[color=blue][center]“What do you want?”',
-	response_text = '[color=black]Yorker\n[color=red]“Oh, I guess I don\'t exactly belong right here, either, huh.”'
-}
+#var YorkerIntro = {
+#	dialogue = [
+#		'[color=black]Yorker\n[color=red]“...Hey! Are you even listenin\' to me?”',
+#		'[color=black]Yorker\n[color=red]“Yeah, you! I\'m talking to you! Come over here, would ya?”',
+#	],
+#	choice_index = -1,
+#	start_flag = '',
+#}
+
+#var YorkerChoiceDia1 = {
+#	dialogue = [
+#		'[color=black]Yorker\n[color=red]“Agh, this is why I hate sand! It gets everywhere, even in my joints! What a nuisance, eh?”',
+#		'[color=black]Yorker\n[color=red]“...Woah, why\'re you lookin\' at me like that? You short circuiting, or somethin\'?”',
+#		'[color=black]Yorker\n[color=red]"Ah, whatever."',
+#		'[color=black]Yorker\n[color=red]“You\'re a repair drone, right? Look, can you fix me up? Been difficult to get around anywhere. Legs just aren\'t quite what they used to be, ya know?”',
+#		'[color=black]Yorker\n[color=red]“Feels like everything\'s gettin\' so [shake level=2]rusty[/shake].”',
+#	],
+#	choice_index = 1,
+#	start_flag = 'fixed_yorker'
+#}
+#var YorkerChoice1 = {
+#	choice_text = '[color=blue][center]“Sorry, I must have been daydreaming.”',
+#	response_text = '[color=black]Yorker\n[color=red]“What the heck? \'Daydreaming?\' Pal, you must be broken somewhere. Machines don\'t dream.”'
+#}
+#var YorkerChoice2 = {
+#	choice_text = '[color=blue][center]“What do you want?”',
+#	response_text = '[color=black]Yorker\n[color=red]“Oh, I guess I don\'t exactly belong right here, either, huh.”'
+#}
 
 var YorkerFixedUp = {
 	dialogue = [
@@ -91,30 +132,4 @@ var YorkerFreesExpo = {
 	start_flag = ''
 }
 
-# Messing around with a new format to encapsulate all the information, but too many changes would
-# probably be needed for now...
-#var temp = {
-#	dialogue = [
-#		# Phase 1 dialogue
-#		[
-#			'[color=black]Yorker\n[color=red]“...Hey! Are you even listenin\' to me?”',
-#			'[color=black]Yorker\n[color=red]“Yeah, you! I\'m talking to you! Come over here, would ya?”',
-#		],
-#		# Phase 2 Dialogue
-#		[
-#			'[color=black]Yorker\n[color=red]“Agh, this is why I hate sand! It gets everywhere, even in my joints! What a nuisance, eh?”',
-#			'[color=black]Yorker\n[color=red]“...Woah, why\'re you lookin\' at me like that? You short circuiting, or somethin\'?”',
-#			'[color=black]Yorker\n[color=red]"Ah, whatever."',
-#			'[color=black]Yorker\n[color=red]“You\'re a repair drone, right? Look, can you fix me up? Been difficult to get around anywhere. Legs just aren\'t quite what they used to be, ya know?”',
-#			'[color=black]Yorker\n[color=red]“Feels like everything\'s gettin\' so [shake level=2]rusty[/shake].”',
-#		],
-#		# Phase 3 Dialogue
-#	],
-#	phase_requirements = {
-#		0: Globals.flags.has_bottle,
-#	},
-#	choice_indexes = {
-#		1: 1
-#	}
-#}
 #-------------------------------------------------------------------------------------------------#

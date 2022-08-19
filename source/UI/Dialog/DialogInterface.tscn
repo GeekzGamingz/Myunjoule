@@ -162,7 +162,3 @@ custom_fonts/normal_font = SubResource( 4 )
 bbcode_enabled = true
 tab_size = 0
 text = "2"
-
-[connection signal="tween_completed" from="Dialogue/MarginContainer/TextTween" to="." method="_on_TextTween_tween_completed"]
-[connection signal="tween_completed" from="Choice1/MarginContainer/TextTween" to="." method="_on_TextTween_tween_completed"]
-[connection signal="tween_completed" from="Choice2/MarginContainer/TextTween" to="." method="_on_TextTween_tween_completed"]
