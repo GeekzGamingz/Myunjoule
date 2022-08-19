@@ -11,6 +11,7 @@ var dialog_scene = preload("res://source/UI/Dialog/DialogInterface.tscn")
 signal next_dialog
 
 #OnReady Variables
+onready var player = get_parent().get_node("Player")
 #-------------------------------------------------------------------------------------------------#
 func _ready() -> void:
 	start_dialog()
@@ -29,18 +30,28 @@ func _on_DialogArea_body_exited(body: Node) -> void:
 		inRange = false
 func diaCheck():
 	set_deferred("inDialogue", "true")
+	player.talking.is_talking = true
 	dialog = dialog_scene.instance()
 	dialog.connect("diaDone", self, "handleDiaDone")
 	var _load_dialog = connect("next_dialog", dialog, "load_dialog")
+func addDia():
+	get_parent().get_node("UI").call_deferred("add_child", dialog)
 func handleDiaDone():
 	phaseDia += 1
 	inDialogue = false
+	player.talking.is_talking = false
 	inRange = true
+func handle_after_dialog_actions() -> void:
 	match(phaseDia):
 		3:
 			print("Make yorker run to the drop pod")
-func addDia():
-	get_parent().get_node("UI").call_deferred("add_child", dialog)
+func check_phase_requirements() -> bool:
+	match(phaseDia):
+		2:
+			return Globals.flags.fixed_yorker
+		4:
+			return Globals.flags.has_bottle
+	return false
 func start_dialog() -> void:
 	if !inDialogue:
 		match(phaseDia):
@@ -55,10 +66,15 @@ func start_dialog() -> void:
 				dialog.diaChoice2 = Dialogue.YorkerChoice2
 				addDia()
 			2:
-				diaCheck()
-				dialog.dialog = Dialogue.YorkerFixedUp
-				addDia()
+				if check_phase_requirements():
+					diaCheck()
+					dialog.dialog = Dialogue.YorkerFixedUp
+					addDia()
 			3:
 				diaCheck()
 				dialog.dialog = Dialogue.YorkerCleans
 				addDia()
+				player.chargeEnergy(100)
+			4:
+				if check_phase_requirements():
+					print("The bottle is present, initiate dialog")

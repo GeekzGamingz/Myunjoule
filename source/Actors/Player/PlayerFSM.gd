@@ -8,7 +8,8 @@ onready var stateLabel: Label = parent.get_node("StateOutput")
 var animations = {
 	IDLE = "rowbit_idle",
 	MOVE_LEFT  = "rowbit_move_left",
-	MOVE_RIGHT = "rowbit_move_right"
+	MOVE_RIGHT = "rowbit_move_right",
+	HURT = "hurt"
 }
 
 #-------------------------------------------------------------------------------------------------#
@@ -22,6 +23,7 @@ func _ready() -> void:
 	stateAdd("move_down")
 	stateAdd("grappling")
 	stateAdd("dialog")
+	stateAdd("hurt")
 	# Set the starting state
 	call_deferred("stateSet",states.idle)
 
@@ -46,7 +48,7 @@ func _input(event: InputEvent) -> void:
 #State Logistics
 func stateLogic(delta):
 	if parent.is_falling: parent.apply_gravity(delta)
-	if ![states.dialog].has(state): parent.handle_movement()
+	if ![states.dialog, states.hurt].has(state): parent.handle_movement()
 	parent.apply_movement()
 
 
@@ -54,40 +56,15 @@ func stateLogic(delta):
 # warning-ignore:unused_argument
 func transitions(delta):
 	match(state):
-		states.idle:
-			if parent.move_dir < 0:
-				return states.move_left
-			if parent.move_dir > 0:
-				return states.move_right
-			if parent.z_move_dir < 0:
-				return states.move_up
-			if parent.z_move_dir > 0:
-				return states.move_down
-			if parent.is_falling:
-				return states.fall
+		states.idle: 
+			return basicMovement()
+		states.move_left: return basicMovement()
+		states.move_right: return basicMovement()
+		states.move_up: return basicMovement()
+		states.move_down: return basicMovement()
 		
 		states.fall:
 			if not parent.is_falling:
-				return states.idle
-		
-		states.move_left:
-			if parent.move_dir == 0:
-				return states.idle
-			if parent.move_dir > 0:
-				return states.move_right
-		
-		states.move_right:
-			if parent.move_dir == 0:
-				return states.idle
-			if parent.move_dir < 0:
-				return states.move_left
-		
-		states.move_up:
-			if parent.z_move_dir == 0:
-				return states.idle
-		
-		states.move_down:
-			if parent.z_move_dir == 0:
 				return states.idle
 		
 		states.grappling:
@@ -95,10 +72,12 @@ func transitions(delta):
 				return states.idle
 		
 		states.dialog:
-			pass
+			if !parent.talking.is_talking: return states.idle
+		
+		states.hurt:
+			if parent.hurtTimer.is_stopped(): return states.idle
+			
 	return null
-
-
 #Enter State
 # warning-ignore:unused_argument
 func stateEnter(newState, oldState):
@@ -111,10 +90,14 @@ func stateEnter(newState, oldState):
 		
 		states.move_right:
 			parent.spritePlayer.play(animations.MOVE_RIGHT)
-
-
+		
+		states.dialog:
+			parent.motion = Vector2.ZERO
+		
+		states.hurt:
+			parent.motion = Vector2.ZERO
+			parent.fxPlayer.play(animations.HURT)
 #Exit State
-# warning-ignore:unused_argument
 # warning-ignore:unused_argument
 func stateExit(oldState, newState):
 	match(oldState):
@@ -126,3 +109,16 @@ func stateExit(oldState, newState):
 #Assign Animations
 func assign_animation():
 	parent.animTree["parameters/conditions/Idle"] = states.idle
+
+
+
+#-------------------------------------------------------------------------------------------------#
+func basicMovement():
+	if parent.is_falling: return states.fall
+	if parent.talking.is_talking: return states.dialog
+	if !parent.hurtTimer.is_stopped(): return states.hurt
+	if parent.move_dir == 0: return states.idle
+	if parent.move_dir < 0: return states.move_left
+	if parent.move_dir > 0: return states.move_right
+	if parent.z_move_dir < 0: return states.move_up
+	if parent.z_move_dir > 0: return states.move_down

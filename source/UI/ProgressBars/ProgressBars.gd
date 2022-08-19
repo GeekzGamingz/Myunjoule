@@ -11,7 +11,10 @@ func energyUpdate_charge(energy) -> void:
 	energyTween.interpolate_property(energyOver, "value", energyOver.value, energy,
 								   0.4, Tween.TRANS_SINE, Tween.EASE_IN_OUT, 0.4)
 	energyTween.start()
+	$Regen.visible = true
 	$AnimationPlayer.play("regen")
+	yield($AnimationPlayer, "animation_finished")
+	$Regen.visible = false
 #Damage
 func energyUpdate_drain(energy) -> void:
 	energyOver.value = energy
@@ -23,7 +26,3 @@ func max_energyUpdate(max_energy):
 	energyOver.max_value = max_energy
 	energyUnder.max_value = max_energy
 #-------------------------------------------------------------------------------------------------#
-#Animation Player
-func _on_AnimationPlayer_animation_finished(anim_name: String) -> void:
-	if anim_name == "regen":
-		$AnimationPlayer.play("rest")

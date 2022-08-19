@@ -9,7 +9,7 @@ var old_z_move_dir: int = 0
 var snap: Vector2 = Vector2.DOWN
 var is_falling = false
 var talking = {
-	"is_talking": false,
+	"is_talking": true,
 	"can_talk": false,
 }
 var grappling = {
@@ -21,6 +21,7 @@ var items = {
 }
 #OnReady Variables
 onready var iFrameTimer: Timer = $Timers/iFrameTimer
+onready var hurtTimer: Timer = $Timers/HurtTimer
 onready var energy = max_energy setget set_energy
 #Animation Nodes
 onready var spritePlayer = $AnimationPlayers/SpritePlayer
@@ -112,8 +113,8 @@ func chargeEnergy(amount):
 #Drain
 func drainEnergy(amount):
 	if iFrameTimer.is_stopped():
-#		playBack.start("drain")
-#		iFrameTimer.start()
+		hurtTimer.start()
+		iFrameTimer.start()
 		set_energy(energy - amount)
 #Set Energy
 func set_energy(value):

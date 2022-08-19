@@ -44,15 +44,15 @@ func flipMouskie():
 			get_node("MouskieSprite").set_flip_h(true)
 			get_node("EffectsSprite").set_flip_h(true)
 			get_node("LightAttack/CollisionShape2D").position = Vector2(-24, 3)
-			$LCollision.set_deferred("disabled", false)
-			$RCollision.set_deferred("disabled", true)
+			$CollisionShape2D.position.x = -14
+			$Sight/CollisionShape2D.position.x = -85
 			Facing = "Left"
 		elif motion.x > 0:
 			get_node("MouskieSprite").set_flip_h(false)
 			get_node("EffectsSprite").set_flip_h(false)
 			get_node("LightAttack/CollisionShape2D").position = Vector2(24, 3)
-			$LCollision.set_deferred("disabled", true)
-			$RCollision.set_deferred("disabled", false)
+			$CollisionShape2D.position.x = 14
+			$Sight/CollisionShape2D.position.x = 85
 			Facing = "Right"
 #-------------------------------------------------------------------------------------------------#
 #Sight

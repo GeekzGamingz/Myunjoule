@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://source/UI/GridSnapper/GridSnapper.gd" type="Script" id=1]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 12, 12 )
+
+[node name="GridSnapper" type="Area2D"]
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_horizontal_guides_": [ -120.0, 120.0, -12.0, 12.0 ],
+"_edit_vertical_guides_": [ 12.0, -12.0 ]
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+one_way_collision_margin = 0.0
+
+[connection signal="area_entered" from="." to="." method="_on_GridSnapper_area_entered"]

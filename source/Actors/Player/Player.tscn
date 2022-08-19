@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://source/Actors/Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://source/Actors/Player/PlayerFSM.gd" type="Script" id=2]
@@ -9,13 +9,17 @@
 [ext_resource path="res://source/Objects/Grappling/GrapplingHook.tscn" type="PackedScene" id=7]
 [ext_resource path="res://source/Actors/Player/ExpoAnchor.gd" type="Script" id=8]
 [ext_resource path="res://icon.png" type="Texture" id=9]
-
-[sub_resource type="CircleShape2D" id=6]
-radius = 12.0416
+[ext_resource path="res://source/UI/GridSnapper/GridSnapper.tscn" type="PackedScene" id=10]
 
 [sub_resource type="CapsuleShape2D" id=5]
 radius = 2.99999
 height = 11.0
+
+[sub_resource type="CircleShape2D" id=6]
+radius = 12.0416
+
+[sub_resource type="CircleShape2D" id=7]
+radius = 118.004
 
 [sub_resource type="Animation" id=4]
 length = 0.001
@@ -68,12 +72,12 @@ tracks/3/keys = {
 "values": [ true ]
 }
 
+[sub_resource type="Animation" id=8]
+resource_name = "hurt"
+
 [sub_resource type="AnimationNodeStateMachine" id=2]
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=3]
-
-[sub_resource type="CircleShape2D" id=7]
-radius = 106.042
 
 [node name="Player" type="KinematicBody2D"]
 collision_layer = 2
@@ -89,26 +93,6 @@ texture = ExtResource( 3 )
 flip_h = true
 hframes = 4
 
-[node name="PlayerArea" type="Area2D" parent="."]
-collision_layer = 2
-collision_mask = 29
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerArea"]
-shape = SubResource( 6 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 0.5, 9 )
-rotation = -1.57079
-shape = SubResource( 5 )
-
-[node name="Camera2D" type="Camera2D" parent="."]
-current = true
-zoom = Vector2( 0.4, 0.4 )
-limit_left = -720
-limit_top = -120
-limit_right = 720
-limit_bottom = 120
-
 [node name="StateOutput" type="Label" parent="."]
 margin_left = -20.0
 margin_top = -28.0
@@ -117,6 +101,39 @@ margin_bottom = -14.0
 text = "State"
 align = 1
 valign = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2( 0.5, 9 )
+rotation = -1.57079
+shape = SubResource( 5 )
+
+[node name="GridSnapper" parent="." instance=ExtResource( 10 )]
+collision_layer = 2
+collision_mask = 16
+
+[node name="PlayerArea" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 29
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerArea"]
+shape = SubResource( 6 )
+
+[node name="GrapplingHook" parent="." instance=ExtResource( 7 )]
+
+[node name="PoiDetection" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PoiDetection"]
+shape = SubResource( 7 )
+
+[node name="ExpoAnchor" type="Node2D" parent="."]
+position = Vector2( 30, -25 )
+script = ExtResource( 8 )
+
+[node name="Sprite" type="Sprite" parent="ExpoAnchor"]
+visible = false
+scale = Vector2( 0.1, 0.1 )
+texture = ExtResource( 9 )
 
 [node name="AnimationPlayers" type="Node2D" parent="."]
 
@@ -128,30 +145,30 @@ anims/rowbit_move_left = ExtResource( 5 )
 anims/rowbit_move_right = ExtResource( 4 )
 
 [node name="EffectsPlayer" type="AnimationPlayer" parent="AnimationPlayers"]
+anims/hurt = SubResource( 8 )
 
 [node name="AnimationTree" type="AnimationTree" parent="AnimationPlayers"]
 tree_root = SubResource( 2 )
 anim_player = NodePath("../SpritePlayer")
 parameters/playback = SubResource( 3 )
 
-[node name="GrapplingHook" parent="." instance=ExtResource( 7 )]
-
-[node name="ExpoAnchor" type="Node2D" parent="."]
-position = Vector2( 30, -25 )
-script = ExtResource( 8 )
-
-[node name="Sprite" type="Sprite" parent="ExpoAnchor"]
-visible = false
-scale = Vector2( 0.1, 0.1 )
-texture = ExtResource( 9 )
-
-[node name="PoiDetection" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PoiDetection"]
-shape = SubResource( 7 )
-
 [node name="Timers" type="Node2D" parent="."]
 
 [node name="iFrameTimer" type="Timer" parent="Timers"]
+one_shot = true
+
+[node name="HurtTimer" type="Timer" parent="Timers"]
+wait_time = 0.1
+one_shot = true
+
+[node name="MainCamera" type="Camera2D" parent="."]
+current = true
+zoom = Vector2( 0.4, 0.4 )
+limit_left = -720
+limit_top = -120
+limit_right = 720
+limit_bottom = 120
+limit_smoothed = true
+smoothing_enabled = true
 
 [connection signal="area_entered" from="PlayerArea" to="." method="_on_PlayerArea_area_entered"]
