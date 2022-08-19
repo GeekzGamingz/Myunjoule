@@ -74,7 +74,8 @@ func start_dialog() -> void:
 				diaCheck()
 				dialog.dialog = Dialogue.YorkerCleans
 				addDia()
-				player.chargeEnergy(100)
 			4:
 				if check_phase_requirements():
-					print("The bottle is present, initiate dialog")
+					diaCheck()
+					dialog.dialog = Dialogue.YorkerFreesExpo
+					addDia()
