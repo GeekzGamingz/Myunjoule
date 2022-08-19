@@ -1,10 +1,9 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://source/Actors/Yorker/YorkerFSM.gd" type="Script" id=1]
 [ext_resource path="res://assets/NPCs/Yorker/Yorker-sweeping-Sheet.png" type="Texture" id=2]
 [ext_resource path="res://source/Actors/Yorker/Yorker.gd" type="Script" id=3]
-[ext_resource path="res://source/Actors/Drone/ExpoPOI.tscn" type="PackedScene" id=4]
-[ext_resource path="res://source/Actors/Drone/ExpoPOI_Yorker.gd" type="Script" id=5]
+[ext_resource path="res://source/Objects/POI/YorkerPOI/YorkerPOI.tscn" type="PackedScene" id=6]
 
 [sub_resource type="CapsuleShape2D" id=9]
 radius = 4.0
@@ -117,8 +116,12 @@ valign = 1
 modulate = Color( 0.196078, 1, 0, 1 )
 shape = SubResource( 8 )
 
-[node name="ExpoPOI" parent="." instance=ExtResource( 4 )]
+[node name="YorkerPOI" parent="." instance=ExtResource( 6 )]
 position = Vector2( 0, -29 )
-script = ExtResource( 5 )
+flavor = {
+"choice_index": -1,
+"dialogue": [ "Generic flavor text..." ],
+"start_flag": ""
+}
 
 [connection signal="body_entered" from="DialogArea" to="." method="_on_DialogArea_body_entered"]
