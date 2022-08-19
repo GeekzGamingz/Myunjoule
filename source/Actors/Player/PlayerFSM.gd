@@ -24,6 +24,7 @@ func _ready() -> void:
 	stateAdd("grappling")
 	stateAdd("dialog")
 	stateAdd("ouchie")
+	stateAdd("transition")
 	# Set the starting state
 	call_deferred("stateSet",states.idle)
 
@@ -47,8 +48,10 @@ func _input(event: InputEvent) -> void:
 #State Machine
 #State Logistics
 func stateLogic(delta):
-	if parent.is_falling: parent.apply_gravity(delta)
-	if ![states.dialog, states.ouchie].has(state): parent.handle_movement()
+	if parent.is_falling:
+		parent.apply_gravity(delta)
+	if ![states.dialog, states.transition, states.ouchie].has(state):
+		parent.handle_movement()
 	parent.apply_movement()
 
 
@@ -56,8 +59,7 @@ func stateLogic(delta):
 # warning-ignore:unused_argument
 func transitions(delta):
 	match(state):
-		states.idle: 
-			return basicMovement()
+		states.idle: return basicMovement()
 		states.move_left: return basicMovement()
 		states.move_right: return basicMovement()
 		states.move_up: return basicMovement()
@@ -76,6 +78,9 @@ func transitions(delta):
 		
 		states.ouchie:
 			if parent.ouchieTimer.is_stopped(): return states.idle
+		
+		states.transition:
+			if !parent.inTransition: return states.idle
 			
 	return null
 #Enter State
@@ -98,7 +103,10 @@ func stateEnter(newState, oldState):
 		
 		states.ouchie:
 			parent.motion = Vector2.ZERO
-			parent.fxPlayer.play(animations.OUCHIE)
+			parent.spritePlayer.play(animations.OUCHIE)
+		
+		states.transition:
+			pass
 #Exit State
 # warning-ignore:unused_argument
 func stateExit(oldState, newState):
@@ -116,6 +124,7 @@ func assign_animation():
 
 #-------------------------------------------------------------------------------------------------#
 func basicMovement():
+	if parent.inTransition: return states.transition
 	if parent.is_falling: return states.fall
 	if parent.talking.is_talking: return states.dialog
 	if !parent.ouchieTimer.is_stopped(): return states.ouchie
