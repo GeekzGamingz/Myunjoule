@@ -1,0 +1,54 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://assets/UI/Dialog/TalkyBox.png" type="Texture" id=1]
+[ext_resource path="res://assets/UI/Fonts/Bitwise.ttf" type="DynamicFontData" id=2]
+
+[sub_resource type="DynamicFont" id=1]
+size = 12
+font_data = ExtResource( 2 )
+
+[node name="FlavorDialog" type="Control"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -512.0
+margin_top = -300.0
+margin_right = 512.0
+margin_bottom = 300.0
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -19.0
+margin_top = -5.0
+margin_right = 19.0
+margin_bottom = 5.0
+texture = ExtResource( 1 )
+patch_margin_left = 5
+patch_margin_top = 5
+patch_margin_right = 5
+patch_margin_bottom = 5
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="NinePatchRect"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -18.0
+margin_top = -4.0
+margin_right = 18.0
+margin_bottom = 4.0
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="RichTextLabel" type="RichTextLabel" parent="NinePatchRect/MarginContainer"]
+margin_right = 36.0
+margin_bottom = 8.0
+custom_fonts/normal_font = SubResource( 1 )
+text = "Sample[Text]"

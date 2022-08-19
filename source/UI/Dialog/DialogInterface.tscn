@@ -8,7 +8,7 @@
 font_path = "res://assets/UI/Fonts/Bitwise.ttf"
 
 [sub_resource type="DynamicFont" id=1]
-size = 12
+size = 15
 outline_size = 1
 extra_spacing_top = 2
 extra_spacing_bottom = 2
@@ -104,10 +104,10 @@ tab_size = 0
 [node name="TextTween" type="Tween" parent="Choice1/MarginContainer"]
 
 [node name="MarginContainer2" type="MarginContainer" parent="Choice1"]
-margin_left = 174.0
-margin_top = 11.0
-margin_right = 204.0
-margin_bottom = 41.0
+margin_left = 176.0
+margin_top = 12.3333
+margin_right = 206.0
+margin_bottom = 42.3333
 
 [node name="DialogText2" type="RichTextLabel" parent="Choice1/MarginContainer2"]
 margin_right = 30.0
@@ -149,10 +149,10 @@ tab_size = 0
 [node name="TextTween" type="Tween" parent="Choice2/MarginContainer"]
 
 [node name="MarginContainer2" type="MarginContainer" parent="Choice2"]
-margin_left = 34.0
-margin_top = 11.0
-margin_right = 64.0
-margin_bottom = 41.0
+margin_left = 36.0
+margin_top = 12.3333
+margin_right = 66.0
+margin_bottom = 42.3333
 
 [node name="DialogText2" type="RichTextLabel" parent="Choice2/MarginContainer2"]
 margin_right = 30.0
