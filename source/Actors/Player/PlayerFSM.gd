@@ -87,9 +87,11 @@ func stateEnter(newState, oldState):
 		
 		states.move_left:
 			parent.spritePlayer.play(animations.MOVE_LEFT)
+			parent.gridSnapper.scale.x = 1
 		
 		states.move_right:
 			parent.spritePlayer.play(animations.MOVE_RIGHT)
+			parent.gridSnapper.scale.x = -1
 		
 		states.dialog:
 			parent.motion = Vector2.ZERO

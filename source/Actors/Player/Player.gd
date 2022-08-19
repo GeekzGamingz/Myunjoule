@@ -22,6 +22,7 @@ var items = {
 #OnReady Variables
 onready var iFrameTimer: Timer = $Timers/iFrameTimer
 onready var hurtTimer: Timer = $Timers/HurtTimer
+onready var gridSnapper: Area2D = $GridSnapper
 onready var energy = max_energy setget set_energy
 #Animation Nodes
 onready var spritePlayer = $AnimationPlayers/SpritePlayer
