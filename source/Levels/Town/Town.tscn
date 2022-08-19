@@ -4,31 +4,24 @@
 [ext_resource path="res://assets/Foregrounds/Town/area2-Background.png" type="Texture" id=3]
 [ext_resource path="res://assets/Foregrounds/Town/area2-Foreground.png" type="Texture" id=4]
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=8]
 length = 0.001
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=9]
 resource_name = "stars"
 length = 1.2
 loop = true
 step = 0.2
 
-[node name="Town" type="Node2D"]
-z_index = -50
-__meta__ = {
-"_edit_horizontal_guides_": [ 120.0, -120.0, 24.0, 48.0 ]
-}
+[node name="Town" type="YSort"]
 
 [node name="Background" type="Sprite" parent="."]
-z_index = -3
 texture = ExtResource( 3 )
 
 [node name="Midground" type="Sprite" parent="."]
-z_index = -2
 texture = ExtResource( 2 )
 
 [node name="Foreground" type="Sprite" parent="."]
-z_index = -1
 texture = ExtResource( 4 )
 
 [node name="AnimationPlayers" type="Node2D" parent="."]
@@ -36,5 +29,5 @@ texture = ExtResource( 4 )
 [node name="TownPlayer" type="AnimationPlayer" parent="AnimationPlayers"]
 root_node = NodePath("../..")
 autoplay = "stars"
-anims/RESET = SubResource( 5 )
-anims/stars = SubResource( 6 )
+anims/RESET = SubResource( 8 )
+anims/stars = SubResource( 9 )
