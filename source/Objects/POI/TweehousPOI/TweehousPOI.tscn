@@ -5,8 +5,3 @@
 
 [node name="TweehousPOI" instance=ExtResource( 2 )]
 script = ExtResource( 1 )
-flavor = {
-"choice_index": -1,
-"dialogue": "Unknown[???]",
-"start_flag": ""
-}

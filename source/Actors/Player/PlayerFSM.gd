@@ -105,14 +105,17 @@ func stateEnter(newState, oldState):
 			parent.motion = Vector2.ZERO
 			parent.spritePlayer.play(animations.OUCHIE)
 		
+		states.grappling:
+			parent.set_collision_disabled(true)
+		
 		states.transition:
 			pass
 #Exit State
 # warning-ignore:unused_argument
 func stateExit(oldState, newState):
 	match(oldState):
-		states.dialog:
-			pass
+		states.grappling:
+			parent.set_collision_disabled(false)
 
 
 #-------------------------------------------------------------------------------------------------#

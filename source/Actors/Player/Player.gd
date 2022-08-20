@@ -82,7 +82,7 @@ func handle_move_input() -> void:
 			motion.y = lerp(motion.y, 0, lerp(0.0, friction, friction_step))
 #Handle Grappling Movement
 func handle_grapple_movement() -> void:
-	motion = lerp(motion, position.direction_to($GrapplingHook.grappling_point.position) * 100, lerp(0.0, 1.0, 0.15))
+	motion = lerp(motion, position.direction_to($GrapplingHook.grappling_point.global_position) * 100, lerp(0.0, 1.0, 0.15))
 #Apply Movement
 func apply_movement() -> void:
 	motion = move_and_slide(motion, Vector2.UP)
@@ -100,6 +100,8 @@ func set_is_falling(falling: bool) -> void:
 func enable_collision(area: Area2D) -> void:
 	if area.is_in_group("fall_end"):
 		$CollisionShape2D.set_deferred("disabled", false)
+func set_collision_disabled(disabled: bool):
+	$CollisionShape2D.set_deferred("disabled", disabled)
 #-------------------------------------------------------------------------------------------------#
 #POI Interaction
 func detected_poi(area: Area2D) -> void:
