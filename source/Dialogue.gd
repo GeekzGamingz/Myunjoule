@@ -17,8 +17,9 @@ var BottleBattery = {
 	start_flag = '',
 }
 #-------------------------------------------------------------------------------------------------#
-#Yorker
+# Yorker
 var Yorker = {
+	# This is the dialouge that happens when blah blah
 	0: {
 		required_flag = '',
 		start_flag = 'fixed_yorker',
@@ -37,25 +38,6 @@ var Yorker = {
 			},
 		},
 		choice_index = -1
-	},
-	1: {
-		required_flag = '',
-		start_flag = '',
-		dialogue = [
-			'[color=black]Yorker\n[color=red]“...Hey! Are you even listenin\' to me?”',
-			'[color=black]Yorker\n[color=red]“Yeah, you! I\'m talking to you! Come over here, would ya?”',
-		],
-		choices = {
-			0: {
-				choice_text = '[color=blue][center]“Sorry, I must have been daydreaming.”',
-				response_text = '[color=black]Yorker\n[color=red]“What the heck? \'Daydreaming?\' Pal, you must be broken somewhere. Machines don\'t dream.”',
-			},
-			1: {
-				choice_text = '[color=blue][center]“What do you want?”',
-				response_text = '[color=black]Yorker\n[color=red]“Oh, I guess I don\'t exactly belong right here, either, huh.”',
-			},
-		},
-		choice_index = 1
 	},
 }
 

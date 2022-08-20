@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://source/UI/Dialog/DialogHandler.gd" type="Script" id=1]
+[ext_resource path="res://source/Dialogue/Default_Dialogue.tres" type="Resource" id=2]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 43.1045
+
+[node name="DialogHandler" type="Area2D" groups=["dialog"]]
+script = ExtResource( 1 )
+dialog_resource = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )

@@ -140,5 +140,5 @@ func _on_PlayerArea_area_entered(area: Area2D) -> void:
 		"InstaKill": drainEnergy(100)
 
 func set_can_talk(area: Area2D, canTalk: bool) -> void:
-	if area.name == "DialogArea":
+	if area.is_in_group("dialog"):
 		talking.can_talk = canTalk

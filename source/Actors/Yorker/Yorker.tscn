@@ -1,8 +1,10 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://source/Actors/Yorker/YorkerFSM.gd" type="Script" id=1]
 [ext_resource path="res://assets/NPCs/Yorker/Yorker-sweeping-Sheet.png" type="Texture" id=2]
 [ext_resource path="res://source/Actors/Yorker/Yorker.gd" type="Script" id=3]
+[ext_resource path="res://source/UI/Dialog/DialogHandler.tscn" type="PackedScene" id=4]
+[ext_resource path="res://source/Dialogue/Yorker_Dialogue.tres" type="Resource" id=5]
 [ext_resource path="res://source/Objects/POI/YorkerPOI/YorkerPOI.tscn" type="PackedScene" id=6]
 
 [sub_resource type="CapsuleShape2D" id=9]
@@ -111,6 +113,9 @@ align = 1
 valign = 1
 
 [node name="DialogArea" type="Area2D" parent="."]
+visible = false
+monitoring = false
+monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DialogArea"]
 modulate = Color( 0.196078, 1, 0, 1 )
@@ -118,10 +123,9 @@ shape = SubResource( 8 )
 
 [node name="YorkerPOI" parent="." instance=ExtResource( 6 )]
 position = Vector2( 0, -29 )
-flavor = {
-"choice_index": -1,
-"dialogue": [ "Generic flavor text..." ],
-"start_flag": ""
-}
+
+[node name="DialogHandler" parent="." instance=ExtResource( 4 )]
+immediate = true
+dialog_resource = ExtResource( 5 )
 
 [connection signal="body_entered" from="DialogArea" to="." method="_on_DialogArea_body_entered"]
