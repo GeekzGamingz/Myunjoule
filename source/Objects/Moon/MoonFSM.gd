@@ -55,7 +55,8 @@ func stateEnter(newState, oldState):
 # warning-ignore:unused_argument
 # warning-ignore:unused_argument
 func stateExit(oldState, newState):
-	pass
+	match(oldState)	:
+		states.phaseNew: pass
 #-------------------------------------------------------------------------------------------------#
 #Assign Animations
 func assign_animation():

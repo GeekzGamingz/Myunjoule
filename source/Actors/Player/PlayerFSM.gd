@@ -9,7 +9,8 @@ var animations = {
 	IDLE = "rowbit_idle",
 	MOVE_LEFT  = "rowbit_move_left",
 	MOVE_RIGHT = "rowbit_move_right",
-	OUCHIE = "rowbit_ouchie"
+	OUCHIE = "rowbit_ouchie",
+	TRANSITION = "rowbit_transition"
 }
 
 #-------------------------------------------------------------------------------------------------#
@@ -109,7 +110,7 @@ func stateEnter(newState, oldState):
 			parent.set_collision_disabled(true)
 		
 		states.transition:
-			pass
+			parent.spritePlayer.play(animations.TRANSITION)
 #Exit State
 # warning-ignore:unused_argument
 func stateExit(oldState, newState):
