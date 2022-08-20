@@ -14,6 +14,7 @@ var dialog_index = 0
 var finished = false
 var making_choice = false
 
+signal dialog_finished
 signal dialog_phase_done(phase_completed)
 
 #export(res_Dialogue) var dialog
@@ -109,6 +110,7 @@ func load_dialog(dialog_text: String = ''):
 		dialog_index += 1
 	
 	if current_phase >= total_phases:
+		emit_signal("dialog_finished")
 		queue_free()
 		return
 
