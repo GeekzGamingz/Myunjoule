@@ -9,7 +9,7 @@ var animations = {
 	IDLE = "rowbit_idle",
 	MOVE_LEFT  = "rowbit_move_left",
 	MOVE_RIGHT = "rowbit_move_right",
-	HURT = "hurt"
+	OUCHIE = "rowbit_ouchie"
 }
 
 #-------------------------------------------------------------------------------------------------#
@@ -23,7 +23,8 @@ func _ready() -> void:
 	stateAdd("move_down")
 	stateAdd("grappling")
 	stateAdd("dialog")
-	stateAdd("hurt")
+	stateAdd("ouchie")
+	stateAdd("transition")
 	# Set the starting state
 	call_deferred("stateSet",states.idle)
 
@@ -47,8 +48,10 @@ func _input(event: InputEvent) -> void:
 #State Machine
 #State Logistics
 func stateLogic(delta):
-	if parent.is_falling: parent.apply_gravity(delta)
-	if ![states.dialog, states.hurt].has(state): parent.handle_movement()
+	if parent.is_falling:
+		parent.apply_gravity(delta)
+	if ![states.dialog, states.transition, states.ouchie].has(state):
+		parent.handle_movement()
 	parent.apply_movement()
 
 
@@ -56,8 +59,7 @@ func stateLogic(delta):
 # warning-ignore:unused_argument
 func transitions(delta):
 	match(state):
-		states.idle: 
-			return basicMovement()
+		states.idle: return basicMovement()
 		states.move_left: return basicMovement()
 		states.move_right: return basicMovement()
 		states.move_up: return basicMovement()
@@ -74,8 +76,11 @@ func transitions(delta):
 		states.dialog:
 			if !parent.talking.is_talking: return states.idle
 		
-		states.hurt:
-			if parent.hurtTimer.is_stopped(): return states.idle
+		states.ouchie:
+			if parent.ouchieTimer.is_stopped(): return states.idle
+		
+		states.transition:
+			if !parent.inTransition: return states.idle
 			
 	return null
 #Enter State
@@ -96,9 +101,12 @@ func stateEnter(newState, oldState):
 		states.dialog:
 			parent.motion = Vector2.ZERO
 		
-		states.hurt:
+		states.ouchie:
 			parent.motion = Vector2.ZERO
-			parent.fxPlayer.play(animations.HURT)
+			parent.spritePlayer.play(animations.OUCHIE)
+		
+		states.transition:
+			pass
 #Exit State
 # warning-ignore:unused_argument
 func stateExit(oldState, newState):
@@ -116,9 +124,10 @@ func assign_animation():
 
 #-------------------------------------------------------------------------------------------------#
 func basicMovement():
+	if parent.inTransition: return states.transition
 	if parent.is_falling: return states.fall
 	if parent.talking.is_talking: return states.dialog
-	if !parent.hurtTimer.is_stopped(): return states.hurt
+	if !parent.ouchieTimer.is_stopped(): return states.ouchie
 	if parent.move_dir == 0: return states.idle
 	if parent.move_dir < 0: return states.move_left
 	if parent.move_dir > 0: return states.move_right

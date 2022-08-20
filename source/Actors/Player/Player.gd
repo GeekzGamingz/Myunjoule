@@ -8,6 +8,7 @@ var z_move_dir: int = 0
 var old_z_move_dir: int = 0
 var snap: Vector2 = Vector2.DOWN
 var is_falling = false
+var inTransition = false
 var talking = {
 	"is_talking": true,
 	"can_talk": false,
@@ -21,7 +22,7 @@ var items = {
 }
 #OnReady Variables
 onready var iFrameTimer: Timer = $Timers/iFrameTimer
-onready var hurtTimer: Timer = $Timers/HurtTimer
+onready var ouchieTimer: Timer = $Timers/OuchieTimer
 onready var gridSnapper: Area2D = $GridSnapper
 onready var energy = max_energy setget set_energy
 #Animation Nodes
@@ -114,7 +115,7 @@ func chargeEnergy(amount):
 #Drain
 func drainEnergy(amount):
 	if iFrameTimer.is_stopped():
-		hurtTimer.start()
+		ouchieTimer.start()
 		iFrameTimer.start()
 		set_energy(energy - amount)
 #Set Energy

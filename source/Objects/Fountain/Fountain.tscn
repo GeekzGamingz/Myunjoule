@@ -1,15 +1,11 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://assets/Objects/Fountain/Fountain-Sheet.png" type="Texture" id=1]
-[ext_resource path="res://source/Actors/Drone/FountainPOI.gd" type="Script" id=2]
-[ext_resource path="res://source/Actors/Drone/ExpoPOI.tscn" type="PackedScene" id=3]
+[ext_resource path="res://source/Objects/POI/FountainPOI/FountainPOI.tscn" type="PackedScene" id=2]
 
 [sub_resource type="CapsuleShape2D" id=12]
 radius = 10.9999
 height = 68.0
-
-[sub_resource type="CircleShape2D" id=13]
-radius = 49.0
 
 [sub_resource type="Animation" id=10]
 length = 0.001
@@ -79,17 +75,6 @@ position = Vector2( 0, 20 )
 rotation = 1.5708
 shape = SubResource( 12 )
 
-[node name="DialogArea" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DialogArea"]
-modulate = Color( 0.196078, 1, 0, 1 )
-position = Vector2( 0, 25 )
-shape = SubResource( 13 )
-
-[node name="ExpoPOI" parent="." instance=ExtResource( 3 )]
-position = Vector2( 0, -50 )
-script = ExtResource( 2 )
-
 [node name="AnimationPlayers" type="Node2D" parent="."]
 
 [node name="FountainPlayer" type="AnimationPlayer" parent="AnimationPlayers"]
@@ -97,3 +82,5 @@ root_node = NodePath("../..")
 autoplay = "idle"
 anims/RESET = SubResource( 10 )
 anims/idle = SubResource( 11 )
+
+[node name="TweehousPOI" parent="." instance=ExtResource( 2 )]
