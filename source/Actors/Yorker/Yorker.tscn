@@ -4,7 +4,7 @@
 [ext_resource path="res://assets/NPCs/Yorker/Yorker-sweeping-Sheet.png" type="Texture" id=2]
 [ext_resource path="res://source/Actors/Yorker/Yorker.gd" type="Script" id=3]
 [ext_resource path="res://source/UI/Dialog/DialogHandler.tscn" type="PackedScene" id=4]
-[ext_resource path="res://source/Dialogue/Yorker_Dialogue.tres" type="Resource" id=5]
+[ext_resource path="res://assets/Dialogue/Yorker_Dialogue.tres" type="Resource" id=5]
 [ext_resource path="res://source/Objects/POI/YorkerPOI/YorkerPOI.tscn" type="PackedScene" id=6]
 
 [sub_resource type="CapsuleShape2D" id=9]
