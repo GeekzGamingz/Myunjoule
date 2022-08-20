@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://source/Actors/Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://source/Actors/Player/PlayerFSM.gd" type="Script" id=2]
@@ -113,6 +113,47 @@ tracks/2/keys = {
 "values": [ 0, 1, 2, 3 ]
 }
 
+[sub_resource type="Animation" id=10]
+resource_name = "rowbit_transition"
+length = 0.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("PlayerSprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 11 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("PlayerSprite:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 4 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("PlayerSprite:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3 ]
+}
+
 [sub_resource type="Animation" id=8]
 resource_name = "hurt"
 
@@ -185,6 +226,7 @@ anims/rowbit_idle = ExtResource( 6 )
 anims/rowbit_move_left = ExtResource( 5 )
 anims/rowbit_move_right = ExtResource( 4 )
 anims/rowbit_ouchie = SubResource( 9 )
+anims/rowbit_transition = SubResource( 10 )
 
 [node name="EffectsPlayer" type="AnimationPlayer" parent="AnimationPlayers"]
 anims/hurt = SubResource( 8 )

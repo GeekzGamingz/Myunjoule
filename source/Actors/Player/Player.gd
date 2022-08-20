@@ -134,10 +134,10 @@ func _on_PlayerArea_area_entered(area: Area2D) -> void:
 	match(area.name):
 		"PU_Batteries": chargeEnergy(25)
 		"PU_JumperCables": chargeEnergy(50)
-		"HarshWeather": drainEnergy(1)
-		"LightAttack": drainEnergy(5)
-		"MediumAttack": drainEnergy(10)
-		"HeavyAttack": drainEnergy(15)
+		"HarshWeather": drainEnergy(5)
+		"LightAttack": drainEnergy(15)
+		"MediumAttack": drainEnergy(25)
+		"HeavyAttack": drainEnergy(35)
 		"InstaKill": drainEnergy(100)
 
 func set_can_talk(area: Area2D, canTalk: bool) -> void:

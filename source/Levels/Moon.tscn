@@ -111,6 +111,15 @@ collision_mask = 2
 rotation = -1.5708
 shape = SubResource( 1 )
 
+[node name="ActorBarrier" type="StaticBody2D" parent="Transitions/TownToBeach"]
+position = Vector2( 648, -3 )
+collision_layer = 32
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Transitions/TownToBeach/ActorBarrier"]
+rotation = -1.5708
+shape = SubResource( 1 )
+
 [node name="TownToLab" type="Area2D" parent="Transitions"]
 position = Vector2( 1426, 4 )
 collision_layer = 16
@@ -235,9 +244,12 @@ layer = 100
 [node name="UserInterface" parent="YSort/UI" instance=ExtResource( 8 )]
 
 [node name="Player" parent="YSort" instance=ExtResource( 6 )]
-position = Vector2( 536, 89 )
+position = Vector2( -561, 91 )
 
 [node name="Expo" parent="YSort" instance=ExtResource( 9 )]
+
+[node name="Mouskie" parent="YSort" instance=ExtResource( 7 )]
+position = Vector2( 472, 43 )
 
 [node name="Beach" parent="YSort" instance=ExtResource( 1 )]
 
@@ -255,6 +267,3 @@ position = Vector2( -622, 79 )
 
 [node name="Bottle_Buried" parent="YSort" instance=ExtResource( 11 )]
 position = Vector2( 159, 68 )
-
-[node name="Mouskie" parent="." instance=ExtResource( 7 )]
-position = Vector2( 264, -38 )

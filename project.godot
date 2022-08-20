@@ -184,6 +184,7 @@ select_choice_2={
 2d_physics/layer_3="npcs"
 2d_physics/layer_4="objects"
 2d_physics/layer_5="events"
+2d_physics/layer_6="barrier"
 
 [physics]
 
