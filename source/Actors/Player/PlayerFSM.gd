@@ -82,6 +82,9 @@ func transitions(delta):
 		
 		states.transition:
 			if !parent.inTransition: return states.idle
+		
+		states.deactivate:
+			pass
 			
 	return null
 #Enter State
@@ -111,6 +114,9 @@ func stateEnter(newState, oldState):
 		
 		states.transition:
 			parent.spritePlayer.play(animations.TRANSITION)
+		
+		states.deactivate:
+			pass
 #Exit State
 # warning-ignore:unused_argument
 func stateExit(oldState, newState):

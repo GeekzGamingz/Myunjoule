@@ -730,6 +730,7 @@ anim_player = NodePath("../SpritePlayer")
 parameters/playback = SubResource( 5 )
 
 [node name="StateOutput" type="Label" parent="Moon"]
+visible = false
 margin_left = 58.0
 margin_top = -19.0
 margin_right = 174.0

@@ -8,6 +8,7 @@ var z_move_dir: int = 0
 var old_z_move_dir: int = 0
 var snap: Vector2 = Vector2.DOWN
 var is_falling = false
+var is_deactivating = false
 var inTransition = false
 var talking = {
 	"is_talking": true,
@@ -109,6 +110,10 @@ func detected_poi(area: Area2D) -> void:
 
 func poi_lost(area: Area2D) -> void:
 	emit_signal("poi_lost", area)
+	
+func set_can_talk(area: Area2D, canTalk: bool) -> void:
+	if area.is_in_group("dialog"):
+		talking.can_talk = canTalk
 #-------------------------------------------------------------------------------------------------#
 #Energy
 #Charge
@@ -128,9 +133,8 @@ func set_energy(value):
 		emit_signal("energyUpdate_charge", energy)
 	if energy < energy_prev:
 		emit_signal("energyUpdate_drain", energy)
-		if energy == 0:
-#			kill()
-			pass
+		if energy < 1:
+			deactivate()
 #HitBox
 func _on_PlayerArea_area_entered(area: Area2D) -> void:
 	match(area.name):
@@ -141,7 +145,11 @@ func _on_PlayerArea_area_entered(area: Area2D) -> void:
 		"MediumAttack": drainEnergy(25)
 		"HeavyAttack": drainEnergy(35)
 		"InstaKill": drainEnergy(100)
+#-------------------------------------------------------------------------------------------------#
+#Deactivation
+func deactivate():
+	is_deactivating = true
+	self.global_position = Vector2(-500, 100)
+	chargeEnergy(25)
+	
 
-func set_can_talk(area: Area2D, canTalk: bool) -> void:
-	if area.is_in_group("dialog"):
-		talking.can_talk = canTalk
