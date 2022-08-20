@@ -4,11 +4,7 @@ class_name POI
 var interested = true
 
 # Would love to just make this a single string...
-export var flavor = {
-	dialogue = 'Generatic POI Text',
-	choice_index = -1,
-	start_flag = ''
-}
+export var flavor = 'Unknown[???]'
 
 func activate() -> void:
 	pass
