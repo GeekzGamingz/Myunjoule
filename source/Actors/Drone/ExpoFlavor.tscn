@@ -6,43 +6,37 @@
 
 [sub_resource type="DynamicFont" id=1]
 size = 12
+extra_spacing_bottom = -2
 font_data = ExtResource( 2 )
 
-[node name="FlavorDialog" type="MarginContainer"]
-anchor_right = 1.0
-anchor_bottom = 1.0
+[node name="FlavorDialog" type="VBoxContainer"]
+anchor_right = 0.073
+anchor_bottom = 0.025
+margin_right = -40.752
 script = ExtResource( 3 )
 
-[node name="NinePatchRect" type="NinePatchRect" parent="."]
-margin_right = 1024.0
-margin_bottom = 600.0
+[node name="CenterContainer" type="CenterContainer" parent="."]
+margin_right = 70.0
+margin_bottom = 20.0
+
+[node name="Label" type="Label" parent="CenterContainer"]
+margin_right = 70.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 50, 20 )
+custom_fonts/font = SubResource( 1 )
+text = "Unkown[???]"
+align = 1
+valign = 1
+
+[node name="NinePatchRect" type="NinePatchRect" parent="CenterContainer/Label"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -5.0
+margin_top = -2.0
+margin_right = 5.0
+margin_bottom = 2.0
 texture = ExtResource( 1 )
-patch_margin_left = 5
-patch_margin_top = 5
-patch_margin_right = 5
-patch_margin_bottom = 5
 axis_stretch_horizontal = 2
 axis_stretch_vertical = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
-margin_right = 1024.0
-margin_bottom = 600.0
-
-[node name="CenterContainer" type="CenterContainer" parent="MarginContainer"]
-margin_right = 1024.0
-margin_bottom = 600.0
-
-[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/CenterContainer"]
-margin_left = 512.0
-margin_top = 300.0
-margin_right = 512.0
-margin_bottom = 300.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-custom_fonts/normal_font = SubResource( 1 )
-scroll_active = false
-__meta__ = {
-"_edit_use_anchors_": true
-}
-
-[node name="Tween" type="Tween" parent="MarginContainer/CenterContainer"]
+[node name="Tween" type="Tween" parent="CenterContainer"]
