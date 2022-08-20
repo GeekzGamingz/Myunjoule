@@ -15,7 +15,8 @@ onready var rowbit = get_parent().get_node("Player")
 
 var flavor
 var flavor_shown = false
-var dialog_scene = preload("res://source/UI/Dialog/DialogInterface.tscn")
+#var dialog_scene = preload("res://source/UI/Dialog/DialogInterface.tscn")
+var flavor_scene = preload("res://source/Actors/Drone/ExpoFlavor.tscn")
 
 func _ready() -> void:
 	rowbit.connect("detected_poi", self, "detected_poi")
@@ -40,9 +41,9 @@ func _input(_event: InputEvent) -> void:
 func show_flavor_text() -> void:
 	if not flavor_shown:
 		flavor_shown = true
-		flavor = dialog_scene.instance()
-		flavor.rect_scale = Vector2(0.5, 0.5)
-		flavor.dialog = selected_poi.flavor
+		flavor = flavor_scene.instance()
+		# flavor.rect_scale = Vector2(0.5, 0.5)
+		flavor.flavor = selected_poi.flavor
 		call_deferred("add_child", flavor)
 
 func apply_bobble_movement() -> void:
