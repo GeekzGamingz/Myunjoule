@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://assets/Foregrounds/Beach/area1-Midtide-Waves-Sheet.png" type="Texture" id=1]
 [ext_resource path="res://source/Actors/Yorker/Yorker.tscn" type="PackedScene" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://assets/Foregrounds/Beach/area1-Lowtide-Waves-Sheet.png" type="Texture" id=5]
 [ext_resource path="res://assets/Foregrounds/Beach/area1-Midground.png" type="Texture" id=6]
 [ext_resource path="res://source/Levels/Beach/Beach.gd" type="Script" id=7]
+[ext_resource path="res://source/Actors/Mouskie/Mouskie.tscn" type="PackedScene" id=8]
 [ext_resource path="res://assets/Foregrounds/Beach/area1-Hightide-Waves-Sheet.png" type="Texture" id=9]
 [ext_resource path="res://source/Levels/Beach/KinematicTide.tscn" type="PackedScene" id=11]
 
@@ -309,5 +310,8 @@ anims/stars = SubResource( 6 )
 
 [node name="BeachObjects" type="YSort" parent="."]
 
+[node name="Mouskie" parent="BeachObjects" instance=ExtResource( 8 )]
+position = Vector2( 272, 22 )
+
 [node name="Yorker" parent="BeachObjects" instance=ExtResource( 2 )]
-position = Vector2( -257, 55 )
+position = Vector2( -320, 62 )
