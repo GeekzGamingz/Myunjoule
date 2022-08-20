@@ -84,3 +84,4 @@ anims/RESET = SubResource( 10 )
 anims/idle = SubResource( 11 )
 
 [node name="TweehousPOI" parent="." instance=ExtResource( 2 )]
+position = Vector2( 0, 18 )
