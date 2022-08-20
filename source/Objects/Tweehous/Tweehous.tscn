@@ -36,4 +36,3 @@ z_index = 10
 texture = ExtResource( 4 )
 
 [node name="TweehousPOI" parent="." instance=ExtResource( 1 )]
-flavor = "Unknown[???]"
