@@ -332,7 +332,7 @@ height = 28.0
 [sub_resource type="CircleShape2D" id=14]
 radius = 14.0357
 
-[node name="Mouskie" type="KinematicBody2D" groups=["POI"]]
+[node name="Mouskie" type="KinematicBody2D"]
 collision_layer = 4
 collision_mask = 35
 script = ExtResource( 2 )
