@@ -15,7 +15,8 @@ onready var rowbit = get_parent().get_node("Player")
 
 var flavor
 var flavor_shown = false
-var dialog_scene = preload("res://source/UI/Dialog/DialogInterface.tscn")
+#var dialog_scene = preload("res://source/UI/Dialog/DialogInterface.tscn")
+var flavor_scene = preload("res://source/Actors/Drone/ExpoFlavor.tscn")
 
 func _ready() -> void:
 	rowbit.connect("detected_poi", self, "detected_poi")
@@ -40,9 +41,9 @@ func _input(_event: InputEvent) -> void:
 func show_flavor_text() -> void:
 	if not flavor_shown:
 		flavor_shown = true
-		flavor = dialog_scene.instance()
-		flavor.rect_scale = Vector2(0.5, 0.5)
-		flavor.dialog = selected_poi.flavor
+		flavor = flavor_scene.instance()
+		# flavor.rect_scale = Vector2(0.5, 0.5)
+		flavor.flavor = selected_poi.flavor
 		call_deferred("add_child", flavor)
 
 func apply_bobble_movement() -> void:
@@ -58,7 +59,8 @@ func apply_idle_movement() -> void:
 		self.position = lerp(self.position, rowbit.get_node("ExpoAnchor").global_position, lerp(0, 0.075, 0.5))
 
 func apply_hover_movement() -> void:
-	self.position = lerp(self.position, selected_poi.global_position, lerp(0, 0.075, 1.0))
+	if selected_poi != null:
+		self.position = lerp(self.position, selected_poi.global_position, lerp(0, 0.075, 1.0))
 
 func has_arrived() -> bool:
 	if self.position.distance_to(selected_poi.global_position) < 1:

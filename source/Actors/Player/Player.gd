@@ -8,6 +8,7 @@ var z_move_dir: int = 0
 var old_z_move_dir: int = 0
 var snap: Vector2 = Vector2.DOWN
 var is_falling = false
+var inTransition = false
 var talking = {
 	"is_talking": true,
 	"can_talk": false,
@@ -21,7 +22,8 @@ var items = {
 }
 #OnReady Variables
 onready var iFrameTimer: Timer = $Timers/iFrameTimer
-onready var hurtTimer: Timer = $Timers/HurtTimer
+onready var ouchieTimer: Timer = $Timers/OuchieTimer
+onready var gridSnapper: Area2D = $GridSnapper
 onready var energy = max_energy setget set_energy
 #Animation Nodes
 onready var spritePlayer = $AnimationPlayers/SpritePlayer
@@ -113,7 +115,7 @@ func chargeEnergy(amount):
 #Drain
 func drainEnergy(amount):
 	if iFrameTimer.is_stopped():
-		hurtTimer.start()
+		ouchieTimer.start()
 		iFrameTimer.start()
 		set_energy(energy - amount)
 #Set Energy
@@ -139,5 +141,5 @@ func _on_PlayerArea_area_entered(area: Area2D) -> void:
 		"InstaKill": drainEnergy(100)
 
 func set_can_talk(area: Area2D, canTalk: bool) -> void:
-	if area.name == "DialogArea":
+	if area.is_in_group("dialog"):
 		talking.can_talk = canTalk
