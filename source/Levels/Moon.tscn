@@ -20,7 +20,7 @@ extents = Vector2( 120, 12 )
 [node name="Moon" type="Node2D"]
 __meta__ = {
 "_edit_horizontal_guides_": [ -120.0, 120.0 ],
-"_edit_vertical_guides_": [ -720.0, 722.0, 746.0, 770.0, 672.0, 698.0 ]
+"_edit_vertical_guides_": [ -720.0, 722.0, 746.0, 770.0, 672.0, 698.0, 2160.0, 3576.0, 3551.0, -2136.0, -2111.0, -2086.0, 3527.0 ]
 }
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
@@ -111,6 +111,122 @@ collision_mask = 2
 rotation = -1.5708
 shape = SubResource( 1 )
 
+[node name="TownToLab" type="Area2D" parent="Transitions"]
+position = Vector2( 1426, 4 )
+collision_layer = 16
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Transitions/TownToLab"]
+position = Vector2( 722, -4 )
+rotation = -1.5708
+shape = SubResource( 1 )
+
+[node name="ResetCollisions" type="Area2D" parent="Transitions/TownToLab"]
+position = Vector2( 794, -4 )
+collision_layer = 16
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Transitions/TownToLab/ResetCollisions"]
+rotation = -1.5708
+shape = SubResource( 1 )
+
+[node name="LabToTown" type="Area2D" parent="Transitions"]
+position = Vector2( 1450, 3 )
+collision_layer = 16
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Transitions/LabToTown"]
+position = Vector2( 722, -3 )
+rotation = -1.5708
+shape = SubResource( 1 )
+
+[node name="ResetCollisions" type="Area2D" parent="Transitions/LabToTown"]
+position = Vector2( 648, -3 )
+collision_layer = 16
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Transitions/LabToTown/ResetCollisions"]
+rotation = -1.5708
+shape = SubResource( 1 )
+
+[node name="LabToForest" type="Area2D" parent="Transitions"]
+position = Vector2( 1197, 0 )
+collision_layer = 16
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Transitions/LabToForest"]
+position = Vector2( 2391, 0 )
+rotation = -1.5708
+shape = SubResource( 1 )
+
+[node name="ResetCollisions" type="Area2D" parent="Transitions/LabToForest"]
+position = Vector2( -3263, 0 )
+collision_layer = 16
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Transitions/LabToForest/ResetCollisions"]
+position = Vector2( -8, 0 )
+rotation = -1.5708
+shape = SubResource( 1 )
+
+[node name="ForestToLab" type="Area2D" parent="Transitions"]
+position = Vector2( -981, 0 )
+collision_layer = 16
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Transitions/ForestToLab"]
+position = Vector2( -1167, 0 )
+rotation = -1.5708
+shape = SubResource( 1 )
+
+[node name="ResetCollisions" type="Area2D" parent="Transitions/ForestToLab"]
+position = Vector2( 502, -3 )
+collision_layer = 16
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Transitions/ForestToLab/ResetCollisions"]
+position = Vector2( 3994, 3 )
+rotation = -1.5708
+shape = SubResource( 1 )
+
+[node name="ForestToBeach" type="Area2D" parent="Transitions"]
+position = Vector2( -1454, 4 )
+collision_layer = 16
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Transitions/ForestToBeach"]
+position = Vector2( 722, -4 )
+rotation = -1.5708
+shape = SubResource( 1 )
+
+[node name="ResetCollisions" type="Area2D" parent="Transitions/ForestToBeach"]
+position = Vector2( 794, -4 )
+collision_layer = 16
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Transitions/ForestToBeach/ResetCollisions"]
+rotation = -1.5708
+shape = SubResource( 1 )
+
+[node name="BeachToForest" type="Area2D" parent="Transitions"]
+position = Vector2( -1430, 3 )
+collision_layer = 16
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Transitions/BeachToForest"]
+position = Vector2( 722, -3 )
+rotation = -1.5708
+shape = SubResource( 1 )
+
+[node name="ResetCollisions" type="Area2D" parent="Transitions/BeachToForest"]
+position = Vector2( 648, -3 )
+collision_layer = 16
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Transitions/BeachToForest/ResetCollisions"]
+rotation = -1.5708
+shape = SubResource( 1 )
+
 [node name="YSort" type="YSort" parent="."]
 
 [node name="UI" type="CanvasLayer" parent="YSort"]
@@ -128,6 +244,12 @@ position = Vector2( 536, 89 )
 [node name="Town" parent="YSort" instance=ExtResource( 4 )]
 position = Vector2( 1440, 0 )
 
+[node name="Town2" parent="YSort" instance=ExtResource( 4 )]
+position = Vector2( 2880, 0 )
+
+[node name="Town3" parent="YSort" instance=ExtResource( 4 )]
+position = Vector2( -1440, 0 )
+
 [node name="DropPod" parent="YSort" instance=ExtResource( 12 )]
 position = Vector2( -622, 79 )
 
@@ -135,4 +257,4 @@ position = Vector2( -622, 79 )
 position = Vector2( 159, 68 )
 
 [node name="Mouskie" parent="." instance=ExtResource( 7 )]
-position = Vector2( 269, 34 )
+position = Vector2( 264, -38 )
