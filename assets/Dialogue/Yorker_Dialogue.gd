@@ -1,7 +1,6 @@
 extends Resource
 
 var dialog = {
-	# This is the dialouge that happens when blah blah
 	0: {
 		required_flag = null,
 		start_flag = null,
