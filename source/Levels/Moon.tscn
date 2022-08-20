@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://source/Levels/Beach/Beach.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/Foregrounds/Beach/area1-Foreground-Shadows.png" type="Texture" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://source/Actors/Mouskie/Mouskie.tscn" type="PackedScene" id=7]
 [ext_resource path="res://source/UI/UserInterface.tscn" type="PackedScene" id=8]
 [ext_resource path="res://source/Actors/Drone/Expo.tscn" type="PackedScene" id=9]
+[ext_resource path="res://assets/Audio/Music/MoonJam.ogg" type="AudioStream" id=10]
 [ext_resource path="res://source/Objects/Bottle/Bottle_Buried.tscn" type="PackedScene" id=11]
 [ext_resource path="res://source/Objects/DropPod/DropPod.tscn" type="PackedScene" id=12]
 [ext_resource path="res://assets/Tilesets/Ghost.tres" type="TileSet" id=13]
@@ -20,7 +21,7 @@ extents = Vector2( 120, 12 )
 [node name="Moon" type="Node2D"]
 __meta__ = {
 "_edit_horizontal_guides_": [ -120.0, 120.0 ],
-"_edit_vertical_guides_": [ -720.0, 722.0, 746.0, 770.0, 672.0, 698.0, 2160.0, 3576.0, 3551.0, -2136.0, -2111.0, -2086.0, 3527.0 ]
+"_edit_vertical_guides_": [ -720.0, 722.0, 746.0, 770.0, 672.0, 698.0, 2160.0, 3574.0, 3551.0, -2136.0, -2111.0, -2086.0, 3527.0, 2884.0 ]
 }
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
@@ -108,15 +109,6 @@ collision_layer = 16
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Transitions/TownToBeach/ResetCollisions"]
-rotation = -1.5708
-shape = SubResource( 1 )
-
-[node name="ActorBarrier" type="StaticBody2D" parent="Transitions/TownToBeach"]
-position = Vector2( 648, -3 )
-collision_layer = 32
-collision_mask = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Transitions/TownToBeach/ActorBarrier"]
 rotation = -1.5708
 shape = SubResource( 1 )
 
@@ -267,3 +259,18 @@ position = Vector2( -622, 79 )
 
 [node name="Bottle_Buried" parent="YSort" instance=ExtResource( 11 )]
 position = Vector2( 159, 68 )
+
+[node name="ActorBarrier" type="StaticBody2D" parent="YSort"]
+position = Vector2( 659, 0 )
+collision_layer = 32
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="YSort/ActorBarrier"]
+rotation = -1.5708
+shape = SubResource( 1 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+pause_mode = 2
+stream = ExtResource( 10 )
+volume_db = -30.0
+autoplay = true

@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/MoonJam.ogg-d9e7b369fcb45b9385427ffffffef850.oggstr"
+
+[deps]
+
+source_file="res://assets/Audio/Music/MoonJam.ogg"
+dest_files=[ "res://.import/MoonJam.ogg-d9e7b369fcb45b9385427ffffffef850.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

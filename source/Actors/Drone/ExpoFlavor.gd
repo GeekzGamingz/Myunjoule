@@ -2,8 +2,8 @@ extends Control
 
 var flavor
 
-onready var flavor_text = $NinePatchRect/MarginContainer/RichTextLabel
-onready var tween = $NinePatchRect/MarginContainer/Tween
+onready var flavor_text = $MarginContainer/CenterContainer/RichTextLabel
+onready var tween = $MarginContainer/CenterContainer/Tween
 
 func _ready() -> void:
 	flavor_text.bbcode_text = flavor
