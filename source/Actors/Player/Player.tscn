@@ -1,9 +1,9 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://source/Actors/Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://source/Actors/Player/PlayerFSM.gd" type="Script" id=2]
 [ext_resource path="res://assets/Player/rowbit-move.png" type="Texture" id=3]
-[ext_resource path="res://assets/Player/Animations/rowbit_move_right.tres" type="Animation" id=4]
+[ext_resource path="res://assets/Audio/SFX/breaks.wav" type="AudioStream" id=4]
 [ext_resource path="res://assets/Player/Animations/rowbit_move_left.tres" type="Animation" id=5]
 [ext_resource path="res://assets/Player/Animations/rowbit_idle.tres" type="Animation" id=6]
 [ext_resource path="res://source/Objects/Grappling/GrapplingHook.tscn" type="PackedScene" id=7]
@@ -11,6 +11,7 @@
 [ext_resource path="res://icon.png" type="Texture" id=9]
 [ext_resource path="res://source/UI/GridSnapper/GridSnapper.tscn" type="PackedScene" id=10]
 [ext_resource path="res://assets/Player/rowbit-ouchie-Sheet.png" type="Texture" id=11]
+[ext_resource path="res://assets/Audio/SFX/treads.ogg" type="AudioStream" id=12]
 
 [sub_resource type="CapsuleShape2D" id=5]
 radius = 2.99999
@@ -73,9 +74,102 @@ tracks/3/keys = {
 "values": [ true ]
 }
 
+[sub_resource type="Animation" id=11]
+resource_name = "rowbit_move_right"
+length = 1.104
+loop = true
+step = 0.138
+tracks/0/type = "value"
+tracks/0/path = NodePath("PlayerSprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 3 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("PlayerSprite:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 4 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("PlayerSprite:flip_h")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("PlayerSprite:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.138, 0.276, 0.414, 0.552, 0.69, 0.828, 0.966 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 0, 1, 2, 3 ]
+}
+tracks/4/type = "audio"
+tracks/4/path = NodePath("AnimationPlayers/AudioStreamPlayer2D")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 12 )
+} ],
+"times": PoolRealArray( 0 )
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("AnimationPlayers/AudioStreamPlayer2D:volume_db")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("AnimationPlayers/AudioStreamPlayer2D:pitch_scale")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 1.0 ]
+}
+
 [sub_resource type="Animation" id=9]
 resource_name = "rowbit_ouchie"
-length = 0.4
+length = 0.32
+step = 0.08
 tracks/0/type = "value"
 tracks/0/path = NodePath("PlayerSprite:texture")
 tracks/0/interp = 1
@@ -107,10 +201,36 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"times": PoolRealArray( 0, 0.08, 0.16, 0.24 ),
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 0, 1, 2, 3 ]
+}
+tracks/3/type = "audio"
+tracks/3/path = NodePath("AnimationPlayers/AudioStreamPlayer2D")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 4 )
+} ],
+"times": PoolRealArray( 0 )
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("AnimationPlayers/AudioStreamPlayer2D:volume_db")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ -30.0 ]
 }
 
 [sub_resource type="Animation" id=10]
@@ -157,7 +277,38 @@ tracks/2/keys = {
 [sub_resource type="Animation" id=8]
 resource_name = "hurt"
 
+[sub_resource type="AnimationNodeAnimation" id=12]
+animation = "rowbit_idle"
+
+[sub_resource type="AnimationNodeAnimation" id=13]
+animation = "rowbit_move_left"
+
+[sub_resource type="AnimationNodeAnimation" id=14]
+animation = "rowbit_move_right"
+
+[sub_resource type="AnimationNodeAnimation" id=15]
+animation = "rowbit_ouchie"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=16]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=17]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=18]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=19]
+switch_mode = 2
+auto_advance = true
+
 [sub_resource type="AnimationNodeStateMachine" id=2]
+states/rowbit_idle/node = SubResource( 12 )
+states/rowbit_idle/position = Vector2( 620, 66 )
+states/rowbit_move_left/node = SubResource( 13 )
+states/rowbit_move_left/position = Vector2( 423, 66 )
+states/rowbit_move_right/node = SubResource( 14 )
+states/rowbit_move_right/position = Vector2( 821, 66 )
+states/rowbit_ouchie/node = SubResource( 15 )
+states/rowbit_ouchie/position = Vector2( 620, 182 )
+transitions = [ "rowbit_idle", "rowbit_move_left", SubResource( 16 ), "rowbit_idle", "rowbit_move_right", SubResource( 17 ), "rowbit_idle", "rowbit_ouchie", SubResource( 18 ), "rowbit_ouchie", "rowbit_idle", SubResource( 19 ) ]
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=3]
 
@@ -223,7 +374,7 @@ root_node = NodePath("../..")
 anims/RESET = SubResource( 4 )
 anims/rowbit_idle = ExtResource( 6 )
 anims/rowbit_move_left = ExtResource( 5 )
-anims/rowbit_move_right = ExtResource( 4 )
+anims/rowbit_move_right = SubResource( 11 )
 anims/rowbit_ouchie = SubResource( 9 )
 anims/rowbit_transition = SubResource( 10 )
 
@@ -235,13 +386,17 @@ tree_root = SubResource( 2 )
 anim_player = NodePath("../SpritePlayer")
 parameters/playback = SubResource( 3 )
 
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="AnimationPlayers"]
+stream = ExtResource( 4 )
+volume_db = -30.0
+
 [node name="Timers" type="Node2D" parent="."]
 
 [node name="iFrameTimer" type="Timer" parent="Timers"]
 one_shot = true
 
 [node name="OuchieTimer" type="Timer" parent="Timers"]
-wait_time = 0.1
+wait_time = 0.32
 one_shot = true
 
 [node name="MainCamera" type="Camera2D" parent="."]

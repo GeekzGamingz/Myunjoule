@@ -1,0 +1,23 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/sfx_movement_jump10_landing.wav-fe2f014a6e34c70e2119daaa45b4ba94.sample"
+
+[deps]
+
+source_file="res://assets/Audio/SFX/Retro-JuhaniJunkala/Movement/Jumping and Landing/sfx_movement_jump10_landing.wav"
+dest_files=[ "res://.import/sfx_movement_jump10_landing.wav-fe2f014a6e34c70e2119daaa45b4ba94.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

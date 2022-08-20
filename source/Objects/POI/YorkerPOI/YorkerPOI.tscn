@@ -5,4 +5,4 @@
 
 [node name="YorkerPOI" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
-flavor = "locals[YORKER]"
+flavor = "[color=black]locals[color=yellow][[color=red]YORKER[color=yellow]]"
