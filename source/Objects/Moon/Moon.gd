@@ -59,12 +59,12 @@ func moonOrbit(delta):
 	get_parent().rotation += rotation_speed * delta
 func timedLow():
 	tideAnimator.play("low")
-	get_tree().root.get_node("Moon/YSort/Beach/AnimationPlayers/WavePlayer").play("idle_low")
+	get_tree().root.get_node("Moon/AnimationPlayers/WavePlayer").play("idle_low")
 func timedMid():
 	tideAnimator.play("mid")
-	get_tree().root.get_node("Moon/YSort/Beach/AnimationPlayers/WavePlayer").play("idle_mid")
+	get_tree().root.get_node("Moon/AnimationPlayers/WavePlayer").play("idle_mid")
 func timedHigh():
 	tideAnimator.play("high")
-	get_tree().root.get_node("Moon/YSort/Beach/AnimationPlayers/WavePlayer").play("idle_high")
+	get_tree().root.get_node("Moon/AnimationPlayers/WavePlayer").play("idle_high")
 func dayDrain():
 	player.drainEnergy(5)

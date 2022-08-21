@@ -24,6 +24,8 @@ var items = {
 #OnReady Variables
 onready var iFrameTimer: Timer = $Timers/iFrameTimer
 onready var ouchieTimer: Timer = $Timers/OuchieTimer
+onready var deactivatedTimer: Timer = $Timers/DeactivatedTimer
+
 onready var gridSnapper: Area2D = $GridSnapper
 onready var energy = max_energy setget set_energy
 #Animation Nodes
@@ -149,7 +151,6 @@ func _on_PlayerArea_area_entered(area: Area2D) -> void:
 #Deactivation
 func deactivate():
 	is_deactivating = true
-	self.global_position = Vector2(-500, 100)
-	chargeEnergy(25)
+	get_tree().root.get_node("Moon/YSort/UI/UserInterface").change_scene()
 	
 

@@ -10,7 +10,9 @@ var animations = {
 	MOVE_LEFT  = "rowbit_move_left",
 	MOVE_RIGHT = "rowbit_move_right",
 	OUCHIE = "rowbit_ouchie",
-	TRANSITION = "rowbit_transition"
+	TRANSITION = "rowbit_transition",
+	DEACTIVATING = "deactivating",
+	DEACTIVATED = "deactivated"
 }
 
 #-------------------------------------------------------------------------------------------------#
@@ -26,6 +28,8 @@ func _ready() -> void:
 	stateAdd("dialog")
 	stateAdd("ouchie")
 	stateAdd("transition")
+	stateAdd("deactivatING")
+	stateAdd("deactivatED")
 	# Set the starting state
 	call_deferred("stateSet",states.idle)
 
@@ -51,7 +55,8 @@ func _input(event: InputEvent) -> void:
 func stateLogic(delta):
 	if parent.is_falling:
 		parent.apply_gravity(delta)
-	if ![states.dialog, states.transition, states.ouchie].has(state):
+	if ![states.dialog, states.transition, states.ouchie,
+		 states.deactivatING, states.deactivatED].has(state):
 		parent.handle_movement()
 	parent.apply_movement()
 
@@ -83,8 +88,11 @@ func transitions(delta):
 		states.transition:
 			if !parent.inTransition: return states.idle
 		
-		states.deactivate:
-			pass
+		states.deactivatING:
+			if !parent.is_deactivating: return states.deactivatED
+		
+		states.deactivatED:
+			if !parent.deactivatedTimer.is_stopped(): return states.idle
 			
 	return null
 #Enter State
@@ -115,8 +123,17 @@ func stateEnter(newState, oldState):
 		states.transition:
 			parent.spritePlayer.play(animations.TRANSITION)
 		
-		states.deactivate:
-			pass
+		states.deactivatING:
+			parent.motion = Vector2.ZERO
+			parent.spritePlayer.play(animations.DEACTIVATING)
+			yield(parent.spritePlayer, "animation_finished")
+			parent.is_deactivating = false
+			parent.global_position = Vector2(-500, 100)
+			parent.chargeEnergy(25)
+		states.deactivatED:
+			parent.motion = Vector2.ZERO
+			parent.spritePlayer.play(animations.DEACTIVATED)
+			parent.deactivatedTimer.start()
 #Exit State
 # warning-ignore:unused_argument
 func stateExit(oldState, newState):
@@ -134,6 +151,7 @@ func assign_animation():
 
 #-------------------------------------------------------------------------------------------------#
 func basicMovement():
+	if parent.is_deactivating: return states.deactivatING
 	if parent.inTransition: return states.transition
 	if parent.is_falling: return states.fall
 	if parent.talking.is_talking: return states.dialog
