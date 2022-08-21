@@ -12,7 +12,10 @@ font_data = ExtResource( 2 )
 [node name="FlavorDialog" type="VBoxContainer"]
 anchor_right = 0.073
 anchor_bottom = 0.025
-margin_right = -40.752
+margin_left = -35.0
+margin_top = -30.0
+margin_right = -39.752
+margin_bottom = -25.0
 script = ExtResource( 3 )
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
