@@ -13,6 +13,7 @@ var current_phase = 0
 var dialog_index = 0
 var finished = false
 var making_choice = false
+var reset = false
 
 signal dialog_finished
 signal dialog_phase_done(phase_completed)
@@ -49,7 +50,6 @@ var dialog = {
 }
 
 func _ready() -> void:
-	print_debug("Total dialog phases: ", total_phases)
 	load_dialog()
 	$Choice1.visible = false
 	$Choice2.visible = false
@@ -68,19 +68,19 @@ func _input(_event: InputEvent) -> void:
 		if Input.is_action_just_pressed("select_choice_2"):
 			pick_choice(2)
 
+func check_requirements() -> bool:
+	if dialog[current_phase].required_flag != null:
+		return Globals.flags[dialog[current_phase].required_flag] == true
+	else:
+		return true
+
 func load_dialog(dialog_text: String = ''):
-	print_debug("Dialog index: ", dialog_index)
 	if current_phase >= total_phases:
 		emit_signal("dialog_finished")
 		queue_free()
 		return
-	var requirements_met
-	if dialog[current_phase].required_flag != null:
-		requirements_met = Globals.flags[dialog[current_phase].required_flag] == true
-	else:
-		requirements_met = true
 	
-	if (not making_choice and requirements_met and dialog_index < dialog[current_phase].dialogue.size()) or dialog_text:
+	if (not making_choice and dialog_index < dialog[current_phase].dialogue.size()) or dialog_text != '':
 		finished = false
 		if dialog_text != '':
 			dialogText.bbcode_text = dialog_text
@@ -93,26 +93,26 @@ func load_dialog(dialog_text: String = ''):
 			load_choice2()
 		
 		dialogText.percent_visible = 0
-		if dialog[current_phase].start_flag != null and Globals.flags[dialog[current_phase].start_flag] == null:
-			print_debug("Starting flag: ", dialog[current_phase].start_flag)
-			Globals.flags[dialog[current_phase].start_flag] = false
 		textTween.interpolate_property(dialogText, "percent_visible",
 			0, 1, 1.5, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 		textTween.start()
-		
 	
-	var reset = false
 	if dialog_index >= dialog[current_phase].dialogue.size():
-		print_debug("Emitting: dialog_phase_done")
 		emit_signal("dialog_phase_done", current_phase)
 		dialog_index = 0
 		reset = true
+		
+		if dialog[current_phase].start_flag != null and Globals.flags[dialog[current_phase].start_flag] == null:
+			Globals.flags[dialog[current_phase].start_flag] = false
+		
 		if current_phase < total_phases:
 			current_phase += 1
 	
 	if dialog_text == '' and not making_choice and not reset:
+		var before = dialog_index
 		dialog_index += 1
-	
+	elif reset:
+		reset = false
 
 func load_choice1():
 	$Choice1.visible = true
@@ -133,7 +133,6 @@ func load_choice2():
 	textTween.start()
 
 func pick_choice(choice_number: int):
-	making_choice = false
 	dialog_index += 1
 	$Choice1.visible = false
 	$Choice2.visible = false
@@ -141,6 +140,7 @@ func pick_choice(choice_number: int):
 		load_dialog(dialog[current_phase].choices[0].response_text)
 	if choice_number == 2:
 		load_dialog(dialog[current_phase].choices[1].response_text)
+	making_choice = false
 
 func _on_TextTween_tween_completed(_object: Object, _key: NodePath) -> void:
 	finished = true
