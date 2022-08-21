@@ -15,7 +15,8 @@ var animations = {
 	DEACTIVATED = "deactivated",
 	GRAPPLE_PREP = "rowbit_grappling_prep",
 	GRAPPLE_LAND = "rowbit_grappling_land",
-	GRAPPLE_HARDLAND = "rowbit_grappling_hardlanding"
+	GRAPPLE_HARDLAND = "rowbit_grappling_hardlanding",
+	SLEP = "rowbit_slep"
 }
 
 #-------------------------------------------------------------------------------------------------#
@@ -33,6 +34,7 @@ func _ready() -> void:
 	stateAdd("transition")
 	stateAdd("deactivatING")
 	stateAdd("deactivatED")
+	stateAdd("slep")
 	# Set the starting state
 	call_deferred("stateSet",states.idle)
 
@@ -59,7 +61,7 @@ func stateLogic(delta):
 	if parent.is_falling:
 		parent.apply_gravity(delta)
 	if ![states.dialog, states.transition, states.ouchie,
-		 states.deactivatING, states.deactivatED].has(state):
+		 states.deactivatING, states.deactivatED, states.slep].has(state):
 		parent.handle_movement()
 	parent.apply_movement()
 
@@ -96,6 +98,9 @@ func transitions(delta):
 		
 		states.deactivatED:
 			if !parent.deactivatedTimer.is_stopped(): return states.idle
+			
+		states.slep:
+			if !parent.is_slep: return states.idle
 			
 	return null
 #Enter State
@@ -146,10 +151,25 @@ func stateEnter(newState, oldState):
 			parent.is_deactivating = false
 			parent.global_position = Vector2(-500, 100)
 			parent.chargeEnergy(25)
+			
 		states.deactivatED:
 			parent.motion = Vector2.ZERO
 			parent.playBack.start(animations.DEACTIVATED)
 			parent.deactivatedTimer.start()
+		
+		states.slep:
+			var moon = get_tree().root.get_node("Moon/ParallaxBackground/ParallaxLayer2/MoonAnchor/")
+			moon.get_node("Moon/AnimationPlayers/SpritePlayer").playback_speed = 25
+			parent.motion = Vector2.ZERO
+			parent.playBack.start(animations.SLEP)
+			moon.get_node("Moon").rotation_speed += 5
+			yield(get_tree().create_timer(5), "timeout")
+			get_tree().root.get_node("Moon/YSort/UI/UserInterface").change_scene()
+			yield(get_tree().create_timer(1), "timeout")
+			moon.get_node("Moon").rotation_speed -= 5
+			moon.get_node("Moon/AnimationPlayers/SpritePlayer").playback_speed = 1
+			parent.chargeEnergy(100)
+			parent.is_slep = false
 #Exit State
 # warning-ignore:unused_argument
 func stateExit(oldState, newState):
@@ -172,6 +192,7 @@ func assign_animation():
 
 #-------------------------------------------------------------------------------------------------#
 func basicMovement():
+	if parent.is_slep: return states.slep
 	if parent.is_deactivating: return states.deactivatING
 	if parent.inTransition: return states.transition
 	if parent.is_falling: return states.fall
