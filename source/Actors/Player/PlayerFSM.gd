@@ -118,7 +118,15 @@ func stateEnter(newState, oldState):
 			parent.spritePlayer.play(animations.OUCHIE)
 		
 		states.grappling:
+			var fall_starts = get_tree().get_nodes_in_group("fall_start")
+			for fall_start in fall_starts:
+				fall_start.set_deferred("monitoring", false)
+			parent.story = 1
+			parent.set_story()
 			parent.set_collision_disabled(true)
+		
+		states.fall:
+			parent.story = 0
 		
 		states.transition:
 			parent.spritePlayer.play(animations.TRANSITION)
@@ -139,7 +147,12 @@ func stateEnter(newState, oldState):
 func stateExit(oldState, newState):
 	match(oldState):
 		states.grappling:
+			var fall_starts = get_tree().get_nodes_in_group("fall_start")
+			for fall_start in fall_starts:
+				fall_start.set_deferred("monitoring", true)
 			parent.set_collision_disabled(false)
+		states.fall:
+			parent.set_story()
 
 
 #-------------------------------------------------------------------------------------------------#

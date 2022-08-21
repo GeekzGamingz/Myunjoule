@@ -2,8 +2,8 @@ extends Resource
 
 var dialog = {
 	0: {
-		required_flag = '',
-		start_flag = '',
+		required_flag = null,
+		start_flag = null,
 		dialogue = [
 			'[color=black]This is a test of the BB Code format.\nI can fit a total of 6 lines of dialog and have it all\nlook nice and neat and centered and such.\nPretty nifty...\nDon\'t you think?\nWell, I do.',
 			'[color=black]I am attempting to code my own dialog box so that I don\'t need to unravel other programmers\' codes and implement my own system!!',
@@ -26,5 +26,5 @@ var dialog = {
 			},
 		},
 		choice_index = 4
-	}
+	},
 }

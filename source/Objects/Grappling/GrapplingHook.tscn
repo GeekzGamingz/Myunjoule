@@ -3,7 +3,7 @@
 [ext_resource path="res://source/Objects/Grappling/GrapplingHook.gd" type="Script" id=1]
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 90.0
+radius = 77.0
 
 [node name="GrapplingHook" type="Area2D"]
 script = ExtResource( 1 )

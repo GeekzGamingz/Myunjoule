@@ -20,10 +20,10 @@ texture = ExtResource( 2 )
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 polygon = PoolVector2Array( -36, 18, -40, 18, -41, 17, -40, 15, -38, 13, -37, 11, -35, 10, -33, 8, -30, 7, -26, 7, -24, 5, -22, 3, -22, 1, -21, -1, -18, -2, -16, -3, -14, -5, -12, -5, -8, -5, -3, -4, 0, -4, 3, -4, 6, -3, 9, -1, 12, 0, 13, 1, 13, 2, 11, 3, 9, 4, 8, 6, 8, 8, 9, 9, 14, 13, 17, 18, 18, 21, 17, 23, 15, 23, 13, 21, 10, 19, 8, 18, 5, 15, 4, 12, 3, 11, -2, 9, -5, 8, -9, 7, -12, 7, -14, 7, -16, 7, -19, 8, -23, 11, -27, 13, -31, 14, -34, 16 )
 
-[node name="Story2" type="Area2D" parent="."]
+[node name="Story2" type="StaticBody2D" parent="."]
 position = Vector2( 0, -96 )
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Story2"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Story2" groups=["second_story"]]
 position = Vector2( 22, 32 )
 polygon = PoolVector2Array( -75, 10, -89, 16, -101, 21, -117, 21, -130, 14, -133, 2, -132, -10, -123, 0, -121, 7, -117, 13, -110, 14, -98, 11, -91, 7, -84, 4, -71, 0, -63, -3, -54, -4, -46, -6, -42, -11, -39, -14, 35, -14, 33, -18, 25, -21, 16, -23, 10, -27, 5, -31, -45, -32, -57, -25, -66, -20, -75, -17, -86, -14, -96, -13, -111, -11, -119, -8, -122, -4, -123, 0, -132, -10, -124, -16, -100, -21, -48, -42, 9, -42, 27, -29, 47, -23, 50, -6, -29, -6, -41, 1, -58, 4 )
 disabled = true
@@ -36,4 +36,3 @@ z_index = 10
 texture = ExtResource( 4 )
 
 [node name="TweehousPOI" parent="." instance=ExtResource( 1 )]
-flavor = "Unknown[???]"

@@ -8,5 +8,3 @@ export var flavor = 'Unknown[???]'
 
 func activate() -> void:
 	pass
-
-# temp

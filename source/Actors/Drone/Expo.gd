@@ -15,7 +15,6 @@ onready var rowbit = get_parent().get_node("Player")
 
 var flavor
 var flavor_shown = false
-#var dialog_scene = preload("res://source/UI/Dialog/DialogInterface.tscn")
 var flavor_scene = preload("res://source/Actors/Drone/ExpoFlavor.tscn")
 
 func _ready() -> void:
@@ -35,7 +34,8 @@ func _input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("activate") and alert:
 		alert = false
 		selected_poi.activate()
-		flavor.queue_free()
+		if flavor:
+			flavor.queue_free()
 		set_deferred("flavor_shown", false)
 
 func show_flavor_text() -> void:

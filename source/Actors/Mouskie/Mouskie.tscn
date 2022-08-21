@@ -6,7 +6,7 @@
 [ext_resource path="res://assets/NPCs/Mouskie/mouskiesniffle-Sheet.png" type="Texture" id=4]
 [ext_resource path="res://assets/NPCs/Mouskie/mouskie-Bounce-Sheet.png" type="Texture" id=5]
 [ext_resource path="res://assets/NPCs/Mouskie/mouskie-Attack-Hit-Effect-Sheet.png" type="Texture" id=6]
-[ext_resource path="res://source/Actors/Drone/ExpoPOI.tscn" type="PackedScene" id=7]
+[ext_resource path="res://source/Objects/POI/MouskiePOI/MouskiePOI.tscn" type="PackedScene" id=7]
 [ext_resource path="res://assets/Audio/SFX/laser6.wav" type="AudioStream" id=8]
 [ext_resource path="res://assets/Audio/SFX/jump1.wav" type="AudioStream" id=9]
 [ext_resource path="res://assets/Audio/SFX/footstepsloop3_fast.wav" type="AudioStream" id=10]
@@ -332,7 +332,7 @@ height = 28.0
 [sub_resource type="CircleShape2D" id=14]
 radius = 14.0357
 
-[node name="Mouskie" type="KinematicBody2D" groups=["POI"]]
+[node name="Mouskie" type="KinematicBody2D"]
 collision_layer = 4
 collision_mask = 35
 script = ExtResource( 2 )
@@ -416,9 +416,6 @@ position = Vector2( 24, 3 )
 shape = SubResource( 14 )
 disabled = true
 
-[node name="ExpoPOI" parent="." instance=ExtResource( 7 )]
-position = Vector2( 0, -19 )
-
 [node name="Timers" type="Node2D" parent="."]
 
 [node name="idleTimer" type="Timer" parent="Timers"]
@@ -428,6 +425,8 @@ one_shot = true
 [node name="attackTimer" type="Timer" parent="Timers"]
 wait_time = 0.96
 one_shot = true
+
+[node name="MouskiePOI" parent="." instance=ExtResource( 7 )]
 
 [connection signal="area_entered" from="Sight" to="." method="_on_Sight_area_entered"]
 [connection signal="area_exited" from="Sight" to="." method="_on_Sight_area_exited"]
