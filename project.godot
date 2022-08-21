@@ -14,6 +14,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://source/Actors/Actor.gd"
 }, {
+"base": "POI",
+"class": "Bottle",
+"language": "GDScript",
+"path": "res://source/Objects/POI/BottlePOI/BottlePOI.gd"
+}, {
 "base": "Area2D",
 "class": "DialogHandler",
 "language": "GDScript",
@@ -31,6 +36,7 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "Actor": "",
+"Bottle": "",
 "DialogHandler": "",
 "POI": "",
 "StateMachine": ""

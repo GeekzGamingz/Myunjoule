@@ -69,7 +69,7 @@ anims/stars = SubResource( 6 )
 [node name="BeachObjects" type="YSort" parent="."]
 
 [node name="Mouskie" parent="BeachObjects" instance=ExtResource( 8 )]
-position = Vector2( 272, 22 )
+position = Vector2( 432, 52 )
 
 [node name="Yorker" parent="BeachObjects" instance=ExtResource( 2 )]
 position = Vector2( -320, 62 )
