@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=2]
+[gd_scene load_steps=33 format=2]
 
 [ext_resource path="res://assets/Foregrounds/Town/area2-Midground-Object-bush2.png" type="Texture" id=1]
 [ext_resource path="res://assets/Foregrounds/Town/area2-Midground.png" type="Texture" id=2]
@@ -26,6 +26,9 @@
 [ext_resource path="res://source/Objects/Tweehous/Tweehous.tscn" type="PackedScene" id=24]
 [ext_resource path="res://source/Actors/Latch/Latch.tscn" type="PackedScene" id=25]
 [ext_resource path="res://source/Actors/Raptoid/Raptoid.tscn" type="PackedScene" id=26]
+[ext_resource path="res://source/Actors/RoboGnome/RoboGnome.tscn" type="PackedScene" id=27]
+[ext_resource path="res://source/Actors/StrawberryShork/StrawberryShork.tscn" type="PackedScene" id=28]
+[ext_resource path="res://assets/Foregrounds/Town/area2-Midground-Object-Stall.png" type="Texture" id=29]
 
 [sub_resource type="Animation" id=8]
 length = 0.001
@@ -35,6 +38,10 @@ resource_name = "stars"
 length = 1.2
 loop = true
 step = 0.2
+
+[sub_resource type="CapsuleShape2D" id=10]
+radius = 6.0
+height = 32.0
 
 [node name="Town" type="YSort"]
 __meta__ = {
@@ -288,6 +295,19 @@ texture = ExtResource( 22 )
 polygon = PoolVector2Array( -65, -111, -57, -92, -9, -92, -19, -110, -33, -110, -65, -111, -74, -109, -79, -117, -12, -117, 5, -85, -64, -85, -74, -109 )
 disabled = true
 
+[node name="Stall" type="StaticBody2D" parent="TownObjects"]
+position = Vector2( -542, 68 )
+collision_mask = 3
+
+[node name="Sprite" type="Sprite" parent="TownObjects/Stall"]
+position = Vector2( 0, -11 )
+texture = ExtResource( 29 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TownObjects/Stall"]
+position = Vector2( -2, 3 )
+rotation = 1.5708
+shape = SubResource( 10 )
+
 [node name="Tweehouse" parent="TownObjects" instance=ExtResource( 24 )]
 position = Vector2( 250, 43 )
 
@@ -295,8 +315,14 @@ position = Vector2( 250, 43 )
 position = Vector2( 382.5, 27.5 )
 
 [node name="Latch" parent="TownObjects" instance=ExtResource( 25 )]
-position = Vector2( -537, 33 )
+position = Vector2( -588, 38 )
+
+[node name="RoboGnome" parent="TownObjects" instance=ExtResource( 27 )]
+position = Vector2( 239, -55 )
 
 [node name="Raptoid" parent="TownObjects" instance=ExtResource( 26 )]
-position = Vector2( 300, -59 )
-z_index = 20
+position = Vector2( 530, 49 )
+
+[node name="StrawberryShork" parent="." instance=ExtResource( 28 )]
+position = Vector2( 322, 35 )
+scale = Vector2( -1, 1 )
