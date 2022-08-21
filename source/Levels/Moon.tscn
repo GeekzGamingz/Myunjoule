@@ -596,7 +596,7 @@ position = Vector2( 0, 605 )
 motion_scale = Vector2( 0.15, 1 )
 
 [node name="Planet" type="Sprite" parent="ParallaxBackground/ParallaxLayer5"]
-position = Vector2( 488.156, -196.012 )
+position = Vector2( 601, -242 )
 texture = ExtResource( 21 )
 
 [node name="ParallaxLayer3" type="ParallaxLayer" parent="ParallaxBackground"]
