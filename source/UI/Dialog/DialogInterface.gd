@@ -69,7 +69,8 @@ func _input(_event: InputEvent) -> void:
 			pick_choice(2)
 
 func check_requirements() -> bool:
-	if dialog[current_phase].required_flag != null:
+	if current_phase < total_phases and dialog[current_phase].required_flag != null:
+		print("Requirements met? ", Globals.flags[dialog[current_phase].required_flag] == true)
 		return Globals.flags[dialog[current_phase].required_flag] == true
 	else:
 		return true
@@ -103,6 +104,7 @@ func load_dialog(dialog_text: String = ''):
 		reset = true
 		
 		if dialog[current_phase].start_flag != null and Globals.flags[dialog[current_phase].start_flag] == null:
+			print("Starting flag: ", dialog[current_phase].start_flag)
 			Globals.flags[dialog[current_phase].start_flag] = false
 		
 		if current_phase < total_phases:

@@ -58,7 +58,6 @@ func _handle_dialog_finished() -> void:
 	queue_free()
 
 func _on_dialog_phase_done(finished_phase: int):
-	print_debug("Dialog phase done: ", finished_phase)
 	if immediate:
 		immediate = false
 	dialog.set_deferred("visible", false)
