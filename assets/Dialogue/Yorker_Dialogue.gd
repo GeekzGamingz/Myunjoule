@@ -73,7 +73,7 @@ var dialog = {
 	2: {
 		# requires PLAYER to have fixed YORKER; finishing this dialogue starts the flag to find the bottle containing EXPO.
 		required_flag = "fixed_yorker",
-		start_flag = "mystery_bottle",
+		start_flag = "expo_bottle",
 		dialogue = [
 			'[color=black]YORKER\n[color=red]"Well, would you look at that? Almost good as new!"',
 			'[color=black]YORKER\n[color=red]"Hey, you\'re pretty good at this. Thanks for the help, yeah?"',
