@@ -314,15 +314,17 @@ position = Vector2( 250, 43 )
 [node name="Fountain" parent="TownObjects" instance=ExtResource( 17 )]
 position = Vector2( 382.5, 27.5 )
 
+[node name="RoboGnome" parent="TownObjects" instance=ExtResource( 27 )]
+position = Vector2( 240, -46 )
+z_index = 20
+
 [node name="Latch" parent="TownObjects" instance=ExtResource( 25 )]
 position = Vector2( -588, 38 )
-
-[node name="RoboGnome" parent="TownObjects" instance=ExtResource( 27 )]
-position = Vector2( 239, -55 )
 
 [node name="Raptoid" parent="TownObjects" instance=ExtResource( 26 )]
 position = Vector2( 530, 49 )
 
-[node name="StrawberryShork" parent="." instance=ExtResource( 28 )]
+[node name="StrawberryShork" parent="TownObjects" instance=ExtResource( 28 )]
 position = Vector2( 322, 35 )
-scale = Vector2( -1, 1 )
+rotation = 3.14159
+scale = Vector2( 1, -1 )

@@ -23,12 +23,13 @@ var items = {
 	"grappling_hook": true,
 }
 #OnReady Variables
+onready var energy = max_energy setget set_energy
 onready var iFrameTimer: Timer = $Timers/iFrameTimer
 onready var ouchieTimer: Timer = $Timers/OuchieTimer
 onready var deactivatedTimer: Timer = $Timers/DeactivatedTimer
-
+#Camera Nodes
+onready var camera: Camera2D = $MainCamera
 onready var gridSnapper: Area2D = $GridSnapper
-onready var energy = max_energy setget set_energy
 #Animation Nodes
 onready var spritePlayer = $AnimationPlayers/SpritePlayer
 onready var fxPlayer = $AnimationPlayers/EffectsPlayer

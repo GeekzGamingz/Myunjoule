@@ -140,6 +140,8 @@ func stateEnter(newState, oldState):
 			parent.playBack.start(animations.DEACTIVATING)
 			yield(get_tree().create_timer(5), "timeout")
 			get_tree().root.get_node("Moon/YSort/UI/UserInterface").change_scene()
+			parent.camera.limit_left = -720
+			parent.camera.limit_right = 720
 			yield(get_tree().create_timer(1), "timeout")
 			parent.is_deactivating = false
 			parent.global_position = Vector2(-500, 100)

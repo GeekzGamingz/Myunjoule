@@ -61,7 +61,7 @@ tracks/2/keys = {
 "values": [ 0, 1, 2, 3, 3, 3, 3, 3 ]
 }
 
-[node name="Raptoid" type="StaticBody2D"]
+[node name="HiddenShiny" type="StaticBody2D"]
 position = Vector2( 0, -10 )
 
 [node name="Sprite" type="Sprite" parent="."]
