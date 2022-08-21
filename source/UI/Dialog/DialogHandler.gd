@@ -27,11 +27,10 @@ func _ready() -> void:
 	UI.add_child(dialog)
 	if immediate:
 		next_dialogue()
-		immediate = false
 
 #Let the dialog know to show the next dialog, closes when done
 func _input(_event: InputEvent) -> void:
-	if Input.is_action_just_pressed("activate") and in_dialogue:
+	if Input.is_action_just_pressed("activate") and immediate and dialog.check_requirements():
 		call_deferred("emit_signal", "next_dialog")
 
 # Virtual functions
@@ -40,7 +39,7 @@ func handle_after_phase_actions(phase: int) -> void:
 
 # Functions
 func next_dialogue() -> void:
-	if in_range or immediate:
+	if (in_range and dialog.check_requirements()) or immediate:
 		set_deferred("in_dialogue", true)
 		dialog.set_deferred("visible", true)
 		if not immediate:
@@ -59,7 +58,8 @@ func _handle_dialog_finished() -> void:
 	queue_free()
 
 func _on_dialog_phase_done(finished_phase: int):
-	print_debug("Dialog phase done: ", finished_phase)
+	if immediate:
+		immediate = false
 	dialog.set_deferred("visible", false)
 	set_deferred("in_dialogue", false)
 	player.talking.is_talking = false

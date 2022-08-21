@@ -10,7 +10,7 @@
 [ext_resource path="res://source/UI/UserInterface.tscn" type="PackedScene" id=8]
 [ext_resource path="res://source/Actors/Drone/Expo.tscn" type="PackedScene" id=9]
 [ext_resource path="res://assets/Audio/Music/MoonJam.ogg" type="AudioStream" id=10]
-[ext_resource path="res://source/Objects/Bottle/Bottle_Buried.tscn" type="PackedScene" id=11]
+[ext_resource path="res://source/UI/Dialog/DialogHandler.tscn" type="PackedScene" id=11]
 [ext_resource path="res://source/Objects/DropPod/DropPod.tscn" type="PackedScene" id=12]
 [ext_resource path="res://assets/Tilesets/Ghost.tres" type="TileSet" id=13]
 [ext_resource path="res://source/Objects/Moon/Moon.tscn" type="PackedScene" id=14]
@@ -19,11 +19,23 @@
 [ext_resource path="res://assets/Foregrounds/Beach/area1-Midtide-Waves-Sheet.png" type="Texture" id=17]
 [ext_resource path="res://assets/Foregrounds/Beach/area1-Lowtide-Waves-Sheet.png" type="Texture" id=18]
 [ext_resource path="res://source/Levels/Beach/KinematicTide.tscn" type="PackedScene" id=19]
-[ext_resource path="res://assets/Backgrounds/sky-meteors-Sheet.png" type="Texture" id=20]
-[ext_resource path="res://assets/Backgrounds/Planet.png" type="Texture" id=21]
+
+[ext_resource path="res://assets/Backgrounds/sky-meteors-Sheet.png" type="Texture" id=27]
+[ext_resource path="res://assets/Backgrounds/Planet.png" type="Texture" id=28]
+[ext_resource path="res://source/Levels/TutorialWall.gd" type="Script" id=20]
+[ext_resource path="res://assets/Objects/Bottle/bottle-buried.png" type="Texture" id=21]
+[ext_resource path="res://source/Objects/POI/BottlePOI/BottlePOI.tscn" type="PackedScene" id=22]
+[ext_resource path="res://source/Levels/Expo_Bottle.gd" type="Script" id=23]
+[ext_resource path="res://assets/Dialogue/Expo_bottle_Dialogue.tres" type="Resource" id=24]
+[ext_resource path="res://source/Objects/Bottle/Bottle.gd" type="Script" id=25]
+[ext_resource path="res://source/Levels/TutorialBarrier.gd" type="Script" id=26]
+
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 120, 12 )
+
+[sub_resource type="CircleShape2D" id=9]
+radius = 5.09902
 
 [sub_resource type="Animation" id=3]
 resource_name = "idle_high"
@@ -817,8 +829,33 @@ scale = Vector2( 1, -1 )
 [node name="DropPod" parent="YSort" instance=ExtResource( 12 )]
 position = Vector2( -622, 79 )
 
-[node name="Bottle_Buried" parent="YSort" instance=ExtResource( 11 )]
+[node name="Bottle_Buried" type="StaticBody2D" parent="YSort"]
 position = Vector2( 159, 68 )
+collision_layer = 8
+script = ExtResource( 25 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="YSort/Bottle_Buried"]
+rotation = 1.5708
+shape = SubResource( 9 )
+
+[node name="Sprite" type="Sprite" parent="YSort/Bottle_Buried"]
+texture = ExtResource( 21 )
+
+[node name="StateOutput" type="Label" parent="YSort/Bottle_Buried"]
+margin_left = -58.0
+margin_top = -36.0
+margin_right = 58.0
+margin_bottom = -22.0
+text = "State"
+align = 1
+valign = 1
+
+[node name="BottlePOI" parent="YSort/Bottle_Buried" instance=ExtResource( 22 )]
+position = Vector2( 0, -9 )
+script = ExtResource( 23 )
+
+[node name="DialogHandler" parent="YSort/Bottle_Buried" instance=ExtResource( 11 )]
+dialog_resource = ExtResource( 24 )
 
 [node name="ActorBarrier" type="StaticBody2D" parent="YSort"]
 position = Vector2( 659, 0 )
@@ -830,7 +867,7 @@ rotation = -1.5708
 shape = SubResource( 1 )
 
 [node name="ActorBarrier2" type="StaticBody2D" parent="YSort"]
-position = Vector2( 313, -94 )
+position = Vector2( 443, -95 )
 collision_layer = 32
 collision_mask = 0
 
@@ -856,6 +893,16 @@ collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="YSort/ActorBarrier4"]
 position = Vector2( -131, 95 )
+rotation = -1.5708
+shape = SubResource( 1 )
+
+[node name="ActorBarrier5" type="StaticBody2D" parent="YSort"]
+position = Vector2( 184, 0 )
+collision_layer = 64
+collision_mask = 0
+script = ExtResource( 26 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="YSort/ActorBarrier5"]
 rotation = -1.5708
 shape = SubResource( 1 )
 
@@ -906,3 +953,21 @@ pause_mode = 2
 stream = ExtResource( 10 )
 volume_db = -30.0
 autoplay = true
+
+[node name="TutorialWall" type="StaticBody2D" parent="."]
+position = Vector2( 217, 6 )
+scale = Vector2( 1, 14.28 )
+collision_layer = 64
+collision_mask = 2
+script = ExtResource( 20 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TutorialWall"]
+
+[node name="TutorialWall2" type="StaticBody2D" parent="."]
+position = Vector2( 362, 6 )
+scale = Vector2( 1, 14.28 )
+collision_layer = 64
+collision_mask = 2
+script = ExtResource( 20 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TutorialWall2"]
