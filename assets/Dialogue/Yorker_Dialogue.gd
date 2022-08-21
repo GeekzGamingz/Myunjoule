@@ -33,12 +33,12 @@ var dialog = {
 			'[color=black]YORKER\n[color=red]"Ah, whatever."',
 			'[color=black]YORKER\n[color=red]"You\'re a repair drone, right? Look, can you fix me up? Been difficult to get around anywhere."',
 			'[color=black]YORKER\n[color=red]"Legs just aren\'t quite what they used to be, ya know?"',
-			'[color=black]YORKER\n[color=red]"Feels like everything\'s gettin\' so [b][shake rate=2 level=2]rusty[/b][/shake]."',
+			'[color=black]YORKER\n[color=red]"Feels like everything\'s gettin\' so [shake rate=2 level=2]rusty[/shake]."',
 		],
 		choices = {
 			0: {
 				choice_text = '[color=blue][center]"sorry, I must have been daydreaming."',
-				response_text = '[color=black]YORKER\n[color=red]"What the heck? \'Daydreaming?\' Pal, you [b]must[/b] be broken somewhere. Machines don\'t dream."',
+				response_text = '[color=black]YORKER\n[color=red]"What the heck? \'Daydreaming?\' Pal, you [wave]must[/wave] be broken somewhere. Machines don\'t dream."',
 			},
 			1: {
 				choice_text = '[color=blue][center]"what do you want?"',
