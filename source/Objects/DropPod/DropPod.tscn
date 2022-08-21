@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://assets/Objects/DropPod/drop-pod_phase1.png" type="Texture" id=1]
 [ext_resource path="res://source/Objects/DropPod/DropPod.gd" type="Script" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://source/UI/Dialog/DialogHandler.tscn" type="PackedScene" id=6]
 [ext_resource path="res://assets/Objects/DropPod/area1-Droppod-Landing-Damage.png" type="Texture" id=7]
 [ext_resource path="res://assets/Dialogue/Drop_Pod_Dialogue.tres" type="Resource" id=8]
+[ext_resource path="res://source/Objects/POI/DropPodPOI/DropPodPOI.tscn" type="PackedScene" id=9]
 
 [sub_resource type="CapsuleShape2D" id=8]
 height = 26.0
@@ -188,3 +189,7 @@ shape = SubResource( 7 )
 
 [node name="DialogHandler" parent="." instance=ExtResource( 6 )]
 dialog_resource = ExtResource( 8 )
+
+[node name="DropPodPOI" parent="." instance=ExtResource( 9 )]
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=2]
+[gd_scene load_steps=62 format=2]
 
 [ext_resource path="res://source/Actors/Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://source/Actors/Player/PlayerFSM.gd" type="Script" id=2]
@@ -19,6 +19,9 @@
 [ext_resource path="res://assets/Player/rowbit_grappling_prep-Sheet.png" type="Texture" id=17]
 [ext_resource path="res://assets/Player/rowbit_grappling_hardlanding_recover-Sheet.png" type="Texture" id=18]
 [ext_resource path="res://assets/Player/rowbit_grappling_land-Sheet.png" type="Texture" id=19]
+[ext_resource path="res://assets/Player/rowbit_slep-Sheet.png" type="Texture" id=20]
+[ext_resource path="res://assets/Audio/SFX/sfx_sound_mechanicalnoise3.wav" type="AudioStream" id=21]
+[ext_resource path="res://assets/Audio/SFX/sfx_sounds_high4.wav" type="AudioStream" id=22]
 
 [sub_resource type="CapsuleShape2D" id=5]
 radius = 2.99999
@@ -254,6 +257,32 @@ tracks/2/keys = {
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 0, 1, 2, 3, 0, 1, 2, 3 ]
+}
+tracks/3/type = "audio"
+tracks/3/path = NodePath("AnimationPlayers/AudioStreamPlayer2D")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 22 )
+} ],
+"times": PoolRealArray( 0 )
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("AnimationPlayers/AudioStreamPlayer2D:volume_db")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ -50.0 ]
 }
 
 [sub_resource type="Animation" id=23]
@@ -497,6 +526,85 @@ tracks/4/keys = {
 "values": [ -35.0 ]
 }
 
+[sub_resource type="Animation" id=39]
+resource_name = "rowbit_slep"
+length = 1.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("PlayerSprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 20 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("PlayerSprite:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 8 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("PlayerSprite:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.5, 0.6, 0.7, 0.8, 1.5, 1.6, 1.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5, 6, 7 ]
+}
+tracks/3/type = "audio"
+tracks/3/path = NodePath("AnimationPlayers/AudioStreamPlayer2D")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 21 )
+} ],
+"times": PoolRealArray( 0.4 )
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("AnimationPlayers/AudioStreamPlayer2D:volume_db")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ -50.853 ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("AnimationPlayers/AudioStreamPlayer2D:pitch_scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 3.86375 ),
+"update": 0,
+"values": [ 0.5 ]
+}
+
 [sub_resource type="Animation" id=10]
 resource_name = "rowbit_transition"
 length = 0.4
@@ -565,6 +673,9 @@ animation = "rowbit_move_right"
 [sub_resource type="AnimationNodeAnimation" id=15]
 animation = "rowbit_ouchie"
 
+[sub_resource type="AnimationNodeAnimation" id=40]
+animation = "rowbit_slep"
+
 [sub_resource type="AnimationNodeAnimation" id=29]
 animation = "rowbit_transition"
 
@@ -619,11 +730,13 @@ states/rowbit_move_right/node = SubResource( 14 )
 states/rowbit_move_right/position = Vector2( 821, 66 )
 states/rowbit_ouchie/node = SubResource( 15 )
 states/rowbit_ouchie/position = Vector2( 620, 182 )
+states/rowbit_slep/node = SubResource( 40 )
+states/rowbit_slep/position = Vector2( 288, -126 )
 states/rowbit_transition/node = SubResource( 29 )
 states/rowbit_transition/position = Vector2( 288, -27 )
 transitions = [ "rowbit_idle", "rowbit_move_left", SubResource( 16 ), "rowbit_idle", "rowbit_move_right", SubResource( 17 ), "rowbit_idle", "rowbit_ouchie", SubResource( 18 ), "rowbit_ouchie", "rowbit_idle", SubResource( 19 ), "rowbit_grappling_prep", "rowbit_grappling_hardlanding", SubResource( 30 ), "rowbit_grappling_hardlanding", "rowbit_idle", SubResource( 31 ), "deactivating", "deactivated", SubResource( 32 ), "rowbit_move_left", "rowbit_idle", SubResource( 33 ), "rowbit_move_right", "rowbit_idle", SubResource( 34 ), "rowbit_move_right", "rowbit_move_left", SubResource( 35 ), "rowbit_move_left", "rowbit_move_right", SubResource( 36 ), "deactivated", "rowbit_idle", SubResource( 37 ), "rowbit_transition", "rowbit_idle", SubResource( 38 ) ]
 start_node = "rowbit_idle"
-graph_offset = Vector2( -7, -274 )
+graph_offset = Vector2( -19, -217 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=3]
 
@@ -698,6 +811,7 @@ anims/rowbit_idle = ExtResource( 6 )
 anims/rowbit_move_left = ExtResource( 5 )
 anims/rowbit_move_right = SubResource( 11 )
 anims/rowbit_ouchie = SubResource( 9 )
+anims/rowbit_slep = SubResource( 39 )
 anims/rowbit_transition = SubResource( 10 )
 
 [node name="EffectsPlayer" type="AnimationPlayer" parent="AnimationPlayers"]
@@ -710,8 +824,9 @@ active = true
 parameters/playback = SubResource( 3 )
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="AnimationPlayers"]
-stream = ExtResource( 13 )
-volume_db = -35.0
+stream = ExtResource( 22 )
+volume_db = -50.0
+pitch_scale = 0.5
 
 [node name="Timers" type="Node2D" parent="."]
 
