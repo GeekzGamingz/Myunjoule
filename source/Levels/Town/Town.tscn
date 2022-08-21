@@ -115,7 +115,7 @@ anims/stars = SubResource( 9 )
 
 [node name="TownObjects" type="YSort" parent="."]
 
-[node name="Bushes" type="Node2D" parent="TownObjects"]
+[node name="Bushes" type="YSort" parent="TownObjects"]
 position = Vector2( 0, 10 )
 
 [node name="LayeredBushes" type="Sprite" parent="TownObjects/Bushes"]
@@ -131,12 +131,11 @@ texture = ExtResource( 7 )
 position = Vector2( -596, 62 )
 texture = ExtResource( 1 )
 
-[node name="Bush3" type="Node2D" parent="TownObjects/Bushes"]
+[node name="Bush3" type="YSort" parent="TownObjects/Bushes"]
 position = Vector2( 536, 55 )
 
 [node name="Bush3" type="Sprite" parent="TownObjects/Bushes/Bush3"]
 position = Vector2( 0, -17 )
-z_index = 1
 texture = ExtResource( 12 )
 
 [node name="House" type="StaticBody2D" parent="TownObjects"]
