@@ -9,7 +9,6 @@ var old_z_move_dir: int = 0
 var snap: Vector2 = Vector2.DOWN
 var is_falling = false
 var is_deactivating = false
-var is_slep = false
 var inTransition = false
 var story = 0
 var talking = {
