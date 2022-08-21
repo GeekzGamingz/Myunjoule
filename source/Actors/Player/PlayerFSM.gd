@@ -12,7 +12,10 @@ var animations = {
 	OUCHIE = "rowbit_ouchie",
 	TRANSITION = "rowbit_transition",
 	DEACTIVATING = "deactivating",
-	DEACTIVATED = "deactivated"
+	DEACTIVATED = "deactivated",
+	GRAPPLE_PREP = "rowbit_grappling_prep",
+	GRAPPLE_LAND = "rowbit_grappling_land",
+	GRAPPLE_HARDLAND = "rowbit_grappling_hardlanding"
 }
 
 #-------------------------------------------------------------------------------------------------#
@@ -100,14 +103,14 @@ func transitions(delta):
 func stateEnter(newState, oldState):
 	match(newState):
 		states.idle:
-			parent.spritePlayer.play(animations.IDLE)
+			parent.playBack.travel(animations.IDLE)
 		
 		states.move_left:
-			parent.spritePlayer.play(animations.MOVE_LEFT)
+			parent.playBack.travel(animations.MOVE_LEFT)
 			parent.gridSnapper.scale.x = 1
 		
 		states.move_right:
-			parent.spritePlayer.play(animations.MOVE_RIGHT)
+			parent.playBack.travel(animations.MOVE_RIGHT)
 			parent.gridSnapper.scale.x = -1
 		
 		states.dialog:
@@ -115,9 +118,10 @@ func stateEnter(newState, oldState):
 		
 		states.ouchie:
 			parent.motion = Vector2.ZERO
-			parent.spritePlayer.play(animations.OUCHIE)
+			parent.playBack.start(animations.OUCHIE)
 		
 		states.grappling:
+			parent.playBack.start(animations.GRAPPLE_PREP)
 			var fall_starts = get_tree().get_nodes_in_group("fall_start")
 			for fall_start in fall_starts:
 				fall_start.set_deferred("monitoring", false)
@@ -129,18 +133,17 @@ func stateEnter(newState, oldState):
 			parent.story = 0
 		
 		states.transition:
-			parent.spritePlayer.play(animations.TRANSITION)
+			parent.playBack.start(animations.TRANSITION)
 		
 		states.deactivatING:
 			parent.motion = Vector2.ZERO
-			parent.spritePlayer.play(animations.DEACTIVATING)
-			yield(parent.spritePlayer, "animation_finished")
+			parent.playBack.start(animations.DEACTIVATING)
 			parent.is_deactivating = false
 			parent.global_position = Vector2(-500, 100)
 			parent.chargeEnergy(25)
 		states.deactivatED:
 			parent.motion = Vector2.ZERO
-			parent.spritePlayer.play(animations.DEACTIVATED)
+			parent.playBack.start(animations.DEACTIVATED)
 			parent.deactivatedTimer.start()
 #Exit State
 # warning-ignore:unused_argument

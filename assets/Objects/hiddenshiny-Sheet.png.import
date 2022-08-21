@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/area3-Plont.png-d5ae340df33e245f5ff5c569ac0edfab.stex"
+path="res://.import/hiddenshiny-Sheet.png-24998dfcdcd64501ff09e5c7130e8141.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://area3-Plont.png"
-dest_files=[ "res://.import/area3-Plont.png-d5ae340df33e245f5ff5c569ac0edfab.stex" ]
+source_file="res://assets/Objects/hiddenshiny-Sheet.png"
+dest_files=[ "res://.import/hiddenshiny-Sheet.png-24998dfcdcd64501ff09e5c7130e8141.stex" ]
 
 [params]
 
