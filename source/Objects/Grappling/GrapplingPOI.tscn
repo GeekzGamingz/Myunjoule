@@ -6,3 +6,4 @@
 [node name="GrapplingPOI" groups=["grappling_point"] instance=ExtResource( 1 )]
 script = ExtResource( 2 )
 flavor = "Vistas[GrapplePoint]"
+story = 1

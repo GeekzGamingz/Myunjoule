@@ -69,7 +69,11 @@ func _input(_event: InputEvent) -> void:
 			pick_choice(2)
 
 func load_dialog(dialog_text: String = ''):
-	print("Dialog index: ", dialog_index)
+	print_debug("Dialog index: ", dialog_index)
+	if current_phase >= total_phases:
+		emit_signal("dialog_finished")
+		queue_free()
+		return
 	var requirements_met
 	if dialog[current_phase].required_flag != null:
 		requirements_met = Globals.flags[dialog[current_phase].required_flag] == true
@@ -109,10 +113,6 @@ func load_dialog(dialog_text: String = ''):
 	if dialog_text == '' and not making_choice and not reset:
 		dialog_index += 1
 	
-	if current_phase >= total_phases:
-		emit_signal("dialog_finished")
-		queue_free()
-		return
 
 func load_choice1():
 	$Choice1.visible = true

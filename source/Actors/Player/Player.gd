@@ -9,6 +9,7 @@ var old_z_move_dir: int = 0
 var snap: Vector2 = Vector2.DOWN
 var is_falling = false
 var inTransition = false
+var story = 0
 var talking = {
 	"is_talking": true,
 	"can_talk": false,
@@ -87,9 +88,18 @@ func handle_grapple_movement() -> void:
 func apply_movement() -> void:
 	motion = move_and_slide(motion, Vector2.UP)
 #Disengage
-func disengage_grappling_hook(_area: Area2D):
-	grappling.is_grappling = false
-	grappling.can_grapple = false
+func disengage_grappling_hook(area: Area2D):
+	if area.is_in_group("grappling_point"):
+		grappling.is_grappling = false
+		grappling.can_grapple = false
+func set_story() -> void:
+	match(story):
+			0:
+				z_index = 0
+			1:
+				z_index = 21
+			2:
+				z_index = 30
 #Falling
 #Set Flag
 func set_is_falling(falling: bool) -> void:
