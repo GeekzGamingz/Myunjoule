@@ -158,8 +158,17 @@ var dialog = {
 			'[color=black]EXPO\n[color=fuchsia]"bo-weep?"',
 			
 			'[color=gray]EXPO will be following you from now on.',
-		]
-			
-		
-	}
+		],
+		choices = {
+			0: {
+				choice_text = null,
+				response_text = null,
+			},
+			1: {
+				choice_text = null,
+				response_text = null,
+			},
+		},
+		choice_index = -1
+	},
 }
