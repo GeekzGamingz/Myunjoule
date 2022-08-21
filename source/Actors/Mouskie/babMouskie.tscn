@@ -1,0 +1,435 @@
+[gd_scene load_steps=22 format=2]
+
+[ext_resource path="res://assets/NPCs/Mouskie/mouskie-Attack-Sheet.png" type="Texture" id=1]
+[ext_resource path="res://source/Actors/Mouskie/babMouskie.gd" type="Script" id=2]
+[ext_resource path="res://source/Actors/Mouskie/babMouskieFSM.gd" type="Script" id=3]
+[ext_resource path="res://assets/NPCs/Mouskie/mouskiesniffle-Sheet.png" type="Texture" id=4]
+[ext_resource path="res://assets/NPCs/Mouskie/mouskie-Bounce-Sheet.png" type="Texture" id=5]
+[ext_resource path="res://assets/NPCs/Mouskie/mouskie-Attack-Hit-Effect-Sheet.png" type="Texture" id=6]
+[ext_resource path="res://source/Objects/POI/MouskiePOI/MouskiePOI.tscn" type="PackedScene" id=7]
+[ext_resource path="res://assets/Audio/SFX/laser6.wav" type="AudioStream" id=8]
+[ext_resource path="res://assets/Audio/SFX/jump1.wav" type="AudioStream" id=9]
+[ext_resource path="res://assets/Audio/SFX/footstepsloop3_fast.wav" type="AudioStream" id=10]
+
+[sub_resource type="CircleShape2D" id=16]
+radius = 5.0
+
+[sub_resource type="Animation" id=12]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("../MouskieSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("../EffectsSprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "attack"
+length = 0.96
+step = 0.04
+tracks/0/type = "value"
+tracks/0/path = NodePath("../MouskieSprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("../MouskieSprite:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 12 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("../MouskieSprite:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.08, 0.16, 0.24, 0.32, 0.4, 0.48, 0.56, 0.64, 0.72, 0.8, 0.88 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("../EffectsSprite:texture")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 6 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("../EffectsSprite:hframes")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 12 ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("../EffectsSprite:frame")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 0.08, 0.16, 0.24, 0.32, 0.4, 0.48, 0.56, 0.64, 0.72, 0.8, 0.88 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 ]
+}
+tracks/6/type = "method"
+tracks/6/path = NodePath("..")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0.48, 0.8 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "attackEnable"
+}, {
+"args": [  ],
+"method": "attackDisable"
+} ]
+}
+tracks/7/type = "audio"
+tracks/7/path = NodePath("AudioStreamPlayer2D")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 9 )
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 8 )
+} ],
+"times": PoolRealArray( 0.04, 0.44 )
+}
+tracks/8/type = "value"
+tracks/8/path = NodePath("AudioStreamPlayer2D:volume_db")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ -30.0 ]
+}
+
+[sub_resource type="Animation" id=8]
+resource_name = "chase"
+length = 0.24
+loop = true
+step = 0.03
+tracks/0/type = "value"
+tracks/0/path = NodePath("../MouskieSprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 5 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("../MouskieSprite:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 4 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("../MouskieSprite:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.06, 0.12, 0.18 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3 ]
+}
+tracks/3/type = "audio"
+tracks/3/path = NodePath("AudioStreamPlayer2D")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 10 )
+} ],
+"times": PoolRealArray( 0.03 )
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("AudioStreamPlayer2D:volume_db")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ -30.0 ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "idle"
+length = 0.96
+loop = true
+step = 0.12
+tracks/0/type = "value"
+tracks/0/path = NodePath("../MouskieSprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 4 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("../MouskieSprite:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 8 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("../MouskieSprite:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.12, 0.24, 0.36, 0.48, 0.6, 0.72, 0.84 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5, 6, 7 ]
+}
+
+[sub_resource type="Animation" id=9]
+resource_name = "walk"
+length = 0.32
+loop = true
+step = 0.08
+tracks/0/type = "value"
+tracks/0/path = NodePath("../MouskieSprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 5 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("../MouskieSprite:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 4 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("../MouskieSprite:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.08, 0.16, 0.24 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3 ]
+}
+
+[sub_resource type="AnimationNodeStateMachine" id=4]
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=5]
+
+[sub_resource type="CapsuleShape2D" id=15]
+radius = 44.0
+height = 92.0
+
+[sub_resource type="CapsuleShape2D" id=13]
+radius = 19.0
+height = 28.0
+
+[sub_resource type="CircleShape2D" id=14]
+radius = 14.0357
+
+[node name="babMouskie" type="KinematicBody2D"]
+scale = Vector2( 0.5, 0.5 )
+collision_layer = 4
+collision_mask = 35
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_vertical_guides_": [ 125.0, 175.0 ]
+}
+
+[node name="babMouskieFSM" type="Node2D" parent="."]
+script = ExtResource( 3 )
+
+[node name="MouskieSprite" type="Sprite" parent="."]
+texture = ExtResource( 5 )
+hframes = 4
+
+[node name="EffectsSprite" type="Sprite" parent="."]
+z_index = 2
+texture = ExtResource( 6 )
+hframes = 12
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 14, 15 )
+rotation = 1.5708
+shape = SubResource( 16 )
+
+[node name="AnimationPlayers" type="Node2D" parent="."]
+
+[node name="SpritePlayer" type="AnimationPlayer" parent="AnimationPlayers"]
+autoplay = "idle"
+anims/RESET = SubResource( 12 )
+anims/attack = SubResource( 7 )
+anims/chase = SubResource( 8 )
+anims/idle = SubResource( 2 )
+anims/walk = SubResource( 9 )
+
+[node name="EffectsPlayer" type="AnimationPlayer" parent="AnimationPlayers"]
+
+[node name="AnimationTree" type="AnimationTree" parent="AnimationPlayers"]
+tree_root = SubResource( 4 )
+anim_player = NodePath("../SpritePlayer")
+parameters/playback = SubResource( 5 )
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="AnimationPlayers"]
+stream = ExtResource( 10 )
+volume_db = -30.0
+
+[node name="StateOutput" type="Label" parent="."]
+margin_left = -58.0
+margin_top = -36.0
+margin_right = 58.0
+margin_bottom = -22.0
+text = "State"
+align = 1
+valign = 1
+
+[node name="Sight" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sight"]
+modulate = Color( 0.556863, 0.0156863, 0.0901961, 1 )
+position = Vector2( 85, 0 )
+rotation = 1.5708
+shape = SubResource( 15 )
+
+[node name="Threat" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Threat"]
+modulate = Color( 1, 0, 0, 1 )
+rotation = 1.5708
+shape = SubResource( 13 )
+
+[node name="HarshWeather" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HarshWeather"]
+modulate = Color( 1, 0, 0, 1 )
+position = Vector2( 24, 3 )
+shape = SubResource( 14 )
+disabled = true
+
+[node name="Timers" type="Node2D" parent="."]
+
+[node name="idleTimer" type="Timer" parent="Timers"]
+wait_time = 1.44
+one_shot = true
+
+[node name="attackTimer" type="Timer" parent="Timers"]
+wait_time = 0.96
+one_shot = true
+
+[node name="MouskiePOI" parent="." instance=ExtResource( 7 )]
+
+[connection signal="area_entered" from="Sight" to="." method="_on_Sight_area_entered"]
+[connection signal="area_exited" from="Sight" to="." method="_on_Sight_area_exited"]
+[connection signal="area_entered" from="Threat" to="." method="_on_Threat_area_entered"]
+[connection signal="area_exited" from="Threat" to="." method="_on_Threat_area_exited"]
