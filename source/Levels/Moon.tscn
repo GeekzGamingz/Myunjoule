@@ -416,15 +416,6 @@ motion_mirroring = Vector2( 1440, 0 )
 [node name="MoonAnchor" parent="ParallaxBackground/ParallaxLayer2" instance=ExtResource( 14 )]
 position = Vector2( 0, 605 )
 
-
-[node name="ParallaxLayer5" type="ParallaxLayer" parent="ParallaxBackground"]
-motion_scale = Vector2( 0.15, 1 )
-
-[node name="Planet" type="Sprite" parent="ParallaxBackground/ParallaxLayer5"]
-position = Vector2( 601, -242 )
-texture = ExtResource( 21 )
-
-
 [node name="ParallaxLayer3" type="ParallaxLayer" parent="ParallaxBackground"]
 visible = false
 z_index = 1
