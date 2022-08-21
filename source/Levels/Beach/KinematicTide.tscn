@@ -1,12 +1,13 @@
 [gd_scene load_steps=2 format=2]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 456, 46 )
+extents = Vector2( 913.75, 46 )
 
 [node name="KinematicTide" type="KinematicBody2D"]
 collision_mask = 7
 __meta__ = {
-"_edit_horizontal_guides_": [ -12.0, -80.0 ]
+"_edit_horizontal_guides_": [ -12.0, -80.0 ],
+"_edit_vertical_guides_": [ 455.0, -455.0, 910.0, -910.0, 912.0 ]
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

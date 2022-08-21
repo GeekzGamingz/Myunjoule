@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=2]
+[gd_scene load_steps=37 format=2]
 
 [ext_resource path="res://source/Actors/Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://source/Actors/Player/PlayerFSM.gd" type="Script" id=2]
@@ -12,6 +12,10 @@
 [ext_resource path="res://source/UI/GridSnapper/GridSnapper.tscn" type="PackedScene" id=10]
 [ext_resource path="res://assets/Player/rowbit-ouchie-Sheet.png" type="Texture" id=11]
 [ext_resource path="res://assets/Audio/SFX/treads.ogg" type="AudioStream" id=12]
+[ext_resource path="res://assets/Audio/SFX/alert.wav" type="AudioStream" id=13]
+[ext_resource path="res://assets/Player/rowbit_deactivating-Sheet.png" type="Texture" id=14]
+[ext_resource path="res://assets/Audio/SFX/sfx_sounds_negative1.wav" type="AudioStream" id=15]
+[ext_resource path="res://assets/Player/rowbit_deactivated-Sheet.png" type="Texture" id=16]
 
 [sub_resource type="CapsuleShape2D" id=5]
 radius = 2.99999
@@ -72,6 +76,129 @@ tracks/3/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 0,
 "values": [ true ]
+}
+
+[sub_resource type="Animation" id=21]
+resource_name = "deactivated"
+length = 1.4
+loop = true
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("PlayerSprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 16 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("PlayerSprite:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 4 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("PlayerSprite:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.05, 0.1, 0.3, 0.35 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 2, 0, 3 ]
+}
+tracks/3/type = "audio"
+tracks/3/path = NodePath("AnimationPlayers/AudioStreamPlayer2D")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 13 )
+} ],
+"times": PoolRealArray( 0 )
+}
+
+[sub_resource type="Animation" id=20]
+resource_name = "deactivating"
+length = 1.5
+step = 0.08
+tracks/0/type = "value"
+tracks/0/path = NodePath("PlayerSprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 14 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("PlayerSprite:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 8 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("PlayerSprite:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.08, 0.16, 0.24, 0.32, 0.4, 0.48, 0.56 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5, 6, 7 ]
+}
+tracks/3/type = "audio"
+tracks/3/path = NodePath("AnimationPlayers/AudioStreamPlayer2D")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 15 )
+} ],
+"times": PoolRealArray( 0 )
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("AnimationPlayers/AudioStreamPlayer2D:volume_db")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ -35.0 ]
 }
 
 [sub_resource type="Animation" id=11]
@@ -151,7 +278,7 @@ tracks/5/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ 0.0 ]
+"values": [ 2.0 ]
 }
 tracks/6/type = "value"
 tracks/6/path = NodePath("AnimationPlayers/AudioStreamPlayer2D:pitch_scale")
@@ -230,7 +357,7 @@ tracks/4/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ -30.0 ]
+"values": [ -35.0 ]
 }
 
 [sub_resource type="Animation" id=10]
@@ -352,8 +479,10 @@ collision_mask = 29
 shape = SubResource( 6 )
 
 [node name="GrapplingHook" parent="." instance=ExtResource( 7 )]
+visible = false
 
 [node name="PoiDetection" type="Area2D" parent="."]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PoiDetection"]
 shape = SubResource( 7 )
@@ -372,6 +501,8 @@ texture = ExtResource( 9 )
 [node name="SpritePlayer" type="AnimationPlayer" parent="AnimationPlayers"]
 root_node = NodePath("../..")
 anims/RESET = SubResource( 4 )
+anims/deactivated = SubResource( 21 )
+anims/deactivating = SubResource( 20 )
 anims/rowbit_idle = ExtResource( 6 )
 anims/rowbit_move_left = ExtResource( 5 )
 anims/rowbit_move_right = SubResource( 11 )
@@ -387,8 +518,8 @@ anim_player = NodePath("../SpritePlayer")
 parameters/playback = SubResource( 3 )
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="AnimationPlayers"]
-stream = ExtResource( 4 )
-volume_db = -30.0
+stream = ExtResource( 15 )
+volume_db = -35.0
 
 [node name="Timers" type="Node2D" parent="."]
 
@@ -397,6 +528,10 @@ one_shot = true
 
 [node name="OuchieTimer" type="Timer" parent="Timers"]
 wait_time = 0.32
+one_shot = true
+
+[node name="DeactivatedTimer" type="Timer" parent="Timers"]
+wait_time = 3.0
 one_shot = true
 
 [node name="MainCamera" type="Camera2D" parent="."]
