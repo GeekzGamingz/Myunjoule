@@ -89,8 +89,8 @@ scale = Vector2( 1.52, 1 )
 z_index = 1
 
 [node name="Fall_End3" parent="Falls" instance=ExtResource( 14 )]
-position = Vector2( 224, 69 )
-scale = Vector2( 1.48, 1 )
+position = Vector2( 235, 79 )
+scale = Vector2( 1.84669, 1.15697 )
 z_index = 1
 
 [node name="Background" type="Sprite" parent="."]
