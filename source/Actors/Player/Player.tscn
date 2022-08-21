@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=2]
+[gd_scene load_steps=57 format=2]
 
 [ext_resource path="res://source/Actors/Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://source/Actors/Player/PlayerFSM.gd" type="Script" id=2]
@@ -135,6 +135,18 @@ tracks/3/keys = {
 "stream": ExtResource( 13 )
 } ],
 "times": PoolRealArray( 0 )
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("AnimationPlayers/AudioStreamPlayer2D:volume_db")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ -35.0 ]
 }
 
 [sub_resource type="Animation" id=20]
@@ -586,6 +598,10 @@ auto_advance = true
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=36]
 
+[sub_resource type="AnimationNodeStateMachineTransition" id=37]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=38]
+
 [sub_resource type="AnimationNodeStateMachine" id=2]
 states/deactivated/node = SubResource( 25 )
 states/deactivated/position = Vector2( 935, -27 )
@@ -605,7 +621,7 @@ states/rowbit_ouchie/node = SubResource( 15 )
 states/rowbit_ouchie/position = Vector2( 620, 182 )
 states/rowbit_transition/node = SubResource( 29 )
 states/rowbit_transition/position = Vector2( 288, -27 )
-transitions = [ "rowbit_idle", "rowbit_move_left", SubResource( 16 ), "rowbit_idle", "rowbit_move_right", SubResource( 17 ), "rowbit_idle", "rowbit_ouchie", SubResource( 18 ), "rowbit_ouchie", "rowbit_idle", SubResource( 19 ), "rowbit_grappling_prep", "rowbit_grappling_hardlanding", SubResource( 30 ), "rowbit_grappling_hardlanding", "rowbit_idle", SubResource( 31 ), "deactivating", "deactivated", SubResource( 32 ), "rowbit_move_left", "rowbit_idle", SubResource( 33 ), "rowbit_move_right", "rowbit_idle", SubResource( 34 ), "rowbit_move_right", "rowbit_move_left", SubResource( 35 ), "rowbit_move_left", "rowbit_move_right", SubResource( 36 ) ]
+transitions = [ "rowbit_idle", "rowbit_move_left", SubResource( 16 ), "rowbit_idle", "rowbit_move_right", SubResource( 17 ), "rowbit_idle", "rowbit_ouchie", SubResource( 18 ), "rowbit_ouchie", "rowbit_idle", SubResource( 19 ), "rowbit_grappling_prep", "rowbit_grappling_hardlanding", SubResource( 30 ), "rowbit_grappling_hardlanding", "rowbit_idle", SubResource( 31 ), "deactivating", "deactivated", SubResource( 32 ), "rowbit_move_left", "rowbit_idle", SubResource( 33 ), "rowbit_move_right", "rowbit_idle", SubResource( 34 ), "rowbit_move_right", "rowbit_move_left", SubResource( 35 ), "rowbit_move_left", "rowbit_move_right", SubResource( 36 ), "deactivated", "rowbit_idle", SubResource( 37 ), "rowbit_transition", "rowbit_idle", SubResource( 38 ) ]
 start_node = "rowbit_idle"
 graph_offset = Vector2( -7, -274 )
 
@@ -694,7 +710,7 @@ active = true
 parameters/playback = SubResource( 3 )
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="AnimationPlayers"]
-stream = ExtResource( 15 )
+stream = ExtResource( 13 )
 volume_db = -35.0
 
 [node name="Timers" type="Node2D" parent="."]

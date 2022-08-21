@@ -161,6 +161,5 @@ func _on_PlayerArea_area_entered(area: Area2D) -> void:
 #Deactivation
 func deactivate():
 	is_deactivating = true
-	get_tree().root.get_node("Moon/YSort/UI/UserInterface").change_scene()
 	
 
