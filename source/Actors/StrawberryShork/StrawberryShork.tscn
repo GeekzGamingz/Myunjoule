@@ -1,9 +1,10 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://assets/Objects/hiddenshiny-Sheet.png" type="Texture" id=1]
+[ext_resource path="res://assets/NPCs/strawberryshork-Sheet.png" type="Texture" id=1]
 
-[sub_resource type="CircleShape2D" id=4]
-radius = 2.23607
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 3.99997
+height = 14.0
 
 [sub_resource type="Animation" id=2]
 length = 0.001
@@ -22,8 +23,9 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id=3]
 resource_name = "idle"
-length = 0.8
+length = 0.6
 loop = true
+step = 0.15
 tracks/0/type = "value"
 tracks/0/path = NodePath("../Sprite:texture")
 tracks/0/interp = 1
@@ -46,7 +48,7 @@ tracks/1/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ 8 ]
+"values": [ 4 ]
 }
 tracks/2/type = "value"
 tracks/2/path = NodePath("../Sprite:frame")
@@ -55,24 +57,23 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.15, 0.3, 0.45 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 0, 1, 2, 3, 3, 3, 3, 3 ]
+"values": [ 0, 1, 2, 3 ]
 }
 
-[node name="HiddenShiny" type="StaticBody2D"]
-position = Vector2( 0, -10 )
-
-[node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 0, 10 )
-texture = ExtResource( 1 )
-hframes = 8
+[node name="StrawberryShork" type="KinematicBody2D"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 0, 12 )
+position = Vector2( 1, 1 )
 rotation = 1.5708
-shape = SubResource( 4 )
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 0, -7 )
+texture = ExtResource( 1 )
+hframes = 4
 
 [node name="AnimationPlayers" type="Node2D" parent="."]
 
