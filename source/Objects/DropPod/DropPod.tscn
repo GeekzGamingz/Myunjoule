@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://assets/Objects/DropPod/drop-pod_phase1.png" type="Texture" id=1]
 [ext_resource path="res://source/Objects/DropPod/DropPod.gd" type="Script" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://assets/Objects/DropPod/drop-pod_phase3.png" type="Texture" id=4]
 [ext_resource path="res://assets/Objects/DropPod/drop-pod_phase4.png" type="Texture" id=5]
 [ext_resource path="res://source/Actors/Drone/ExpoPOI.tscn" type="PackedScene" id=6]
+[ext_resource path="res://assets/Objects/DropPod/area1-Droppod-Landing-Damage.png" type="Texture" id=7]
 
 [sub_resource type="CapsuleShape2D" id=8]
 height = 26.0
@@ -182,3 +183,7 @@ shape = SubResource( 7 )
 
 [node name="ExpoPOI" parent="." instance=ExtResource( 6 )]
 position = Vector2( -4, -25 )
+
+[node name="Area1-Droppod-Landing-Damage" type="Sprite" parent="."]
+position = Vector2( -5.5, 27.5 )
+texture = ExtResource( 7 )

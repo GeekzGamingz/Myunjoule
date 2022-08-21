@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://assets/Foregrounds/Town/area2-Midground-Object-bush2.png" type="Texture" id=1]
 [ext_resource path="res://assets/Foregrounds/Town/area2-Midground.png" type="Texture" id=2]
@@ -24,6 +24,8 @@
 [ext_resource path="res://assets/Foregrounds/Town/GrapplingAreas/area2-Grappling-Bottom-House3.png" type="Texture" id=22]
 [ext_resource path="res://assets/Foregrounds/Town/GrapplingAreas/area2-Grappling-Bottom-House2.png" type="Texture" id=23]
 [ext_resource path="res://source/Objects/Tweehous/Tweehous.tscn" type="PackedScene" id=24]
+[ext_resource path="res://source/Actors/Latch/Latch.tscn" type="PackedScene" id=25]
+[ext_resource path="res://source/Actors/Raptoid/Raptoid.tscn" type="PackedScene" id=26]
 
 [sub_resource type="Animation" id=8]
 length = 0.001
@@ -42,11 +44,11 @@ __meta__ = {
 [node name="GrapplingPoints" type="Node2D" parent="."]
 
 [node name="GrapplingPOI" parent="GrapplingPoints" instance=ExtResource( 8 )]
-position = Vector2( -433, -44 )
+position = Vector2( -421, -17 )
 z_index = 1
 
 [node name="GrapplingPOI2" parent="GrapplingPoints" instance=ExtResource( 8 )]
-position = Vector2( -213, -23 )
+position = Vector2( -206, -15 )
 z_index = 11
 
 [node name="GrapplingPOI3" parent="GrapplingPoints" instance=ExtResource( 8 )]
@@ -54,7 +56,7 @@ position = Vector2( -5, -5 )
 z_index = 1
 
 [node name="GrapplingPOI4" parent="GrapplingPoints" instance=ExtResource( 8 )]
-position = Vector2( 168, -48 )
+position = Vector2( 169, -39 )
 z_index = 11
 
 [node name="Falls" type="Node2D" parent="."]
@@ -134,6 +136,7 @@ position = Vector2( 536, 55 )
 
 [node name="Bush3" type="Sprite" parent="TownObjects/Bushes/Bush3"]
 position = Vector2( 0, -17 )
+z_index = 1
 texture = ExtResource( 12 )
 
 [node name="House" type="StaticBody2D" parent="TownObjects"]
@@ -206,7 +209,7 @@ position = Vector2( -56, -45 )
 
 [node name="Grappling-Mid" type="Sprite" parent="TownObjects/Houses1/Story3/Node2D"]
 position = Vector2( 1, -28 )
-z_index = 20
+z_index = 21
 texture = ExtResource( 19 )
 
 [node name="Houses2" type="StaticBody2D" parent="TownObjects"]
@@ -245,7 +248,7 @@ position = Vector2( 33, -21 )
 
 [node name="Grappling-Mid" type="Sprite" parent="TownObjects/Houses2/Story3/Node2D"]
 position = Vector2( 0, -31 )
-z_index = 20
+z_index = 21
 texture = ExtResource( 21 )
 
 [node name="Node2D2" type="Node2D" parent="TownObjects/Houses2/Story3"]
@@ -291,3 +294,10 @@ position = Vector2( 250, 43 )
 
 [node name="Fountain" parent="TownObjects" instance=ExtResource( 17 )]
 position = Vector2( 382.5, 27.5 )
+
+[node name="Latch" parent="TownObjects" instance=ExtResource( 25 )]
+position = Vector2( -537, 33 )
+
+[node name="Raptoid" parent="TownObjects" instance=ExtResource( 26 )]
+position = Vector2( 300, -59 )
+z_index = 20
