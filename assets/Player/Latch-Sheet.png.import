@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/area3-Midground-Walls.png-b56d1d0b608da1a3b1a803a28fea4568.stex"
+path="res://.import/Latch-Sheet.png-a8a61f768e88338006b4488200015f62.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://area3-Midground-Walls.png"
-dest_files=[ "res://.import/area3-Midground-Walls.png-b56d1d0b608da1a3b1a803a28fea4568.stex" ]
+source_file="res://assets/Player/Latch-Sheet.png"
+dest_files=[ "res://.import/Latch-Sheet.png-a8a61f768e88338006b4488200015f62.stex" ]
 
 [params]
 

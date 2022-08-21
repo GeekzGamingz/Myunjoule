@@ -6,7 +6,7 @@ signal scene_changed()
 #Variables
 #OnReady Variables
 onready var animPlayer = $AnimationPlayers/FtBPlayer
-onready var black = $UserInterface/Black
+onready var black = $Black
 #-------------------------------------------------------------------------------------------------#
 #Change Scene Function
 func change_scene(delay = 0.5):
