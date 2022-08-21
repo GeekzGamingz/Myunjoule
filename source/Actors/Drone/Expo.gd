@@ -42,7 +42,6 @@ func show_flavor_text() -> void:
 	if not flavor_shown:
 		flavor_shown = true
 		flavor = flavor_scene.instance()
-		# flavor.rect_scale = Vector2(0.5, 0.5)
 		flavor.flavor = selected_poi.flavor
 		call_deferred("add_child", flavor)
 
