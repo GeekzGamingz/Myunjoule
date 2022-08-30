@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=2]
+[gd_scene load_steps=38 format=2]
 
 [ext_resource path="res://source/Levels/Beach/Beach.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/Foregrounds/Beach/area1-Foreground-Shadows.png" type="Texture" id=2]
@@ -19,13 +19,13 @@
 [ext_resource path="res://assets/Foregrounds/Beach/area1-Midtide-Waves-Sheet.png" type="Texture" id=17]
 [ext_resource path="res://assets/Foregrounds/Beach/area1-Lowtide-Waves-Sheet.png" type="Texture" id=18]
 [ext_resource path="res://source/Levels/Beach/KinematicTide.tscn" type="PackedScene" id=19]
-[ext_resource path="res://source/Levels/TutorialWall.gd" type="Script" id=20]
 [ext_resource path="res://assets/Objects/Bottle/bottle-buried.png" type="Texture" id=21]
 [ext_resource path="res://source/Objects/POI/BottlePOI/BottlePOI.tscn" type="PackedScene" id=22]
 [ext_resource path="res://source/Levels/Expo_Bottle.gd" type="Script" id=23]
 [ext_resource path="res://assets/Dialogue/Expo_bottle_Dialogue.tres" type="Resource" id=24]
 [ext_resource path="res://source/Objects/Bottle/Bottle.gd" type="Script" id=25]
-[ext_resource path="res://source/Levels/TutorialBarrier.gd" type="Script" id=26]
+[ext_resource path="res://assets/Backgrounds/Planet.png" type="Texture" id=27]
+[ext_resource path="res://assets/Backgrounds/sky-meteors-Sheet.png" type="Texture" id=28]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 120, 12 )
@@ -405,7 +405,48 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ ExtResource( 21 ) ]
+"values": [ ExtResource( 27 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("../ParallaxBackground/ParallaxLayer5/Planet:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 125 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 601, -242 ), Vector2( -594, 245 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("../ParallaxBackground/ParallaxLayer5/Planet:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 125 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+
+[sub_resource type="Animation" id=12]
+resource_name = "idle"
+length = 250.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("../ParallaxBackground/ParallaxLayer5/Planet:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 27 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("../ParallaxBackground/ParallaxLayer5/Planet:position")
@@ -473,7 +514,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ ExtResource( 20 ) ]
+"values": [ ExtResource( 28 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("../ParallaxBackground/ParallaxLayer4/Meteors:hframes")
@@ -506,7 +547,7 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0, 0.6, 3.1, 3.7, 32.5, 33.1 ),
+"times": PoolRealArray( -0.2, 0.6, 3.1, 3.7, 32.5, 33.1 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
 "update": 0,
 "values": [ Vector2( 142, -135 ), Vector2( 0, 0 ), Vector2( -100.024, -140.682 ), Vector2( -252.471, 11.3781 ), Vector2( 358.319, -136.501 ), Vector2( 170.599, 12.5318 ) ]
@@ -536,6 +577,7 @@ motion_mirroring = Vector2( 1440, 0 )
 
 [node name="Meteors" type="Sprite" parent="ParallaxBackground/ParallaxLayer4"]
 position = Vector2( 142, -135 )
+texture = ExtResource( 28 )
 hframes = 7
 
 [node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
@@ -551,7 +593,7 @@ motion_scale = Vector2( 0.15, 1 )
 
 [node name="Planet" type="Sprite" parent="ParallaxBackground/ParallaxLayer5"]
 position = Vector2( 601, -242 )
-texture = ExtResource( 21 )
+texture = ExtResource( 27 )
 
 [node name="ParallaxLayer3" type="ParallaxLayer" parent="ParallaxBackground"]
 visible = false
@@ -784,6 +826,7 @@ shape = SubResource( 9 )
 texture = ExtResource( 21 )
 
 [node name="StateOutput" type="Label" parent="YSort/Bottle_Buried"]
+visible = false
 margin_left = -58.0
 margin_top = -36.0
 margin_right = 58.0
@@ -838,16 +881,6 @@ position = Vector2( -131, 95 )
 rotation = -1.5708
 shape = SubResource( 1 )
 
-[node name="ActorBarrier5" type="StaticBody2D" parent="YSort"]
-position = Vector2( 184, 0 )
-collision_layer = 64
-collision_mask = 0
-script = ExtResource( 26 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="YSort/ActorBarrier5"]
-rotation = -1.5708
-shape = SubResource( 1 )
-
 [node name="WavesR" type="Sprite" parent="."]
 z_index = -1
 texture = ExtResource( 16 )
@@ -880,11 +913,12 @@ autoplay = "idle"
 anims/RESET = SubResource( 6 )
 anims/idle = SubResource( 7 )
 
-[node name="MeteorPlayer" type="AnimationPlayer" parent="AnimationPlayers"]
+[node name="PlanetPlayer" type="AnimationPlayer" parent="AnimationPlayers"]
 autoplay = "RESET"
 anims/RESET = SubResource( 8 )
+anims/idle = SubResource( 12 )
 
-[node name="PlanetPlayer" type="AnimationPlayer" parent="AnimationPlayers"]
+[node name="MeteorPlayer" type="AnimationPlayer" parent="AnimationPlayers"]
 autoplay = "idle"
 anims/RESET = SubResource( 10 )
 anims/idle = SubResource( 11 )
@@ -894,21 +928,3 @@ pause_mode = 2
 stream = ExtResource( 10 )
 volume_db = -30.0
 autoplay = true
-
-[node name="TutorialWall" type="StaticBody2D" parent="."]
-position = Vector2( 217, 6 )
-scale = Vector2( 1, 14.28 )
-collision_layer = 64
-collision_mask = 2
-script = ExtResource( 20 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TutorialWall"]
-
-[node name="TutorialWall2" type="StaticBody2D" parent="."]
-position = Vector2( 362, 6 )
-scale = Vector2( 1, 14.28 )
-collision_layer = 64
-collision_mask = 2
-script = ExtResource( 20 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TutorialWall2"]

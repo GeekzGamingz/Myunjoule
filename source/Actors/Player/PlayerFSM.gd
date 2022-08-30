@@ -162,11 +162,11 @@ func stateEnter(newState, oldState):
 			moon.get_node("Moon/AnimationPlayers/SpritePlayer").playback_speed = 25
 			parent.motion = Vector2.ZERO
 			parent.playBack.start(animations.SLEP)
-			moon.get_node("Moon").rotation_speed += 5
+			moon.get_node("Moon").rotation_speed += 1
 			yield(get_tree().create_timer(5), "timeout")
 			get_tree().root.get_node("Moon/YSort/UI/UserInterface").change_scene()
 			yield(get_tree().create_timer(1), "timeout")
-			moon.get_node("Moon").rotation_speed -= 5
+			moon.get_node("Moon").rotation_speed -= 1
 			moon.get_node("Moon/AnimationPlayers/SpritePlayer").playback_speed = 1
 			parent.chargeEnergy(100)
 			parent.is_slep = false

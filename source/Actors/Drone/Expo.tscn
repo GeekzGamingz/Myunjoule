@@ -64,6 +64,7 @@ disabled = true
 script = ExtResource( 3 )
 
 [node name="StateOutput" type="Label" parent="."]
+visible = false
 margin_left = -19.0
 margin_top = -19.0
 margin_right = 21.0

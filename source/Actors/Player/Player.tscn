@@ -755,6 +755,7 @@ flip_h = true
 hframes = 4
 
 [node name="StateOutput" type="Label" parent="."]
+visible = false
 margin_left = -20.0
 margin_top = -28.0
 margin_right = 20.0
