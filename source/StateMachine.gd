@@ -1,13 +1,13 @@
 extends Node
 class_name StateMachine
-#-------------------------------------------------------------------------------------------------#
+#------------------------------------------------------------------------------#
 #Variables
 var state = null setget stateSet
 var prevState = null
 var states = {}
 #OnReady Variables
 onready var parent = get_parent()
-#-------------------------------------------------------------------------------------------------#
+#------------------------------------------------------------------------------#
 #State Machine
 func _physics_process(delta: float) -> void:
 	if state != null:

@@ -1,0 +1,64 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://assets/Foregrounds/Lab/area3-Foreground-Walls.png" type="Texture" id=1]
+[ext_resource path="res://assets/Foregrounds/Lab/area3-Background.png" type="Texture" id=2]
+[ext_resource path="res://assets/Foregrounds/Lab/area3-Midground-Walls.png" type="Texture" id=3]
+[ext_resource path="res://assets/Foregrounds/Lab/area3-Plont.png" type="Texture" id=4]
+
+[node name="Lab" type="YSort"]
+__meta__ = {
+"_edit_horizontal_guides_": [ -58.0, 52.0 ]
+}
+
+[node name="Background" type="Sprite" parent="."]
+z_index = -3
+texture = ExtResource( 2 )
+
+[node name="Midground" type="Sprite" parent="."]
+z_index = -2
+texture = ExtResource( 3 )
+
+[node name="Foreground" type="Sprite" parent="."]
+z_index = -1
+texture = ExtResource( 1 )
+
+[node name="AnimationPlayers" type="Node2D" parent="."]
+
+[node name="Objects" type="YSort" parent="."]
+
+[node name="Grappling" type="Position2D" parent="Objects"]
+z_index = 1
+
+[node name="Collision" type="Position2D" parent="Objects/Grappling"]
+
+[node name="Story1-TopBorder" type="StaticBody2D" parent="Objects/Grappling/Collision"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Objects/Grappling/Collision/Story1-TopBorder" groups=["Story1"]]
+polygon = PoolVector2Array( -720, -120, 720, -120, 720, 0, 628, 0, 646, 40, 614, 40, 602, 13, 493, 12, 504, 39, 474, 39, 458.139, 0, 428, 0, 428, 23, 392, 23, 388, 19, 388, 14, 372, 14, 372, 37, 355, 37, 351, 33, 351, 26, 342, 26, 338, 22, 338, 5, 349, 5, 349.033, 0, 324, 0, 327, 7, 327, 25, 324, 25, 324, 43, 307, 43, 303, 39, 303, 30, 301, 30, 298, 32, 297, 32, 296, 30, 294, 30, 294, 43, 277, 43, 273, 41, 273, 22, 277, 22, 277, 13, 263, 13, 259, 9, 259.176, 0, 255, 0, 255, 25, 194, 25, 192, 26, 181, 26, 180, 27, 171, 27, 164, 17, 149, 12, 164, 12, 177, 16, 243, 16, 243, 0, -7, 0, -7, 46, -57, 46, -60, 43, -165, 12, -165, 46, -214, 46, -228, 14, -228, 0, -243, 0, -243, 46, -262, 46, -262, 47, -280, 47, -284, 43, -284, 25, -288, 20, -288, 0, -319, 0, -318.929, 23.7018, -332, 24, -332, 31, -349, 31, -353, 27, -353, 24, -374, 24, -379, 19, -379, 13, -403, 13, -407, 9, -407, 0, -473, 0, -454, 40, -485, 40, -499, 10, -637, 10, -624, 38, -655, 38, -671.868, 0, -720, 0 )
+
+[node name="Story1-BottomBorder" type="StaticBody2D" parent="Objects/Grappling/Collision"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Objects/Grappling/Collision/Story1-BottomBorder" groups=["Story1"]]
+position = Vector2( 0, 240 )
+polygon = PoolVector2Array( -720, -120, -625.519, -120, -641, -167, -610, -167, -590.201, -120, -451, -120, -471, -166, -440, -166, -418.049, -120, 508, -120, 490, -163, 521, -163, 540.897, -120, 647, -120, 628, -164, 660, -164, 680, -120, 720, -120, 720, 0, -720, 0 )
+
+[node name="Story2" type="StaticBody2D" parent="Objects/Grappling/Collision"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Objects/Grappling/Collision/Story2" groups=["Story2"]]
+polygon = PoolVector2Array( -720, -120, -720, 120, 720, 120, 720, -120, -720, -120, -419, -14, -419, -49, -403, -49, -394, -52, -394, -58, -334, -58, -331, -52, -316, -50, -300, -52, -298, -58, -259, -58, -249, -36, -225, -36, -225, -58, -183, -58, -183, -53, -181, -50, -158, -50, -152, -53, -149, -58, -89, -58, -89, -53, -86, -50, -63, -50, -57, -52, -57, -58, -19, -58, -9.48757, -35.0379, -1, -35, 255, -35, 255, -58, 298, -58, 298, -54, 301, -50, 323, -50, 328, -52, 329, -58, 394, -58, 394, -53, 397.401, -50, 421, -50, 424, -53, 426, -58, 460, -58, 482, -14, 255, -14, 255, -35, -1, -35, 4, -23, 4, -14, -15, -14, -21.7463, -28.1029, -66, -27, -72, -29, -72, -33, -76, -34, -80, -31, -88, -31, -91, -34, -115, -34, -126, -37, -145, -37, -153, -33, -165, -33, -171, -30, -177, -24, -182, -24, -180, -13, -172, -10, -160.049, -12.6178, -150, -9, -135.935, -9.39631, -71, 10, -60, 39, -73, 38, -169, 8, -213, 8, -227, -27, -229, -25, -229, -14, -419, -14 )
+disabled = true
+
+[node name="Plont" type="StaticBody2D" parent="Objects"]
+position = Vector2( 118, 52 )
+
+[node name="Sprite" type="Sprite" parent="Objects/Plont"]
+position = Vector2( 0, -54 )
+texture = ExtResource( 4 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Objects/Plont"]
+position = Vector2( 0, -54 )
+polygon = PoolVector2Array( -125, 2, -125, 38, -120, 38, -109, 49, -95, 53, -77, 53, -67, 50, -61, 50, -61, 57, -59, 65, -56, 71, -54, 76, -47, 79, -34, 81, -26, 81, -20, 78, -15.1145, 71.3902, -15, 62, -18, 58, -20, 53, -12, 53, -4, 49, -1, 40, -2, 36, 2, 35, 11, 35, 16, 33, 19, 30, 21, 27, 21, 23, 19, 17, 13, 12, 11, 9, 13, 2 )
+
+[node name="Kinematics" type="YSort" parent="."]
+
+[node name="Events" type="YSort" parent="."]
