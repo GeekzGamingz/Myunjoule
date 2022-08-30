@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://assets/Objects/Tweehous/area2-Grappling-Bottom-Tweehous.png" type="Texture" id=2]
+[ext_resource path="res://assets/Objects/Tweehous/area2-Grappling-Middle-Tweehous.png" type="Texture" id=3]
+[ext_resource path="res://assets/Objects/Tweehous/area2-Grappling-Top-Tweehous.png" type="Texture" id=4]
+
+[node name="Tweehous" type="StaticBody2D"]
+
+[node name="Bottom" type="Sprite" parent="."]
+position = Vector2( 0, -62 )
+texture = ExtResource( 2 )
+
+[node name="Middle" type="Sprite" parent="."]
+position = Vector2( 0, -88 )
+z_index = 10
+texture = ExtResource( 3 )
+
+[node name="Top" type="Sprite" parent="."]
+position = Vector2( 26, -97 )
+z_index = 20
+texture = ExtResource( 4 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PoolVector2Array( -15, 0, -19, 4, -22, 5, -23, 9, -26, 11, -31, 12, -37, 16, -42, 21, -42, 23, -39, 24, -33, 22, -29, 21, -20, 19, -16, 16, -11, 14, -8, 15, -2, 18, 1, 21, 7, 23, 12, 25, 16, 27, 18, 26, 17, 23, 14, 19, 11, 15, 8, 13, 6, 11, 6, 9, 7, 8, 10, 7, 12, 5, 11, 3, 8, 2, 6, 0 )
+
+[node name="AnimationPlayers" type="Node2D" parent="."]

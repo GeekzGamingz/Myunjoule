@@ -1,0 +1,168 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://assets/Objects/Gadgets/Expo/expo-Sheet.png" type="Texture" id=1]
+[ext_resource path="res://source/Actors/Expo/ExpoFSM.gd" type="Script" id=2]
+[ext_resource path="res://source/Actors/Expo/Expo.gd" type="Script" id=3]
+[ext_resource path="res://assets/Objects/Gadgets/Expo/expo-activated-Sheet.png" type="Texture" id=4]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 4.0
+
+[sub_resource type="Animation" id=2]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("../ExpoSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "alert"
+length = 0.24
+loop = true
+step = 0.08
+tracks/0/type = "value"
+tracks/0/path = NodePath("../ExpoSprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 4 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("../ExpoSprite:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 3 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("../ExpoSprite:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.08, 0.16 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2 ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "idle"
+length = 0.48
+loop = true
+step = 0.12
+tracks/0/type = "value"
+tracks/0/path = NodePath("../ExpoSprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("../ExpoSprite:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 4 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("../ExpoSprite:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.12, 0.24, 0.36 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3 ]
+}
+
+[sub_resource type="AnimationNodeAnimation" id=7]
+animation = "alert"
+
+[sub_resource type="AnimationNodeAnimation" id=8]
+animation = "idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=9]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=10]
+
+[sub_resource type="AnimationNodeStateMachine" id=5]
+states/alert/node = SubResource( 7 )
+states/alert/position = Vector2( 520, 144 )
+states/idle/node = SubResource( 8 )
+states/idle/position = Vector2( 520, 53 )
+transitions = [ "idle", "alert", SubResource( 9 ), "alert", "idle", SubResource( 10 ) ]
+start_node = "idle"
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=6]
+
+[node name="Expo" type="KinematicBody2D"]
+z_index = 30
+collision_layer = 16
+collision_mask = 48
+script = ExtResource( 3 )
+
+[node name="ExpoFSM" type="Node2D" parent="."]
+script = ExtResource( 2 )
+
+[node name="ExpoSprite" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+hframes = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+disabled = true
+
+[node name="StateOutput" type="Label" parent="."]
+margin_left = -45.0
+margin_top = -23.0
+margin_right = 46.0
+margin_bottom = -9.0
+text = "State"
+align = 1
+valign = 1
+
+[node name="AnimationPlayers" type="Node2D" parent="."]
+
+[node name="ExpoPlayer" type="AnimationPlayer" parent="AnimationPlayers"]
+autoplay = "idle"
+anims/RESET = SubResource( 2 )
+anims/alert = SubResource( 4 )
+anims/idle = SubResource( 3 )
+
+[node name="AnimationTree" type="AnimationTree" parent="AnimationPlayers"]
+tree_root = SubResource( 5 )
+anim_player = NodePath("../ExpoPlayer")
+active = true
+parameters/playback = SubResource( 6 )

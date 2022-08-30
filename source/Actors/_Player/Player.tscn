@@ -1,0 +1,239 @@
+[gd_scene load_steps=19 format=2]
+
+[ext_resource path="res://assets/_Player/rowbit_idle.png" type="Texture" id=1]
+[ext_resource path="res://source/Actors/_Player/Player.gd" type="Script" id=2]
+[ext_resource path="res://source/Actors/_Player/PlayerFSM.gd" type="Script" id=3]
+[ext_resource path="res://assets/_Player/rowbit-move.png" type="Texture" id=4]
+[ext_resource path="res://assets/_Player/rowbit_grappling_prep-Sheet.png" type="Texture" id=5]
+[ext_resource path="res://source/Objects/GrapplingHook/GrapplingHook.tscn" type="PackedScene" id=6]
+
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 2.0
+height = 8.0
+
+[sub_resource type="CircleShape2D" id=12]
+radius = 82.0061
+
+[sub_resource type="Animation" id=2]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("../PlayerSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=11]
+resource_name = "grapple_prep"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("../PlayerSprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 5 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("../PlayerSprite:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 4 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("../PlayerSprite:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3 ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "idle"
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("../PlayerSprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("../PlayerSprite:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 8 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("../PlayerSprite:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5, 6, 7 ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "move"
+length = 0.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("../PlayerSprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 4 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("../PlayerSprite:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 4 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("../PlayerSprite:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3 ]
+}
+
+[sub_resource type="AnimationNodeAnimation" id=7]
+animation = "idle"
+
+[sub_resource type="AnimationNodeAnimation" id=8]
+animation = "move"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=9]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=10]
+
+[sub_resource type="AnimationNodeStateMachine" id=4]
+states/idle/node = SubResource( 7 )
+states/idle/position = Vector2( 600, 74 )
+states/move/node = SubResource( 8 )
+states/move/position = Vector2( 600, 179 )
+transitions = [ "idle", "move", SubResource( 9 ), "move", "idle", SubResource( 10 ) ]
+start_node = "idle"
+graph_offset = Vector2( 15, -34 )
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=5]
+
+[node name="Player" type="KinematicBody2D"]
+collision_layer = 2
+collision_mask = 13
+script = ExtResource( 2 )
+
+[node name="PlayerFSM" type="Node2D" parent="."]
+script = ExtResource( 3 )
+
+[node name="PlayerSprite" type="Sprite" parent="."]
+position = Vector2( 0, -10 )
+texture = ExtResource( 1 )
+hframes = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource( 1 )
+
+[node name="StateOutput" type="Label" parent="."]
+margin_left = -45.0
+margin_top = -32.0
+margin_right = 46.0
+margin_bottom = -18.0
+text = "State"
+align = 1
+valign = 1
+
+[node name="MainCamera" type="Camera2D" parent="."]
+current = true
+zoom = Vector2( 0.4, 0.4 )
+limit_top = -120
+limit_bottom = 120
+
+[node name="Facing" type="Node2D" parent="."]
+
+[node name="ExpoAnchor" type="Position2D" parent="Facing"]
+position = Vector2( -30, -25 )
+
+[node name="GrapplingHook" parent="Facing" instance=ExtResource( 6 )]
+
+[node name="PlayerAreas" type="Node2D" parent="."]
+position = Vector2( 0, -15 )
+
+[node name="POIDetection" type="Area2D" parent="PlayerAreas"]
+collision_layer = 2
+collision_mask = 48
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerAreas/POIDetection"]
+shape = SubResource( 12 )
+
+[node name="AnimationPlayers" type="Node2D" parent="."]
+
+[node name="SpritePlayer" type="AnimationPlayer" parent="AnimationPlayers"]
+anims/RESET = SubResource( 2 )
+anims/grapple_prep = SubResource( 11 )
+anims/idle = SubResource( 3 )
+anims/move = SubResource( 6 )
+
+[node name="AnimationTree" type="AnimationTree" parent="AnimationPlayers"]
+tree_root = SubResource( 4 )
+anim_player = NodePath("../SpritePlayer")
+active = true
+parameters/playback = SubResource( 5 )
+
+[connection signal="area_entered" from="PlayerAreas/POIDetection" to="." method="_on_POIDetection_area_entered"]
+[connection signal="area_exited" from="PlayerAreas/POIDetection" to="." method="_on_POIDetection_area_exited"]

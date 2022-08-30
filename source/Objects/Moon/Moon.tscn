@@ -1,0 +1,65 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://source/Objects/Moon/Moon.gd" type="Script" id=1]
+[ext_resource path="res://assets/Objects/Moon/mewn-Sheet.png" type="Texture" id=2]
+
+[sub_resource type="Animation" id=2]
+resource_name = "idle"
+length = 1200.0
+loop = true
+step = 75.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 2 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 16 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 75, 150, 225, 300, 375, 450, 525, 600, 675, 750, 825, 900, 975, 1050, 1125, 1200 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 8, 9, 10, 11, 12, 13, 14, 15, 0, 0, 1, 2, 3, 4, 5, 6, 7 ]
+}
+
+[node name="Moon" type="Position2D"]
+script = ExtResource( 1 )
+revolution = -0.025
+
+[node name="MoonFSM" type="Node2D" parent="."]
+
+[node name="Moon" type="Sprite" parent="."]
+position = Vector2( 0, -700 )
+texture = ExtResource( 2 )
+hframes = 16
+frame = 8
+
+[node name="AnimationPlayers" type="Node2D" parent="."]
+
+[node name="MoonPlayer" type="AnimationPlayer" parent="AnimationPlayers"]
+root_node = NodePath("../../Moon")
+autoplay = "idle"
+anims/idle = SubResource( 2 )

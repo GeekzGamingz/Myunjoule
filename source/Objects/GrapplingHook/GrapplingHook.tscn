@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://assets/Objects/Gadgets/GrapplingHook/chain.png" type="Texture" id=1]
+[ext_resource path="res://assets/Objects/Gadgets/GrapplingHook/hook.png" type="Texture" id=2]
+[ext_resource path="res://source/Objects/GrapplingHook/GrapplingHook.gd" type="Script" id=3]
+
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 1.0
+height = 6.0
+
+[node name="GrapplingHook" type="Position2D"]
+script = ExtResource( 3 )
+
+[node name="Links" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+centered = false
+offset = Vector2( -1, 2 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 2, 100 )
+
+[node name="Tip" type="KinematicBody2D" parent="."]
+collision_layer = 32
+collision_mask = 32
+
+[node name="Hook" type="Sprite" parent="Tip"]
+texture = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Tip"]
+position = Vector2( 0, 3 )
+shape = SubResource( 1 )
