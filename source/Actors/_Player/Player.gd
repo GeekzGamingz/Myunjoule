@@ -2,14 +2,14 @@ extends Actor
 #------------------------------------------------------------------------------#
 #Variables
 var facing = "RIGHT"
-var target
+var target = Vector2.ZERO
 #Bool Variables
-var grapple_prep: bool = false
+var shoot_grapple: bool = false
 #OnReady Variables
 onready var sprite: Sprite = $PlayerSprite
-onready var expoAnchor: Position2D = $Facing/ExpoAnchor
+onready var expoAnchor: Position2D = $Anchors/ExpoAnchor
 onready var expoSprite: Sprite = G.EXPO.get_node("ExpoSprite")
-onready var hook: Position2D = $Facing/GrapplingHook
+onready var hook: Position2D = $Anchors/GrapplingHook
 #Animation Nodes
 onready var spritePlayer: AnimationPlayer = $AnimationPlayers/SpritePlayer
 onready var animTree: AnimationTree = $AnimationPlayers/AnimationTree
@@ -32,18 +32,22 @@ func apply_gravity(delta):
 #------------------------------------------------------------------------------#
 #Facing
 func apply_facing():
-	sprite.flip_h = !sprite.flip_h
-	expoSprite.flip_h = !expoSprite.flip_h
-	expoAnchor.position.x *= -1
-#	hook.position.x *= -1
+	if facing == "LEFT":
+		sprite.flip_h = true
+		expoSprite.flip_h = true
+		expoAnchor.position.x = 30
+	else:
+		sprite.flip_h = false
+		expoSprite.flip_h = false
+		expoAnchor.position.x = -30
 #------------------------------------------------------------------------------#
 #POI Detection
 #Area Entered
 func _on_POIDetection_area_entered(area: Area2D) -> void:
 	if area.is_in_group("POI"):
-		target = area
+		target = area.global_position
 		G.EXPO.detected = true
-		G.EXPO.POI = target.global_position
+		G.EXPO.POI = target
 #Area Exited
 func _on_POIDetection_area_exited(area: Area2D) -> void:
 	if area.is_in_group("POI"):

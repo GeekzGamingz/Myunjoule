@@ -437,17 +437,11 @@ position = Vector2( 720, 0 )
 texture = ExtResource( 8 )
 hframes = 6
 
-[node name="GrappleSpot2" parent="YSort/WorldObjects" instance=ExtResource( 15 )]
-position = Vector2( 446, 87 )
-
-[node name="GrappleSpot3" parent="YSort/WorldObjects" instance=ExtResource( 15 )]
+[node name="GrappleSpot1" parent="YSort/WorldObjects" instance=ExtResource( 15 )]
 position = Vector2( 444, -51 )
 
-[node name="GrappleSpot4" parent="YSort/WorldObjects" instance=ExtResource( 15 )]
+[node name="GrappleSpot2" parent="YSort/WorldObjects" instance=ExtResource( 15 )]
 position = Vector2( 661, -53 )
-
-[node name="GrappleSpot5" parent="YSort/WorldObjects" instance=ExtResource( 15 )]
-position = Vector2( 667, 98 )
 
 [node name="WorldKinematics" type="YSort" parent="YSort"]
 

@@ -204,13 +204,6 @@ zoom = Vector2( 0.4, 0.4 )
 limit_top = -120
 limit_bottom = 120
 
-[node name="Facing" type="Node2D" parent="."]
-
-[node name="ExpoAnchor" type="Position2D" parent="Facing"]
-position = Vector2( -30, -25 )
-
-[node name="GrapplingHook" parent="Facing" instance=ExtResource( 6 )]
-
 [node name="PlayerAreas" type="Node2D" parent="."]
 position = Vector2( 0, -15 )
 
@@ -220,6 +213,15 @@ collision_mask = 48
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerAreas/POIDetection"]
 shape = SubResource( 12 )
+
+[node name="Anchors" type="Node2D" parent="."]
+position = Vector2( 0, -15 )
+
+[node name="ExpoAnchor" type="Position2D" parent="Anchors"]
+position = Vector2( -30, -15 )
+
+[node name="GrapplingHook" parent="Anchors" instance=ExtResource( 6 )]
+z_index = -1
 
 [node name="AnimationPlayers" type="Node2D" parent="."]
 

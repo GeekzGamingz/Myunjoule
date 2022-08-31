@@ -22,7 +22,9 @@ func _process(_delta: float) -> void:
 #State Logistics
 func stateLogic(_delta):
 	match(state):
-		states.idle: parent.movement_idle()
+		states.idle:
+			parent.movement_idle()
+			G.PLAYER.hook.grapple_release() #Updates TipPOS Location
 		states.hover: parent.movement_hover()
 		states.alert: pass
 #State Transitions

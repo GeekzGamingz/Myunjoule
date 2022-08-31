@@ -15,26 +15,19 @@ func _ready() -> void:
 	stateAdd("move_down")
 	stateAdd("move_right")
 	stateAdd("move_left")
-	stateAdd("grapple")
+	stateAdd("shoot_grapple")
 	call_deferred("stateSet", states.idle)
 #------------------------------------------------------------------------------#
 #Input Handler
 func _input(event: InputEvent) -> void:
 	#Grapple
 	if event.is_action_pressed(G.actions.GRAPPLE):
-		var targetPOS = parent.target.global_position
-		parent.grapple_prep = true
+		var targetPOS = parent.target
+		parent.shoot_grapple = true
 		parent.hook.grapple_shoot(targetPOS)
 	if event.is_action_released(G.actions.GRAPPLE):
-		parent.grapple_prep = false
+		parent.shoot_grapple = false
 		parent.hook.grapple_release()
-	#Facing
-	if event.is_action_pressed("ui_right") && parent.facing == "LEFT":
-		parent.facing = "RIGHT"
-		parent.apply_facing()
-	elif event.is_action_pressed("ui_left") && parent.facing == "RIGHT":
-		parent.facing = "LEFT"
-		parent.apply_facing()
 #------------------------------------------------------------------------------#
 #State Label
 func _process(_delta: float) -> void:
@@ -43,8 +36,9 @@ func _process(_delta: float) -> void:
 #State Logistics
 # warning-ignore:unused_argument
 func stateLogic(delta):
-	if ![states.grapple].has(state):
+	if ![states.shoot_grapple].has(state):
 		parent.apply_movement()
+	parent.apply_facing()
 #State Transitions
 # warning-ignore:unused_argument
 func transitions(delta):
@@ -54,8 +48,7 @@ func transitions(delta):
 		states.move_down: return dirMove()
 		states.move_right: return dirMove()
 		states.move_left: return dirMove()
-		states.grapple:
-			if !parent.grapple_prep: return states.idle
+		states.shoot_grapple: if !parent.shoot_grapple: return states.idle
 	return null
 #Enter State
 # warning-ignore:unused_argument
@@ -64,10 +57,12 @@ func stateEnter(newState, oldState):
 		states.idle: parent.playBack.travel(animations.IDLE)
 		states.move_up: parent.playBack.travel(animations.MOVE)
 		states.move_down: parent.playBack.travel(animations.MOVE)
-		states.move_right:
+		states.move_right: 
 			parent.playBack.travel(animations.MOVE)
+			parent.facing = "RIGHT"
 		states.move_left:
 			parent.playBack.travel(animations.MOVE)
+			parent.facing = "LEFT"
 #Exit State
 # warning-ignore:unused_argument
 # warning-ignore:unused_argument
@@ -76,7 +71,7 @@ func stateExit(oldState, newState):
 #------------------------------------------------------------------------------#
 #Directional Movement Transition
 func dirMove():
-	if parent.grapple_prep: return states.grapple
+	if parent.shoot_grapple: return states.shoot_grapple
 	if parent.motion == Vector2.ZERO: return states.idle
 	if parent.motion.x == parent.max_speed: return states.move_right
 	if parent.motion.x == -parent.max_speed: return states.move_left

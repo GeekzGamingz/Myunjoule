@@ -5,7 +5,7 @@ var POI = Vector2.ZERO
 #Bool Variables
 var detected: bool = false
 #OnReady Variables
-onready var anchor: Position2D = G.PLAYER.get_node("Facing/ExpoAnchor")
+onready var anchor: Position2D = G.PLAYER.get_node("Anchors/ExpoAnchor")
 #Animation Nodes
 onready var spritePlayer: AnimationPlayer = $AnimationPlayers/ExpoPlayer
 onready var animTree: AnimationTree = $AnimationPlayers/AnimationTree
