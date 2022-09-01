@@ -1,7 +1,11 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=4 format=2]
 
 [sub_resource type="CircleShape2D" id=2]
 radius = 8.06226
+
+[sub_resource type="PhysicsMaterial" id=4]
+
+[sub_resource type="CircleShape2D" id=3]
 
 [node name="GrappleSpot" type="DampedSpringJoint2D"]
 node_a = NodePath("GrappleOrigin")
@@ -16,6 +20,10 @@ shape = SubResource( 2 )
 
 [node name="PlayerOrigin" type="RigidBody2D" parent="."]
 position = Vector2( 0, 50 )
+mass = 5.10204
+physics_material_override = SubResource( 4 )
+gravity_scale = 1.25
+can_sleep = false
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="PlayerOrigin"]
-polygon = PoolVector2Array( 6, 2, 15, 2, 15, -8, -15, -8, -15, 8, 15, 8, 15, 2, -6, 2, -6, -2, 6, -2 )
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerOrigin"]
+shape = SubResource( 3 )

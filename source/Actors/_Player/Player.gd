@@ -10,6 +10,7 @@ onready var sprite: Sprite = $PlayerSprite
 onready var expoAnchor: Position2D = $Anchors/ExpoAnchor
 onready var expoSprite: Sprite = G.EXPO.get_node("ExpoSprite")
 onready var hook: Position2D = $Anchors/GrapplingHook
+onready var collision: CollisionShape2D = $CollisionShape2D
 #Animation Nodes
 onready var spritePlayer: AnimationPlayer = $AnimationPlayers/SpritePlayer
 onready var animTree: AnimationTree = $AnimationPlayers/AnimationTree
@@ -28,16 +29,29 @@ func apply_movement():
 	motion = motion.normalized() * max_speed
 #Gravity
 func apply_grapple(delta):
-	self.global_position = target.get_parent().get_node("PlayerOrigin").global_position
+	var origin = target.get_parent().get_node("PlayerOrigin")
+	self.global_position = lerp(self.global_position, origin.global_position,
+						   lerp(0, 0.075, 0.8))
+	#Swinging
+	if Input.is_action_pressed(G.actions.LEFT):
+		origin.linear_velocity.x -= 1
+		facing = "LEFT"
+	if Input.is_action_pressed(G.actions.RIGHT):
+		origin.linear_velocity.x += 1
+		facing = "RIGHT"
+	#Gravity
+	origin.linear_velocity.y += gravity * delta
 #------------------------------------------------------------------------------#
 #Facing
 func apply_facing():
 	if facing == "LEFT":
 		sprite.flip_h = true
+		sprite.position.x = 4
 		expoSprite.flip_h = true
 		expoAnchor.position.x = 30
 	else:
 		sprite.flip_h = false
+		sprite.position.x = -4
 		expoSprite.flip_h = false
 		expoAnchor.position.x = -30
 #------------------------------------------------------------------------------#

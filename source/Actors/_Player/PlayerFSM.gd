@@ -26,9 +26,9 @@ func _input(event: InputEvent) -> void:
 		var targetPOS = parent.target.global_position
 		parent.shoot_grapple = true
 		parent.hook.grapple_shoot(targetPOS)
-	if event.is_action_released(G.actions.GRAPPLE):
-		parent.shoot_grapple = false
-		parent.hook.grapple_release()
+#	if event.is_action_released(G.actions.GRAPPLE):
+#		parent.shoot_grapple = false
+#		parent.hook.grapple_release()
 #------------------------------------------------------------------------------#
 #State Label
 func _process(_delta: float) -> void:
@@ -44,11 +44,10 @@ func stateLogic(delta):
 			parent.target.get_parent().get_node("PlayerOrigin").global_position = parent.global_position
 		states.hooked:
 			parent.apply_grapple(delta)
-			parent.apply_movement()
 		states.move_right: parent.facing = "RIGHT"
 		states.move_left: parent.facing = "LEFT"
-	parent.apply_facing()
 	parent.motion = parent.move_and_slide(parent.motion)
+	parent.apply_facing()
 #State Transitions
 # warning-ignore:unused_argument
 func transitions(delta):
@@ -71,7 +70,7 @@ func stateEnter(newState, oldState):
 		states.move_down: parent.playBack.travel(animations.MOVE)
 		states.move_right: parent.playBack.travel(animations.MOVE)
 		states.move_left: parent.playBack.travel(animations.MOVE)
-		states.hooked: pass
+		states.hooked: parent.collision.set_deferred("disabled", true)
 #Exit State
 # warning-ignore:unused_argument
 # warning-ignore:unused_argument

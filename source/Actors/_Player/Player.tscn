@@ -185,7 +185,7 @@ __meta__ = {
 script = ExtResource( 3 )
 
 [node name="PlayerSprite" type="Sprite" parent="."]
-position = Vector2( 0, -10 )
+position = Vector2( -4, -10 )
 texture = ExtResource( 1 )
 hframes = 8
 
@@ -225,7 +225,6 @@ position = Vector2( 0, -15 )
 position = Vector2( -30, -15 )
 
 [node name="GrapplingHook" parent="Anchors" instance=ExtResource( 6 )]
-z_index = -1
 
 [node name="AnimationPlayers" type="Node2D" parent="."]
 
