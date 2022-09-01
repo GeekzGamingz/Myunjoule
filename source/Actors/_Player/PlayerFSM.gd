@@ -16,13 +16,14 @@ func _ready() -> void:
 	stateAdd("move_right")
 	stateAdd("move_left")
 	stateAdd("shoot_grapple")
+	stateAdd("hooked")
 	call_deferred("stateSet", states.idle)
 #------------------------------------------------------------------------------#
 #Input Handler
 func _input(event: InputEvent) -> void:
 	#Grapple
 	if event.is_action_pressed(G.actions.GRAPPLE):
-		var targetPOS = parent.target
+		var targetPOS = parent.target.global_position
 		parent.shoot_grapple = true
 		parent.hook.grapple_shoot(targetPOS)
 	if event.is_action_released(G.actions.GRAPPLE):
@@ -36,9 +37,13 @@ func _process(_delta: float) -> void:
 #State Logistics
 # warning-ignore:unused_argument
 func stateLogic(delta):
-	if ![states.shoot_grapple].has(state):
-		parent.apply_movement()
 	parent.apply_facing()
+	if ![states.shoot_grapple, states.hooked].has(state):
+		parent.apply_movement()
+	match(state):
+		states.move_right: parent.facing = "RIGHT"
+		states.move_left: parent.facing = "LEFT"
+		states.hooked: parent.apply_gravity(delta)
 #State Transitions
 # warning-ignore:unused_argument
 func transitions(delta):
@@ -48,7 +53,9 @@ func transitions(delta):
 		states.move_down: return dirMove()
 		states.move_right: return dirMove()
 		states.move_left: return dirMove()
-		states.shoot_grapple: if !parent.shoot_grapple: return states.idle
+		states.shoot_grapple:
+			if !parent.shoot_grapple: return states.idle
+			if G.PLAYER.hook.hooked: return states.hooked
 	return null
 #Enter State
 # warning-ignore:unused_argument
@@ -57,12 +64,8 @@ func stateEnter(newState, oldState):
 		states.idle: parent.playBack.travel(animations.IDLE)
 		states.move_up: parent.playBack.travel(animations.MOVE)
 		states.move_down: parent.playBack.travel(animations.MOVE)
-		states.move_right: 
-			parent.playBack.travel(animations.MOVE)
-			parent.facing = "RIGHT"
-		states.move_left:
-			parent.playBack.travel(animations.MOVE)
-			parent.facing = "LEFT"
+		states.move_right: parent.playBack.travel(animations.MOVE)
+		states.move_left: parent.playBack.travel(animations.MOVE)
 #Exit State
 # warning-ignore:unused_argument
 # warning-ignore:unused_argument

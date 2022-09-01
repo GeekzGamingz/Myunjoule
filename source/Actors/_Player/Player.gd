@@ -2,7 +2,7 @@ extends Actor
 #------------------------------------------------------------------------------#
 #Variables
 var facing = "RIGHT"
-var target = Vector2.ZERO
+var target
 #Bool Variables
 var shoot_grapple: bool = false
 #OnReady Variables
@@ -42,14 +42,25 @@ func apply_facing():
 		expoAnchor.position.x = -30
 #------------------------------------------------------------------------------#
 #POI Detection
+#Areas
 #Area Entered
 func _on_POIDetection_area_entered(area: Area2D) -> void:
-	if area.is_in_group("POI"):
-		target = area.global_position
-		G.EXPO.detected = true
-		G.EXPO.POI = target
+	pass
 #Area Exited
 func _on_POIDetection_area_exited(area: Area2D) -> void:
-	if area.is_in_group("POI"):
+	pass
+#Bodies
+#Body Entered
+func _on_POIDetection_body_entered(body: Node) -> void:
+	if body.is_in_group("Grapple"):
+		target = body
+		G.EXPO.detected = true
+		G.EXPO.POI = target.global_position
+#Body Exited
+func _on_POIDetection_body_exited(body: Node) -> void:
+	if body.is_in_group("Grapple"):
 		G.EXPO.detected = false
 #------------------------------------------------------------------------------#
+
+
+

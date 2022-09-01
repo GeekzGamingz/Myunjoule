@@ -1,20 +1,23 @@
-[gd_scene load_steps=3 format=2]
-
-[sub_resource type="CircleShape2D" id=1]
+[gd_scene load_steps=2 format=2]
 
 [sub_resource type="CircleShape2D" id=2]
 radius = 8.06226
 
-[node name="GrappleSpot" type="Area2D" groups=["POI"]]
-collision_layer = 48
-collision_mask = 0
+[node name="GrappleSpot" type="DampedSpringJoint2D"]
+node_a = NodePath("GrappleOrigin")
+node_b = NodePath("PlayerOrigin")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 1 )
+[node name="GrappleOrigin" type="StaticBody2D" parent="." groups=["Grapple"]]
+collision_layer = 32
+collision_mask = 32
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-collision_layer = 48
-collision_mask = 48
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GrappleOrigin"]
 shape = SubResource( 2 )
+
+[node name="PlayerOrigin" type="KinematicBody2D" parent="."]
+position = Vector2( 0, 50 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerOrigin"]
+modulate = Color( 0, 1, 0, 1 )
+shape = SubResource( 2 )
+disabled = true

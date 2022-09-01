@@ -438,15 +438,15 @@ texture = ExtResource( 8 )
 hframes = 6
 
 [node name="GrappleSpot1" parent="YSort/WorldObjects" instance=ExtResource( 15 )]
-position = Vector2( 444, -51 )
+position = Vector2( 444, -35 )
 
 [node name="GrappleSpot2" parent="YSort/WorldObjects" instance=ExtResource( 15 )]
-position = Vector2( 661, -53 )
+position = Vector2( 661, -35 )
 
 [node name="WorldKinematics" type="YSort" parent="YSort"]
 
 [node name="Player" parent="YSort/WorldKinematics" instance=ExtResource( 6 )]
-position = Vector2( 550, 85 )
+position = Vector2( 508, 31 )
 
 [node name="Expo" parent="YSort/WorldKinematics" instance=ExtResource( 14 )]
 

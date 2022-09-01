@@ -42,6 +42,7 @@ func grapple_shoot(dir: Vector2) -> void:
 	direction = (dir - tipPOS).normalized()
 	flying = true
 	tipPOS = self.global_position
+	G.PLAYER.target.get_parent().node_b = G.PLAYER.get_path()
 #Release Grappling Hook
 func grapple_release() -> void:
 	tipPOS = get_parent().global_position
