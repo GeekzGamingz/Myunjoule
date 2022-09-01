@@ -37,13 +37,18 @@ func _process(_delta: float) -> void:
 #State Logistics
 # warning-ignore:unused_argument
 func stateLogic(delta):
-	parent.apply_facing()
 	if ![states.shoot_grapple, states.hooked].has(state):
 		parent.apply_movement()
 	match(state):
+		states.shoot_grapple:
+			parent.target.get_parent().get_node("PlayerOrigin").global_position = parent.global_position
+		states.hooked:
+			parent.apply_grapple(delta)
+			parent.apply_movement()
 		states.move_right: parent.facing = "RIGHT"
 		states.move_left: parent.facing = "LEFT"
-		states.hooked: parent.apply_gravity(delta)
+	parent.apply_facing()
+	parent.motion = parent.move_and_slide(parent.motion)
 #State Transitions
 # warning-ignore:unused_argument
 func transitions(delta):
@@ -66,6 +71,7 @@ func stateEnter(newState, oldState):
 		states.move_down: parent.playBack.travel(animations.MOVE)
 		states.move_right: parent.playBack.travel(animations.MOVE)
 		states.move_left: parent.playBack.travel(animations.MOVE)
+		states.hooked: pass
 #Exit State
 # warning-ignore:unused_argument
 # warning-ignore:unused_argument
@@ -75,8 +81,8 @@ func stateExit(oldState, newState):
 #Directional Movement Transition
 func dirMove():
 	if parent.shoot_grapple: return states.shoot_grapple
-	if parent.motion == Vector2.ZERO: return states.idle
 	if parent.motion.x == parent.max_speed: return states.move_right
 	if parent.motion.x == -parent.max_speed: return states.move_left
 	if parent.motion.y == parent.max_speed: return states.move_down
 	if parent.motion.y == -parent.max_speed: return states.move_up
+	if parent.motion == Vector2.ZERO: return states.idle

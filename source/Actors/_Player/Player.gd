@@ -24,11 +24,11 @@ func apply_movement():
 	if Input.is_action_pressed(G.actions.LEFT): motion.x -= 1
 	if Input.is_action_pressed(G.actions.DOWN): motion.y += 1
 	if Input.is_action_pressed(G.actions.UP): motion.y -= 1
-	motion = motion.normalized() * max_speed #Normalizes Diagonal Movement
-	motion = move_and_slide(motion)
+	#Normalizes Diagonal Movement
+	motion = motion.normalized() * max_speed
 #Gravity
-func apply_gravity(delta):
-	motion.y += gravity * delta
+func apply_grapple(delta):
+	self.global_position = target.get_parent().get_node("PlayerOrigin").global_position
 #------------------------------------------------------------------------------#
 #Facing
 func apply_facing():

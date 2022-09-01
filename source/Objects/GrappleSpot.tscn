@@ -14,10 +14,8 @@ collision_mask = 32
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GrappleOrigin"]
 shape = SubResource( 2 )
 
-[node name="PlayerOrigin" type="KinematicBody2D" parent="."]
+[node name="PlayerOrigin" type="RigidBody2D" parent="."]
 position = Vector2( 0, 50 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerOrigin"]
-modulate = Color( 0, 1, 0, 1 )
-shape = SubResource( 2 )
-disabled = true
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="PlayerOrigin"]
+polygon = PoolVector2Array( 6, 2, 15, 2, 15, -8, -15, -8, -15, 8, 15, 8, 15, 2, -6, 2, -6, -2, 6, -2 )

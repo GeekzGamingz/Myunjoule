@@ -440,9 +440,6 @@ hframes = 6
 [node name="GrappleSpot1" parent="YSort/WorldObjects" instance=ExtResource( 15 )]
 position = Vector2( 444, -35 )
 
-[node name="GrappleSpot2" parent="YSort/WorldObjects" instance=ExtResource( 15 )]
-position = Vector2( 661, -35 )
-
 [node name="WorldKinematics" type="YSort" parent="YSort"]
 
 [node name="Player" parent="YSort/WorldKinematics" instance=ExtResource( 6 )]
