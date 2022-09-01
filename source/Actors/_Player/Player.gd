@@ -31,7 +31,7 @@ func apply_movement():
 func apply_grapple(delta):
 	var origin = target.get_parent().get_node("PlayerOrigin")
 	self.global_position = lerp(self.global_position, origin.global_position,
-						   lerp(0, 0.075, 0.8))
+						   lerp(0, 0.075, 1))
 	#Swinging
 	if Input.is_action_pressed(G.actions.LEFT):
 		origin.linear_velocity.x -= 1
