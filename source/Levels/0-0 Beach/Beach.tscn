@@ -28,7 +28,6 @@ texture = ExtResource( 1 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Objects/Collision/Story1-TopBorder" groups=["Story1"]]
 polygon = PoolVector2Array( -720, -120, 720, -120, 720, 0, 185, 0, 194, 8, 206, 21, 215, 35, 225, 61, 225, 74, 214, 74, 176, 26, 176, 0, -720, 0 )
-disabled = true
 
 [node name="Story1-BottomBorder" type="StaticBody2D" parent="Objects/Collision"]
 

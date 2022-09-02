@@ -20,6 +20,8 @@ shape = SubResource( 2 )
 
 [node name="PlayerOrigin" type="RigidBody2D" parent="."]
 position = Vector2( 0, 50 )
+collision_layer = 32
+collision_mask = 32
 mass = 5.10204
 physics_material_override = SubResource( 4 )
 gravity_scale = 1.25

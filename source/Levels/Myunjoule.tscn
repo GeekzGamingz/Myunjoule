@@ -438,7 +438,7 @@ texture = ExtResource( 8 )
 hframes = 6
 
 [node name="GrappleSpot1" parent="YSort/WorldObjects" instance=ExtResource( 15 )]
-position = Vector2( 444, -35 )
+position = Vector2( 538, -79 )
 
 [node name="WorldKinematics" type="YSort" parent="YSort"]
 

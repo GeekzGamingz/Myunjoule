@@ -39,6 +39,10 @@ func apply_grapple(delta):
 	if Input.is_action_pressed(G.actions.RIGHT):
 		origin.linear_velocity.x += 1
 		facing = "RIGHT"
+	if Input.is_action_pressed("ui_down"):
+		origin.get_parent().rest_length += 1
+	if Input.is_action_pressed("ui_up"):
+		origin.get_parent().rest_length = 1
 	#Gravity
 	origin.linear_velocity.y += gravity * delta
 #------------------------------------------------------------------------------#
