@@ -5,8 +5,10 @@ var animations = {
 	IDLE = "idle",
 	MOVE = "move"
 }
+var pOrigin
 #OnReady Variables
-onready var stateLabel: Label = parent.get_node("StateOutput")
+onready var stateLabel: Label = parent.get_node("PlayerOutputs/StateOutput")
+onready var storyLabel: Label = parent.get_node("PlayerOutputs/StoryOutput")
 #------------------------------------------------------------------------------#
 #Ready
 func _ready() -> void:
@@ -17,22 +19,27 @@ func _ready() -> void:
 	stateAdd("move_left")
 	stateAdd("shoot_grapple")
 	stateAdd("hooked")
+	stateAdd("falling")
 	call_deferred("stateSet", states.idle)
 #------------------------------------------------------------------------------#
 #Input Handler
 func _input(event: InputEvent) -> void:
 	#Grapple
 	if event.is_action_pressed(G.actions.GRAPPLE):
-		var targetPOS = parent.target.global_position
-		parent.shoot_grapple = true
-		parent.hook.grapple_shoot(targetPOS)
-#	if event.is_action_released(G.actions.GRAPPLE):
-#		parent.shoot_grapple = false
-#		parent.hook.grapple_release()
+		if parent.target != null:
+			var targetPOS = parent.target.global_position
+			parent.shoot_grapple = true
+			parent.hook.grapple_shoot(targetPOS)
+			parent.z_index = 30
+	if event.is_action_pressed(G.actions.GRAPPLE):
+		if [states.hooked].has(state):
+			parent.shoot_grapple = false
+			parent.hook.grapple_release()
 #------------------------------------------------------------------------------#
 #State Label
 func _process(_delta: float) -> void:
 	stateLabel.text = str(states.keys()[state])
+	storyLabel.text = str(parent.story)
 #------------------------------------------------------------------------------#
 #State Logistics
 # warning-ignore:unused_argument
@@ -41,7 +48,8 @@ func stateLogic(delta):
 		parent.apply_movement()
 	match(state):
 		states.shoot_grapple:
-			parent.target.get_parent().get_node("PlayerOrigin").global_position = parent.global_position
+			pOrigin = parent.target.get_parent().get_node("PlayerOrigin")
+			pOrigin.global_position = parent.global_position
 		states.hooked:
 			parent.apply_grapple(delta)
 		states.move_right: parent.facing = "RIGHT"
@@ -59,7 +67,8 @@ func transitions(delta):
 		states.move_left: return dirMove()
 		states.shoot_grapple:
 			if !parent.shoot_grapple: return states.idle
-			if G.PLAYER.hook.hooked: return states.hooked
+			if parent.hook.hooked: return states.hooked
+		states.hooked: if !parent.hook.hooked: return states.idle
 	return null
 #Enter State
 # warning-ignore:unused_argument
@@ -73,9 +82,11 @@ func stateEnter(newState, oldState):
 		states.hooked: parent.collision.set_deferred("disabled", true)
 #Exit State
 # warning-ignore:unused_argument
-# warning-ignore:unused_argument
 func stateExit(oldState, newState):
-	pass
+	match(oldState):
+		states.hooked:
+			parent.collision.set_deferred("disabled", false)
+			parent.apply_story()
 #------------------------------------------------------------------------------#
 #Directional Movement Transition
 func dirMove():

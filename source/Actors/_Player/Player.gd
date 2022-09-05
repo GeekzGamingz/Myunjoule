@@ -1,8 +1,10 @@
 extends Actor
 #------------------------------------------------------------------------------#
 #Variables
+var target = null
+#String Variables
 var facing = "RIGHT"
-var target
+var story = "GROUND"
 #Bool Variables
 var shoot_grapple: bool = false
 #OnReady Variables
@@ -27,8 +29,10 @@ func apply_movement():
 	if Input.is_action_pressed(G.actions.UP): motion.y -= 1
 	#Normalizes Diagonal Movement
 	motion = motion.normalized() * max_speed
-#Gravity
+#------------------------------------------------------------------------------#
+#Grapple
 func apply_grapple(delta):
+	var spring = target.get_parent()
 	var origin = target.get_parent().get_node("PlayerOrigin")
 	self.global_position = lerp(self.global_position, origin.global_position,
 						   lerp(0, 0.075, 1))
@@ -39,12 +43,26 @@ func apply_grapple(delta):
 	if Input.is_action_pressed(G.actions.RIGHT):
 		origin.linear_velocity.x += 1
 		facing = "RIGHT"
-	if Input.is_action_pressed("ui_down"):
+	#Ascend/Descend
+	if Input.is_action_pressed(G.actions.DOWN):
 		origin.get_parent().rest_length += 1
-	if Input.is_action_pressed("ui_up"):
-		origin.get_parent().rest_length = 1
+	if Input.is_action_pressed(G.actions.UP):
+		if spring.rest_length > 1:
+			spring.rest_length -= 1
+	#Reel In
+	if Input.is_action_just_released(G.actions.ACTIVATE):
+		spring.rest_length = 1
+		spring.stiffness = 64
+		spring.stiffness = 20
 	#Gravity
 	origin.linear_velocity.y += gravity * delta
+#------------------------------------------------------------------------------#
+func apply_story():
+	for area in G.ZONES.get_children():
+		if area.is_in_group("Story1"):
+			print("Yes")
+		else:
+			print("No")
 #------------------------------------------------------------------------------#
 #Facing
 func apply_facing():

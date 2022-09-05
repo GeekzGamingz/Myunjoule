@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://assets/_Player/rowbit_idle.png" type="Texture" id=1]
 [ext_resource path="res://source/Actors/_Player/Player.gd" type="Script" id=2]
@@ -10,6 +10,9 @@
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 2.0
 height = 4.0
+
+[sub_resource type="CircleShape2D" id=13]
+radius = 6.0
 
 [sub_resource type="CircleShape2D" id=12]
 radius = 104.0
@@ -178,7 +181,7 @@ collision_mask = 45
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_horizontal_guides_": [ -2.0, 2.0 ],
-"_edit_vertical_guides_": [ -6.0, 6.0 ]
+"_edit_vertical_guides_": [ -6.0, 6.0, 9.0 ]
 }
 
 [node name="PlayerFSM" type="Node2D" parent="."]
@@ -193,15 +196,6 @@ hframes = 8
 rotation = 1.5708
 shape = SubResource( 1 )
 
-[node name="StateOutput" type="Label" parent="."]
-margin_left = -45.0
-margin_top = -32.0
-margin_right = 46.0
-margin_bottom = -18.0
-text = "State"
-align = 1
-valign = 1
-
 [node name="MainCamera" type="Camera2D" parent="."]
 current = true
 zoom = Vector2( 0.4, 0.4 )
@@ -209,9 +203,20 @@ limit_top = -120
 limit_bottom = 120
 
 [node name="PlayerAreas" type="Node2D" parent="."]
-position = Vector2( 0, -15 )
+
+[node name="HitDetection" type="Area2D" parent="PlayerAreas"]
+modulate = Color( 0, 0, 1, 1 )
+position = Vector2( 0, -9 )
+collision_layer = 2
+collision_mask = 12
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerAreas/HitDetection"]
+shape = SubResource( 13 )
 
 [node name="POIDetection" type="Area2D" parent="PlayerAreas"]
+modulate = Color( 0, 1, 0, 1 )
+position = Vector2( 0, -15 )
+z_index = -1
 collision_layer = 2
 collision_mask = 48
 
@@ -239,6 +244,26 @@ tree_root = SubResource( 4 )
 anim_player = NodePath("../SpritePlayer")
 active = true
 parameters/playback = SubResource( 5 )
+
+[node name="PlayerOutputs" type="Node2D" parent="."]
+
+[node name="StateOutput" type="Label" parent="PlayerOutputs"]
+margin_left = -46.0
+margin_top = -32.0
+margin_right = 46.0
+margin_bottom = -18.0
+text = "State"
+align = 1
+valign = 1
+
+[node name="StoryOutput" type="Label" parent="PlayerOutputs"]
+margin_left = -46.0
+margin_top = -48.0
+margin_right = 46.0
+margin_bottom = -34.0
+text = "Story"
+align = 1
+valign = 1
 
 [connection signal="area_entered" from="PlayerAreas/POIDetection" to="." method="_on_POIDetection_area_entered"]
 [connection signal="area_exited" from="PlayerAreas/POIDetection" to="." method="_on_POIDetection_area_exited"]

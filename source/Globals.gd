@@ -6,7 +6,8 @@ var actions = {
 	RIGHT = "ui_right",
 	DOWN = "ui_down",
 	UP = "ui_up",
-	GRAPPLE = "ui_grapple"
+	GRAPPLE = "ui_grapple",
+	ACTIVATE = "ui_accept"
 }
 #Constants
 const TILE_SIZE = 24
@@ -16,6 +17,7 @@ onready var PLAYER = get_tree().root.get_node("Myunjoule/YSort/WorldKinematics/P
 onready var EXPO = get_tree().root.get_node("Myunjoule/YSort/WorldKinematics/Expo")
 onready var UI = get_tree().root.get_node("Myunjoule/UserInterface")
 #Zones
+onready var ZONES = get_tree().root.get_node("Myunjoule/YSort/Zones")
 onready var BEACH = get_tree().root.get_node("Myunjoule/YSort/Zones/Beach")
 onready var TOWN = get_tree().root.get_node("Myunjoule/YSort/Zones/Town")
 onready var LAB = get_tree().root.get_node("Myunjoule/YSort/Zones/Lab")

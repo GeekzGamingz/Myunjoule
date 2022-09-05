@@ -10,6 +10,7 @@ radius = 8.06226
 [node name="GrappleSpot" type="DampedSpringJoint2D"]
 node_a = NodePath("GrappleOrigin")
 node_b = NodePath("PlayerOrigin")
+rest_length = 1.0
 
 [node name="GrappleOrigin" type="StaticBody2D" parent="." groups=["Grapple"]]
 collision_layer = 32
