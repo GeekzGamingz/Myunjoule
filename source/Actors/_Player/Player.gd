@@ -72,25 +72,21 @@ func apply_story():
 func check_story(poly):
 	match(story):
 		"GROUND": 
-			if poly.is_in_group("Bottom"): poly.set_deferred("disabled", false)
-			if poly.is_in_group("Top"): poly.set_deferred("disabled", false)
-			if poly.is_in_group("Story1"): poly.set_deferred("disabled", true)
-			if poly.is_in_group("Story2"): poly.set_deferred("disabled", true)
+			if poly.get_groups()[0] in ["Bottom", "Top"]:
+				poly.set_disabled(false)
+			else: poly.set_disabled(true)
 		"STORY1": 
-			if poly.is_in_group("Bottom"): poly.set_deferred("disabled", false)
-			if poly.is_in_group("Top"): poly.set_deferred("disabled", true)
-			if poly.is_in_group("Story1"): poly.set_deferred("disabled", false)
-			if poly.is_in_group("Story2"): poly.set_deferred("disabled", true)
+			if poly.get_groups()[0] in ["Bottom", "Story1"]:
+				poly.set_disabled(false)
+			else: poly.set_disabled(true)
 		"STORY2": 
-			if poly.is_in_group("Bottom"): poly.set_deferred("disabled", false)
-			if poly.is_in_group("Top"): poly.set_deferred("disabled", true)
-			if poly.is_in_group("Story1"): poly.set_deferred("disabled", true)
-			if poly.is_in_group("Story2"): poly.set_deferred("disabled", false)
+			if poly.get_groups()[0] in ["Bottom", "Story2"]:
+				poly.set_disabled(false)
+			else: poly.set_disabled(true)
 		"FALLING": 
-			if poly.is_in_group("Bottom"): poly.set_deferred("disabled", false)
-			if poly.is_in_group("Top"): poly.set_deferred("disabled", true)
-			if poly.is_in_group("Story1"): poly.set_deferred("disabled", true)
-			if poly.is_in_group("Story2"): poly.set_deferred("disabled", true)
+			if poly.get_groups()[0] in ["Bottom"]:
+				poly.set_disabled(false)
+			else: poly.set_disabled(true)
 #------------------------------------------------------------------------------#
 #Facing
 func apply_facing():
