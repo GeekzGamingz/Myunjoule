@@ -30,11 +30,13 @@ func _input(event: InputEvent) -> void:
 			var targetPOS = parent.target.global_position
 			parent.shoot_grapple = true
 			parent.hook.grapple_shoot(targetPOS)
-			parent.z_index = 30
 	if event.is_action_pressed(G.actions.GRAPPLE):
 		if [states.hooked].has(state):
 			parent.shoot_grapple = false
 			parent.hook.grapple_release()
+			yield(get_tree().create_timer(0.1), "timeout")
+			if !parent.hook.hooked:
+				parent.target = null
 #------------------------------------------------------------------------------#
 #State Label
 func _process(_delta: float) -> void:
@@ -56,6 +58,7 @@ func stateLogic(delta):
 		states.move_left: parent.facing = "LEFT"
 	parent.motion = parent.move_and_slide(parent.motion)
 	parent.apply_facing()
+	parent.apply_story()
 #State Transitions
 # warning-ignore:unused_argument
 func transitions(delta):
@@ -84,9 +87,7 @@ func stateEnter(newState, oldState):
 # warning-ignore:unused_argument
 func stateExit(oldState, newState):
 	match(oldState):
-		states.hooked:
-			parent.collision.set_deferred("disabled", false)
-			parent.apply_story()
+		states.hooked: parent.collision.set_deferred("disabled", false)
 #------------------------------------------------------------------------------#
 #Directional Movement Transition
 func dirMove():

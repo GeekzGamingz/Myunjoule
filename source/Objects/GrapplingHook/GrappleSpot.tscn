@@ -10,19 +10,20 @@ radius = 8.06226
 [node name="GrappleSpot" type="DampedSpringJoint2D"]
 node_a = NodePath("GrappleOrigin")
 node_b = NodePath("PlayerOrigin")
-rest_length = 1.0
+length = 75.0
+rest_length = 75.0
 
 [node name="GrappleOrigin" type="StaticBody2D" parent="." groups=["Grapple"]]
 collision_layer = 32
-collision_mask = 32
+collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GrappleOrigin"]
 shape = SubResource( 2 )
 
 [node name="PlayerOrigin" type="RigidBody2D" parent="."]
-position = Vector2( 0, 50 )
-collision_layer = 32
-collision_mask = 32
+position = Vector2( 0, 75 )
+collision_layer = 0
+collision_mask = 0
 mass = 5.10204
 physics_material_override = SubResource( 4 )
 gravity_scale = 1.25

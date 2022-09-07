@@ -39,9 +39,11 @@ func apply_grapple(delta):
 	#Swinging
 	if Input.is_action_pressed(G.actions.LEFT):
 		origin.linear_velocity.x -= 1
+		spring.damping = 16
 		facing = "LEFT"
 	if Input.is_action_pressed(G.actions.RIGHT):
 		origin.linear_velocity.x += 1
+		spring.damping = 16
 		facing = "RIGHT"
 	#Ascend/Descend
 	if Input.is_action_pressed(G.actions.DOWN):
@@ -52,17 +54,43 @@ func apply_grapple(delta):
 	#Reel In
 	if Input.is_action_just_released(G.actions.ACTIVATE):
 		spring.rest_length = 1
+		spring.damping = 1
 		spring.stiffness = 64
+		yield(get_tree().create_timer(0.5), "timeout")
 		spring.stiffness = 20
 	#Gravity
 	origin.linear_velocity.y += gravity * delta
 #------------------------------------------------------------------------------#
+#Switch Story
 func apply_story():
-	for area in G.ZONES.get_children():
-		if area.is_in_group("Story1"):
-			print("Yes")
-		else:
-			print("No")
+	for zone in G.ZONES.get_children():
+		var collisions = zone.get_node("Objects/Grappling/Collision/")
+		for area in collisions.get_children():
+			var poly = area.get_node("CollisionPolygon2D")
+			check_story(poly)
+#Story Collisions
+func check_story(poly):
+	match(story):
+		"GROUND": 
+			if poly.is_in_group("Bottom"): poly.set_deferred("disabled", false)
+			if poly.is_in_group("Top"): poly.set_deferred("disabled", false)
+			if poly.is_in_group("Story1"): poly.set_deferred("disabled", true)
+			if poly.is_in_group("Story2"): poly.set_deferred("disabled", true)
+		"STORY1": 
+			if poly.is_in_group("Bottom"): poly.set_deferred("disabled", false)
+			if poly.is_in_group("Top"): poly.set_deferred("disabled", true)
+			if poly.is_in_group("Story1"): poly.set_deferred("disabled", false)
+			if poly.is_in_group("Story2"): poly.set_deferred("disabled", true)
+		"STORY2": 
+			if poly.is_in_group("Bottom"): poly.set_deferred("disabled", false)
+			if poly.is_in_group("Top"): poly.set_deferred("disabled", true)
+			if poly.is_in_group("Story1"): poly.set_deferred("disabled", true)
+			if poly.is_in_group("Story2"): poly.set_deferred("disabled", false)
+		"FALLING": 
+			if poly.is_in_group("Bottom"): poly.set_deferred("disabled", false)
+			if poly.is_in_group("Top"): poly.set_deferred("disabled", true)
+			if poly.is_in_group("Story1"): poly.set_deferred("disabled", true)
+			if poly.is_in_group("Story2"): poly.set_deferred("disabled", true)
 #------------------------------------------------------------------------------#
 #Facing
 func apply_facing():
@@ -80,10 +108,10 @@ func apply_facing():
 #POI Detection
 #Areas
 #Area Entered
-func _on_POIDetection_area_entered(area: Area2D) -> void:
+func _on_POIDetection_area_entered(_area: Area2D) -> void:
 	pass
 #Area Exited
-func _on_POIDetection_area_exited(area: Area2D) -> void:
+func _on_POIDetection_area_exited(_area: Area2D) -> void:
 	pass
 #Bodies
 #Body Entered

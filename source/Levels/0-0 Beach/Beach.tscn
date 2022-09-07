@@ -22,18 +22,34 @@ texture = ExtResource( 1 )
 
 [node name="Objects" type="YSort" parent="."]
 
-[node name="Collision" type="Position2D" parent="Objects"]
+[node name="Grappling" type="Position2D" parent="Objects"]
 
-[node name="Story1-TopBorder" type="StaticBody2D" parent="Objects/Collision"]
+[node name="Collision" type="Position2D" parent="Objects/Grappling"]
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Objects/Collision/Story1-TopBorder" groups=["Story1Collision"]]
-polygon = PoolVector2Array( -720, -120, 720, -120, 720, 0, 185, 0, 194, 8, 206, 21, 215, 35, 225, 61, 225, 74, 214, 74, 176, 26, 176, 0, -720, 0 )
+[node name="BottomBorder" type="StaticBody2D" parent="Objects/Grappling/Collision"]
 
-[node name="Story1-BottomBorder" type="StaticBody2D" parent="Objects/Collision"]
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Objects/Collision/Story1-BottomBorder" groups=["Ground"]]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Objects/Grappling/Collision/BottomBorder" groups=["Bottom"]]
 position = Vector2( 0, 240 )
 polygon = PoolVector2Array( -720, -120, 720, -120, 720, 0, -720, 0 )
+
+[node name="TopBorder" type="StaticBody2D" parent="Objects/Grappling/Collision"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Objects/Grappling/Collision/TopBorder" groups=["Top"]]
+polygon = PoolVector2Array( -720, -120, 720, -120, 720, 0, 185, 0, 194, 8, 206, 21, 215, 35, 225, 61, 225, 74, 214, 74, 176, 26, 176, 0, -720, 0 )
+
+[node name="Story1" type="StaticBody2D" parent="Objects/Grappling/Collision"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Objects/Grappling/Collision/Story1" groups=["Story1"]]
+position = Vector2( 0, -106 )
+polygon = PoolVector2Array( -1, -16, 0, -15, 1, -16, 1, -23, -1, -23 )
+disabled = true
+
+[node name="Story2" type="StaticBody2D" parent="Objects/Grappling/Collision"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Objects/Grappling/Collision/Story2" groups=["Story2"]]
+position = Vector2( 0, -106 )
+polygon = PoolVector2Array( -1, -16, 0, -15, 1, -16, 1, -23, -1, -23 )
+disabled = true
 
 [node name="Kinematics" type="YSort" parent="."]
 
