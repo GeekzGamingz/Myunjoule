@@ -29,6 +29,11 @@ func apply_movement():
 	if Input.is_action_pressed(G.actions.UP): motion.y -= 1
 	#Normalizes Diagonal Movement
 	motion = motion.normalized() * max_speed
+#Falling
+func apply_falling(delta):
+	if Input.is_action_pressed(G.actions.RIGHT): motion.x += 1
+	if Input.is_action_pressed(G.actions.LEFT): motion.x -= 1
+	motion.y += gravity * delta
 #------------------------------------------------------------------------------#
 #Grapple
 func apply_grapple(delta):

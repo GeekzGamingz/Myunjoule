@@ -46,16 +46,16 @@ func _process(_delta: float) -> void:
 #State Logistics
 # warning-ignore:unused_argument
 func stateLogic(delta):
-	if ![states.shoot_grapple, states.hooked].has(state):
+	if ![states.shoot_grapple, states.hooked, states.falling].has(state):
 		parent.apply_movement()
 	match(state):
+		states.move_right: parent.facing = "RIGHT"
+		states.move_left: parent.facing = "LEFT"
 		states.shoot_grapple:
 			pOrigin = parent.target.get_parent().get_node("PlayerOrigin")
 			pOrigin.global_position = parent.global_position
-		states.hooked:
-			parent.apply_grapple(delta)
-		states.move_right: parent.facing = "RIGHT"
-		states.move_left: parent.facing = "LEFT"
+		states.hooked: parent.apply_grapple(delta)
+		states.falling: parent.apply_falling(delta)
 	parent.motion = parent.move_and_slide(parent.motion)
 	parent.apply_facing()
 	parent.apply_story()
@@ -71,7 +71,8 @@ func transitions(delta):
 		states.shoot_grapple:
 			if !parent.shoot_grapple: return states.idle
 			if parent.hook.hooked: return states.hooked
-		states.hooked: if !parent.hook.hooked: return states.idle
+		states.hooked: if !parent.hook.hooked: return states.falling
+		states.falling: if parent.motion.y == 0: return states.idle
 	return null
 #Enter State
 # warning-ignore:unused_argument
@@ -87,7 +88,8 @@ func stateEnter(newState, oldState):
 # warning-ignore:unused_argument
 func stateExit(oldState, newState):
 	match(oldState):
-		states.hooked: parent.collision.set_deferred("disabled", false)
+		states.hooked:
+			parent.collision.set_deferred("disabled", false)
 #------------------------------------------------------------------------------#
 #Directional Movement Transition
 func dirMove():

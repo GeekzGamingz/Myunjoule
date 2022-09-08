@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/talkychoice.png-80dd9f8b7d10e9ba328b45518c16f0cb.stex"
+path="res://.import/rowbit-shadow.png-e0bd4a86f1a9586512171bab80880ec6.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/UI/Dialog/talkychoice.png"
-dest_files=[ "res://.import/talkychoice.png-80dd9f8b7d10e9ba328b45518c16f0cb.stex" ]
+source_file="res://assets/_Player/rowbit-shadow.png"
+dest_files=[ "res://.import/rowbit-shadow.png-e0bd4a86f1a9586512171bab80880ec6.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=true
+flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
@@ -31,5 +31,5 @@ process/invert_color=false
 process/normal_map_invert_y=false
 stream=false
 size_limit=0
-detect_3d=true
+detect_3d=false
 svg/scale=1.0
