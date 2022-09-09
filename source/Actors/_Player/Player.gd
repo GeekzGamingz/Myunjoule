@@ -13,6 +13,7 @@ onready var expoAnchor: Position2D = $Anchors/ExpoAnchor
 onready var expoSprite: Sprite = G.EXPO.get_node("ExpoSprite")
 onready var hook: Position2D = $Anchors/GrapplingHook
 onready var collision: CollisionShape2D = $CollisionShape2D
+onready var poiDetection: CollisionShape2D = $PlayerAreas/POIDetection/CollisionShape2D
 #Animation Nodes
 onready var spritePlayer: AnimationPlayer = $AnimationPlayers/SpritePlayer
 onready var animTree: AnimationTree = $AnimationPlayers/AnimationTree
@@ -39,8 +40,12 @@ func apply_falling(delta):
 func apply_grapple(delta):
 	var spring = target.get_parent()
 	var origin = target.get_parent().get_node("PlayerOrigin")
+	#Snaps to Global Position
 	self.global_position = lerp(self.global_position, origin.global_position,
-						   lerp(0, 0.075, 1))
+						lerp(0, 0.075, 1))
+	#Matches Player Motion to Origin Velocity
+	self.motion = lerp(self.motion, origin.linear_velocity,
+						lerp(0, 0.075, 1))
 	#Swinging
 	if Input.is_action_pressed(G.actions.LEFT):
 		origin.linear_velocity.x -= 1

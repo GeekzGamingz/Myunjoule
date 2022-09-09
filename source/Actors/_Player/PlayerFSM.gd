@@ -36,7 +36,12 @@ func _input(event: InputEvent) -> void:
 			parent.hook.grapple_release()
 			yield(get_tree().create_timer(0.1), "timeout")
 			if !parent.hook.hooked:
+				#Clears Target
 				parent.target = null
+				#Reset for POI in Range
+				parent.poiDetection.set_deferred("disabled", true)
+				yield(get_tree().create_timer(0.01), "timeout")
+				parent.poiDetection.set_deferred("disabled", false)
 #------------------------------------------------------------------------------#
 #State Label
 func _process(_delta: float) -> void:
@@ -51,9 +56,7 @@ func stateLogic(delta):
 	match(state):
 		states.move_right: parent.facing = "RIGHT"
 		states.move_left: parent.facing = "LEFT"
-		states.shoot_grapple:
-			pOrigin = parent.target.get_parent().get_node("PlayerOrigin")
-			pOrigin.global_position = parent.global_position
+		states.shoot_grapple: pass
 		states.hooked: parent.apply_grapple(delta)
 		states.falling: parent.apply_falling(delta)
 	parent.motion = parent.move_and_slide(parent.motion)
@@ -72,7 +75,9 @@ func transitions(delta):
 			if !parent.shoot_grapple: return states.idle
 			if parent.hook.hooked: return states.hooked
 		states.hooked: if !parent.hook.hooked: return states.falling
-		states.falling: if parent.motion.y == 0: return states.idle
+		states.falling:
+			if parent.hook.hooked: return states.hooked
+			if parent.motion.y == 0: return states.idle
 	return null
 #Enter State
 # warning-ignore:unused_argument
@@ -84,6 +89,7 @@ func stateEnter(newState, oldState):
 		states.move_right: parent.playBack.travel(animations.MOVE)
 		states.move_left: parent.playBack.travel(animations.MOVE)
 		states.hooked: parent.collision.set_deferred("disabled", true)
+		states.shoot_grapple: pass
 #Exit State
 # warning-ignore:unused_argument
 func stateExit(oldState, newState):

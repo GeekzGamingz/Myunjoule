@@ -70,7 +70,6 @@ position = Vector2( -425, -56 )
 [node name="Collision" type="Position2D" parent="Objects/Grappling"]
 
 [node name="BottomBorder" type="StaticBody2D" parent="Objects/Grappling/Collision"]
-visible = false
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Objects/Grappling/Collision/BottomBorder" groups=["Bottom"]]
 position = Vector2( 0, 240 )
@@ -82,14 +81,12 @@ polygon = PoolVector2Array( -720, -120, 720, -120, 720, 0, -720, 0 )
 polygon = PoolVector2Array( -720, -240, 720, -240, 720, 0, -720, 0 )
 
 [node name="Story1" type="StaticBody2D" parent="Objects/Grappling/Collision"]
-visible = false
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Objects/Grappling/Collision/Story1" groups=["Story1"]]
 polygon = PoolVector2Array( -720, -120, -720, 120, 720, 120, 720, -120, -720, -120, -588, -26, -455, -26, -416, -26, -406, -8, -343, -7, -352, -26, -299, -26, -274, 23, -445, 23, -457, -2, -445, -11, -455, -26, -588, -26, -445, 76, -183, 77, -182, 24, -217, 24, -245, -23, -213, -23, -202, -8, -78, -7, -69, 10, -75, 15, -73, 22, -171, 22, -182, 24, -183, 77, -21, 76, -21, 25, -36, -7, 19, -7, 9, -26, 63, -26, 77, 2, 114, 2, 121, 14, 82, 14, 89, 25, 131, 25, 152, -20, 154, -24, 160, -28, 169, -32, 178, -32, 186, -28, 194, -28, 203, -31, 207, -40, 212, -48, 226, -48, 222, -53, 275, -53, 286, -36, 221, -35, 213, -25, 207, -23, 197, -20, 188, -18, 181, -17, 175, -15, 166, -14, 159, -14, 154, -16, 152, -20, 131, 25, -21, 25, -21, 76, -183, 77, -445, 76 )
 disabled = true
 
 [node name="Story2" type="StaticBody2D" parent="Objects/Grappling/Collision"]
-visible = false
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Objects/Grappling/Collision/Story2" groups=["Story2"]]
 polygon = PoolVector2Array( -720, -240, -720, 119, 720, 120, 720, -240, 6, -240, 6, -80, 16, -62, -33, -62, -41, -80, -27, -80, -29, -76, -27, -73, -21, -73, -19, -76, -21, -80, 6, -80, 6, -240, -94, -240, -93, -80, -70, -35, -119, -35, -130, -62, -192, -62, -200, -80, -93, -80, -94, -240, -358, -240, -357, -80, -347, -62, -396, -62, -399, -58, -435, -58, -446, -75, -407, -76, -404, -80, -357, -80, -358, -240 )
